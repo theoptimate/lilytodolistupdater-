@@ -1,0 +1,16 @@
+{
+  "name": "venture-agent",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Reads business email and proposes ventures built from what it finds.",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "start": "node run.mjs",
+    "test": "node --test test/"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.70.0"
+  },
+  "//": "Kept out of the site's package.json so the static build stays dependency-free. The SDK is imported lazily — the pipeline runs without it, on heuristics."
+}

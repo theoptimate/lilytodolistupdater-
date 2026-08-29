@@ -1,0 +1,65 @@
+{
+  "_note": "The random variable. One card is drawn from each deck listed in decks_per_run (see profile.json), with a seed, so any run can be replayed. Cards are constraints, not themes: a constraint forces a different answer, a theme just decorates the same one. Edit freely — cards that keep producing nothing should be deleted.",
+  "decks": {
+    "constraint": [
+      "No new software may be written for the first 90 days.",
+      "The whole thing has to run on under $500 a month.",
+      "It must work if only one person ever touches it.",
+      "No paid acquisition, ever.",
+      "It has to be profitable at 20 customers.",
+      "Everything customer-facing must be async — no calls, no demos.",
+      "It must be sellable as a standalone asset within two years.",
+      "The first version ships in a weekend or not at all."
+    ],
+    "channel": [
+      "Distribution is a weekly email and nothing else.",
+      "Distribution is one existing offline relationship.",
+      "Distribution is SEO on a long tail nobody is bidding on.",
+      "Distribution is being the supplier to five competitors.",
+      "Distribution is a physical location someone already walks past.",
+      "Distribution is a marketplace you do not control.",
+      "Distribution is a free tool that produces the data you sell.",
+      "Distribution is a partner who already bills the customer."
+    ],
+    "model": [
+      "Charge for the outcome, not the tool.",
+      "Sell the same work twice: once as a service, once as data.",
+      "Take a cut of a transaction you make possible.",
+      "License it to the incumbent instead of competing.",
+      "Subscription with a hard cap on seats.",
+      "Buy the cashflow, keep the operator, change nothing for a year.",
+      "Give the software away and charge for the annual audit.",
+      "Productise the boring compliance step everybody hates."
+    ],
+    "mechanism": [
+      "The moat is a dataset that gets better every time it is used.",
+      "The moat is a permit, licence or certification that takes a year to get.",
+      "The moat is a routine nobody else will do on a Sunday.",
+      "The moat is being the cheapest by a factor, not a margin.",
+      "The moat is switching cost buried in someone's workflow.",
+      "The moat is a brand a specific small group trusts.",
+      "There is no moat — the plan is to get paid before one is needed.",
+      "The moat is speed: shipping in a week what takes them a quarter."
+    ],
+    "shift": [
+      "Assume the incumbent's price falls 80% within 18 months.",
+      "Assume the customer's own staff are already using AI badly.",
+      "Assume the regulation tightens rather than loosens.",
+      "Assume the owner is retiring and nobody wants to buy.",
+      "Assume the platform this depends on eventually shuts the door.",
+      "Assume attention gets more expensive every quarter.",
+      "Assume the buyer is a machine, not a person.",
+      "Assume the labour to do this manually stops being available."
+    ],
+    "absurd": [
+      "It has to be explainable to a nine-year-old in one sentence.",
+      "The business must be more boring than it sounds.",
+      "Steal the format from an industry with nothing in common.",
+      "Do the opposite of what the source email is selling.",
+      "Assume you are the second-best operator and win anyway.",
+      "Solve it for the worst customer first.",
+      "Make the thing everyone else outsources the core product.",
+      "Start with the exit and work backwards."
+    ]
+  }
+}

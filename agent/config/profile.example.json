@@ -1,0 +1,78 @@
+{
+  "_note": "Copy to profile.json and fill it in. This file is the agent's whole opinion — scoring and synthesis are both downstream of it, so a vague profile produces vague ventures. Be specific and be honest about the constraints; the kill criteria are the most valuable part.",
+
+  "operator": {
+    "name": "FILL_ME — you",
+    "strengths": [
+      "FILL_ME — things you can do that most people running a business cannot",
+      "FILL_ME — an industry you know from the inside",
+      "FILL_ME — a skill you are paid for today"
+    ],
+    "assets": [
+      "FILL_ME — an audience, a list, a licence, equipment, a domain, a codebase",
+      "FILL_ME — a relationship that opens a door"
+    ],
+    "constraints": {
+      "capital_usd": 0,
+      "leverage": 1,
+      "hours_per_week": 10,
+      "risk": "FILL_ME — e.g. no personal guarantees, no employees in year one",
+      "geography": "FILL_ME — where you can actually operate"
+    },
+    "anti_patterns": [
+      "FILL_ME — the kind of work you have learned you do badly or hate"
+    ]
+  },
+
+  "agent": {
+    "name": "Claude",
+    "capabilities": [
+      "reads and classifies large volumes of email, documents and listings",
+      "writes and maintains software, scrapers, pipelines and sites",
+      "drafts research, outreach, documentation and marketing copy",
+      "runs a repeatable weekly process without getting bored",
+      "structured extraction and analysis over messy text"
+    ],
+    "limits": [
+      "cannot verify a seller's numbers, sign anything, or hold a relationship",
+      "no access to private data unless it is put in front of it",
+      "confident wording is not evidence — every claim it makes needs a source"
+    ]
+  },
+
+  "ecosystem": {
+    "name": "Mae",
+    "what_it_is": "FILL_ME — one paragraph: what Mae is, who it serves, how it makes money today",
+    "assets": [
+      "FILL_ME — brand, content library, tooling, data, supplier relationships"
+    ],
+    "audiences": [
+      "FILL_ME — who already pays attention, and how many"
+    ],
+    "distribution": [
+      "FILL_ME — the channels you already control: list, site, storefront, partners"
+    ],
+    "gaps": [
+      "FILL_ME — what the ecosystem needs that it does not have. New ventures that fill a gap compound; ones that do not are a second job."
+    ]
+  },
+
+  "thesis": [
+    "FILL_ME — what you believe about the next few years that others do not",
+    "FILL_ME — the kind of business you want to end up owning"
+  ],
+
+  "kill_criteria": [
+    { "label": "Requires a licence I do not hold", "match": ["licensed", "licence required", "license required"] },
+    { "label": "Inventory-heavy retail", "match": ["inventory", "warehouse", "stock on hand"] },
+    { "label": "Franchise", "match": ["franchise", "franchisee"] },
+    { "label": "Needs staff on day one", "match": ["employees included", "staff of", "crew of"] }
+  ],
+
+  "run": {
+    "decks_per_run": ["constraint", "channel", "model"],
+    "shortlist": 12,
+    "ventures": 3,
+    "collision_size": 2
+  }
+}

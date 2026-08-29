@@ -50,7 +50,15 @@ never a force-push, never a rewrite of published history.
 - `/posts/statement-of-purpose/` is unsigned. It needs a real byline.
 - `SITE_ORIGIN` is still the placeholder `datatothepeople.org`.
 
+## `agent/` is not the site
+
+`agent/` is a separate subsystem: an email → venture-opportunity pipeline with its own
+`package.json` (one dependency, the Anthropic SDK), its own tests
+(`npm run agent:test`) and its own README. `npm run check` does not cover it, and it
+writes nothing into `dist/`. Its `state/` and `config/profile.json` are gitignored —
+they are personal data, not project files.
+
 ## Where things are documented
 
 `README.md` build and data model · `DEPLOY.md` hosting · `SEO.md` search ·
-`SWOT.md` strategy.
+`SWOT.md` strategy · `agent/README.md` the venture agent.
