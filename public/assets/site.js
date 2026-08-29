@@ -2,14 +2,17 @@
    ---------------------------------------------------------------------------
    ONE PLACE TO CONFIGURE ADSENSE.
 
+   The build can fill all of this in for you. Set ADSENSE_PUB_ID (and the
+   AD_SLOT_* variables) in your host's environment and `node tools/build.mjs`
+   writes the publisher ID here, emits the loader <script> in every <head>, and
+   writes ads.txt. See DEPLOY.md.
+
+   To hard-code it instead:
    1. Get approved at https://adsense.google.com and copy your publisher ID
       (it looks like `ca-pub-1234567890123456`).
-   2. Put it in AD_CLIENT below.
-   3. Create each ad unit in the AdSense dashboard and paste its numeric slot ID
-      into AD_SLOTS.
-   4. Uncomment the <script> tag marked "AdSense loader" in the <head> of every
-      page, and set the same publisher ID there.
-   5. Put the same ID in /ads.txt.
+   2. Put it in AD_CLIENT below, and the numeric unit IDs in AD_SLOTS.
+   3. Put the same ID, minus the "ca-" prefix, in SITE.adsense in
+      tools/build.mjs — that emits the loader tag and writes ads.txt.
 
    Until step 1 is done, every ad position renders as a labelled placeholder so
    the layout is identical before and after approval (no cumulative layout shift
@@ -19,7 +22,6 @@
 const AD_CLIENT = "";                 // e.g. "ca-pub-1234567890123456"
 const AD_SLOTS = {
   "home-feed":      "",               // in-feed unit, homepage
-  "article-top":    "",               // after the article intro
   "article-mid":    "",               // mid-article
   "article-end":    "",               // below the article
 };

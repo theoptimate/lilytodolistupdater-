@@ -3,7 +3,7 @@
    Uses Fraunces from Google Fonts when the network allows it and falls back to a
    system serif otherwise — regenerate on a connected machine for an exact match. */
 
-import { chromium } from "/opt/node22/lib/node_modules/playwright/index.mjs";
+import { chromium } from "playwright";  // npm i -D playwright && npx playwright install chromium
 import { writeFile } from "node:fs/promises";
 
 const BARS = [[2019,32],[2020,23],[2021,61],[2022,54],[2023,45],[2024,19],[2025,47]];
@@ -72,7 +72,7 @@ const page = await ctx.newPage();
 for (const [name, html] of Object.entries(CARDS)) {
   await page.setContent(html, { waitUntil: "load" });
   await page.waitForTimeout(700);
-  await page.screenshot({ path: "assets/" + name });
+  await page.screenshot({ path: "public/assets/" + name });
   console.log("wrote assets/" + name);
 }
 await b.close();

@@ -36,8 +36,9 @@ fold (Fraunces, Public Sans) as `woff2` with `font-display:swap` and drop the re
 
 ### At launch
 1. Point the domain, serve over HTTPS, force `www` → apex (or the reverse) with a 301.
-2. Set `SITE.origin` in `tools/build.mjs` to the real domain and rebuild. **Nothing works
-   until this is right** — every canonical, OG URL and sitemap entry is derived from it.
+2. Set `SITE_ORIGIN` (host environment variable, or `SITE.origin` in `tools/build.mjs`)
+   to the real domain and rebuild. **Nothing works until this is right** — every
+   canonical, OG URL and sitemap entry is derived from it. See `DEPLOY.md`.
 3. Verify the property in [Google Search Console](https://search.google.com/search-console)
    and [Bing Webmaster Tools](https://www.bing.com/webmasters). Submit `sitemap.xml`.
 4. Run the article URL through the

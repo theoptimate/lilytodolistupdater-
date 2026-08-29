@@ -3,15 +3,29 @@
    Writes every page, sitemap.xml, robots.txt and ads.txt from the metadata below,
    so the SEO tags can never drift apart between pages. */
 
-import { readFile, writeFile, mkdir } from "node:fs/promises";
+import { readFile, writeFile, mkdir, cp, rm } from "node:fs/promises";
 import { dirname, join } from "node:path";
 
+/* Everything is written into dist/. Nothing outside dist/ is ever deployed, which
+   is what keeps src/ and tools/ off the public site. */
+const OUT = "dist";
+const out = (p) => join(OUT, p);
+
 /* --------------------------------------------------------------------------
-   SET THESE TWO VALUES, then re-run the build.
+   The two deploy-specific values. Set them here, or override them per
+   environment from the host dashboard — env vars win over the literals below,
+   so you can point a preview build at a staging domain without a commit.
+
+     SITE_ORIGIN     https://datatothepeople.org
+     ADSENSE_PUB_ID  pub-1234567890123456     (no "ca-" prefix)
+
+   Setting ADSENSE_PUB_ID also emits the real AdSense loader and writes the
+   publisher ID into the bundled site.js and ads.txt. Ad unit IDs come from
+   AD_SLOT_HOME_FEED / AD_SLOT_ARTICLE_MID / AD_SLOT_ARTICLE_END.
    -------------------------------------------------------------------------- */
 const SITE = {
-  origin:  "https://datatothepeople.org",   // <- your domain, no trailing slash
-  adsense: "",                              // <- "pub-1234567890123456" (no "ca-" prefix)
+  origin:  process.env.SITE_ORIGIN    || "https://datatothepeople.org",
+  adsense: process.env.ADSENSE_PUB_ID || "",
 
   name: "Data to the People",
   tagline: "Charts from the public record",
@@ -21,6 +35,12 @@ const SITE = {
   email: "hello@datatothepeople.org",
   locale: "en_US",
   twitter: "",                              // e.g. "@datatothepeople" — omit if none
+};
+
+const AD_SLOT_ENV = {
+  "home-feed":   "AD_SLOT_HOME_FEED",
+  "article-mid": "AD_SLOT_ARTICLE_MID",
+  "article-end": "AD_SLOT_ARTICLE_END",
 };
 
 const FONTS_BASE = [
@@ -150,8 +170,7 @@ const PAGES = [
         "@type": "BreadcrumbList",
         itemListElement: [
           { "@type": "ListItem", position: 1, name: "Home", item: SITE.origin + "/" },
-          { "@type": "ListItem", position: 2, name: "Graphics", item: SITE.origin + "/graphics/" },
-          { "@type": "ListItem", position: 3, name: "Seven Years at Half-Staff" },
+          { "@type": "ListItem", position: 2, name: "Seven Years at Half-Staff" },
         ],
       },
     ],
@@ -274,10 +293,9 @@ ${SITE.twitter ? `<meta name="twitter:site" content="${SITE.twitter}">\n` : ""}<
 <link rel="stylesheet" href="/assets/site.css">
 <link rel="alternate" type="application/rss+xml" title="${esc(SITE.name)}" href="${SITE.origin}/feed.xml">
 
-<!-- AdSense loader. Uncomment and set your publisher ID once approved; it must
-     match AD_CLIENT in /assets/site.js and the ID in /ads.txt.
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
--->
+${SITE.adsense
+  ? `<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-${SITE.adsense}" crossorigin="anonymous"></script>`
+  : `<!-- AdSense loader appears here once ADSENSE_PUB_ID is set (see tools/build.mjs). -->`}
 
 ${ld.map((o) => `<script type="application/ld+json">\n${JSON.stringify(o, null, 2)}\n</script>`).join("\n")}`;
 }
@@ -339,6 +357,24 @@ ${body}
 /* --------------------------------------------------------------------------- */
 
 async function build() {
+  await rm(OUT, { recursive: true, force: true });
+  await cp("public", OUT, { recursive: true });
+  console.log("copied public/ ->", OUT + "/");
+
+  /* Fold the publisher ID and ad unit IDs into the shipped script, so turning
+     ads on is an environment change rather than a code change. */
+  if (SITE.adsense) {
+    const jsPath = out("assets/site.js");
+    let js = await readFile(jsPath, "utf8");
+    js = js.replace('const AD_CLIENT = "";', `const AD_CLIENT = "ca-${SITE.adsense}";`);
+    for (const [slot, envName] of Object.entries(AD_SLOT_ENV)) {
+      const id = process.env[envName];
+      if (id) js = js.replace(new RegExp(`("${slot}":\\s*)""`), `$1"${id}"`);
+    }
+    await writeFile(jsPath, js);
+    console.log("adsense: injected", SITE.adsense, "into", jsPath);
+  }
+
   for (const p of PAGES) {
     const body = await readFile(join("src", p.src), "utf8");
     const html = `<!doctype html>
@@ -351,14 +387,14 @@ ${chrome(p, body.trimEnd())}
 </body>
 </html>
 `;
-    await mkdir(dirname(p.out) || ".", { recursive: true });
-    await writeFile(p.out, html);
-    console.log("wrote", p.out);
+    await mkdir(dirname(out(p.out)) || OUT, { recursive: true });
+    await writeFile(out(p.out), html);
+    console.log("wrote", out(p.out));
   }
 
   const urls = PAGES.filter((p) => p.sitemap !== false && !p.noindex);
   const today = new Date().toISOString().slice(0, 10);
-  await writeFile("sitemap.xml",
+  await writeFile(out("sitemap.xml"),
 `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.map((p) => `  <url>
@@ -369,9 +405,9 @@ ${urls.map((p) => `  <url>
   </url>`).join("\n")}
 </urlset>
 `);
-  console.log("wrote sitemap.xml");
+  console.log("wrote", out("sitemap.xml"));
 
-  await writeFile("robots.txt",
+  await writeFile(out("robots.txt"),
 `# ${SITE.name}
 User-agent: *
 Allow: /
@@ -386,16 +422,16 @@ Allow: /
 
 Sitemap: ${SITE.origin}/sitemap.xml
 `);
-  console.log("wrote robots.txt");
+  console.log("wrote", out("robots.txt"));
 
-  await writeFile("ads.txt", SITE.adsense
+  await writeFile(out("ads.txt"), SITE.adsense
     ? `google.com, ${SITE.adsense}, DIRECT, f08c47fec0942fa0\n`
     : `# Replace the publisher ID below with your own, then remove this comment.
 # It must match AD_CLIENT in /assets/site.js (minus the "ca-" prefix) and the
 # loader <script> in each page's <head>. Google checks this file before serving.
 google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
 `);
-  console.log("wrote ads.txt");
+  console.log("wrote", out("ads.txt"));
 }
 
 build();

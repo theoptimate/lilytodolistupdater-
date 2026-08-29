@@ -4,38 +4,46 @@ An independent data-journalism site. Static HTML, no framework, no build depende
 beyond Node. Deploy the repository root to any static host.
 
 ```
-node tools/build.mjs      # regenerate every page, sitemap.xml, robots.txt, ads.txt
-node tools/og.mjs         # regenerate the 1200x630 social cards (needs Playwright)
-npx http-server . -p 8099 # preview locally
-
-node tools/preview.mjs index.html > preview.html   # one self-contained file
+npm run build     # write the whole site into dist/
+npm run serve     # preview dist/ at http://localhost:8080
+npm run preview   # collapse the homepage into one self-contained file
+npm run og        # regenerate the 1200x630 social cards (needs Playwright)
 ```
 
-## Do these two things first
+No dependencies. `npm install` is not required to build.
 
-Both live at the top of `tools/build.mjs`, in `SITE`:
+## Do this first
 
-```js
-origin:  "https://datatothepeople.org",   // your real domain, no trailing slash
-adsense: "",                              // "pub-1234567890123456" once approved
+Set your domain. Either edit `SITE.origin` in `tools/build.mjs`, or set `SITE_ORIGIN`
+in your host's environment — env vars win over the literals in the file.
+
+```
+SITE_ORIGIN=https://yourdomain.com npm run build
 ```
 
-`origin` feeds every canonical URL, Open Graph tag and sitemap entry — the SEO is wrong
-until it is right. Re-run `node tools/build.mjs` after changing either.
+It feeds every canonical URL, Open Graph tag and sitemap entry. The SEO is wrong until
+it is right.
+
+Deployment, and the Cloudflare Pages vs Vercel question, are in **`DEPLOY.md`**.
 
 ## Layout
 
 ```
-src/              page bodies (edit these)
+src/              page bodies — edit these
+public/           copied verbatim to the site root
+  assets/           site.css, site.js, og-*.png
+  _headers          Cloudflare Pages headers
+  _redirects        Cloudflare Pages redirects
 tools/build.mjs   the generator: page metadata, <head>, header, footer, sitemap, robots
 tools/og.mjs      social card renderer
-assets/           site.css, site.js, og-*.png
-index.html        ── generated ──
-posts/, graphics/, about/, method/, privacy/, 404.html, sitemap.xml, robots.txt, ads.txt
+tools/preview.mjs single-file preview builder
+vercel.json       the same headers and redirects, for Vercel
+dist/             ── generated, gitignored, the only thing deployed ──
 ```
 
-Never edit a generated page directly; it is overwritten on the next build. Page titles,
-descriptions and structured data live in the `PAGES` array in `tools/build.mjs`.
+`src/` and `tools/` are never published: the build writes into `dist/` and the host is
+pointed there. Page titles, descriptions and structured data live in the `PAGES` array in
+`tools/build.mjs` — one place, so tags cannot drift between pages.
 
 ### Style isolation
 
@@ -48,18 +56,21 @@ auditing the whole cascade.
 
 1. Get approved at [adsense.google.com](https://adsense.google.com). You will need real
    content, a privacy policy, an about page and your own domain — all present here.
-2. Put the publisher ID in three places, all of which must match:
-   - `AD_CLIENT` in `assets/site.js` (`ca-pub-…`)
-   - `SITE.adsense` in `tools/build.mjs` (`pub-…`, no `ca-` prefix) → writes `ads.txt`
-   - the commented-out loader `<script>` in the `<head>` block of `tools/build.mjs`
-     — uncomment it and set the same ID
-3. Create each unit in the AdSense dashboard and paste its numeric slot ID into
-   `AD_SLOTS` in `assets/site.js`. The slot names are `home-feed`, `article-mid` and
-   `article-end`.
-4. Rebuild.
+2. Set four environment variables and redeploy:
 
-Until step 2 is done every ad position renders as a labelled placeholder at the same
-height as the real unit, so the layout does not shift when ads switch on.
+   ```
+   ADSENSE_PUB_ID=pub-1234567890123456
+   AD_SLOT_HOME_FEED=…
+   AD_SLOT_ARTICLE_MID=…
+   AD_SLOT_ARTICLE_END=…
+   ```
+
+That is the whole switch. The build emits the loader `<script>` in every `<head>`, writes
+the publisher ID into the shipped `site.js`, and generates `ads.txt` — no code change and
+no commit. To hard-code it instead, see the comment at the top of `public/assets/site.js`.
+
+Until then every ad position renders as a labelled placeholder at the same height as the
+real unit, so nothing shifts when ads switch on.
 
 Placement is deliberately conservative — one unit on the homepage, two on an article,
 none on the privacy page, all labelled and none adjacent to navigation or chart controls.
@@ -107,6 +118,8 @@ to the Federal Register and should be checked against it — see `/method/`.
 
 ## Also in here
 
+- `DEPLOY.md` — Cloudflare Pages vs Vercel for this project, and a step-by-step guide
+  for each.
 - `SEO.md` — what the build already does, and the launch checklist and content strategy
   that it cannot do for you.
 - `SWOT.md` — strategic read of the project as an ad-funded publication.

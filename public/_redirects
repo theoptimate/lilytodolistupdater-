@@ -1,0 +1,10 @@
+# Cloudflare Pages redirect rules. One per line: <from> <to> <status>
+# Vercel ignores this file — add equivalents to "redirects" in /vercel.json.
+
+# There is no /graphics/ index yet; send it to the only graphic.
+/graphics  /graphics/half-staff/  302
+/graphics/  /graphics/half-staff/  302
+
+# Convenience aliases for the founding post.
+/statement-of-purpose  /posts/statement-of-purpose/  301
+/manifesto  /posts/statement-of-purpose/  301

@@ -1,4 +1,0 @@
-# Replace the publisher ID below with your own, then remove this comment.
-# It must match AD_CLIENT in /assets/site.js (minus the "ca-" prefix) and the
-# loader <script> in each page's <head>. Google checks this file before serving.
-google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0

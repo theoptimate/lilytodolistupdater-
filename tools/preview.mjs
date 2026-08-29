@@ -5,10 +5,10 @@
 
 import { readFile } from "node:fs/promises";
 
-const target = process.argv[2] || "index.html";
+const target = process.argv[2] || "dist/index.html";
 const page = await readFile(target, "utf8");
-const css = await readFile("assets/site.css", "utf8");
-const js = await readFile("assets/site.js", "utf8");
+const css = await readFile("public/assets/site.css", "utf8");
+const js = await readFile("public/assets/site.js", "utf8");
 
 const pick = (re) => (page.match(re) || [, ""])[1];
 

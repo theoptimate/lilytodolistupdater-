@@ -1,0 +1,32 @@
+# Cloudflare Pages reads this file from the root of the build output.
+# Vercel ignores it — the same rules live in /vercel.json.
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), interest-cohort=()
+  # No X-Frame-Options / frame-ancestors on purpose: embeddable graphics are a
+  # stated goal, and framing this site carries no risk — no auth, no forms, no
+  # state. Add frame-ancestors only if that changes.
+
+# HTML is cheap and changes on every publish: always revalidate.
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+# site.css and site.js have stable filenames, so they cannot be cached
+# immutably. An hour, then revalidate.
+/assets/site.css
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+/assets/site.js
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+
+# Social cards change only when the brand does.
+/assets/*.png
+  Cache-Control: public, max-age=604800
+
+/sitemap.xml
+  Cache-Control: public, max-age=3600
+/robots.txt
+  Cache-Control: public, max-age=3600
+/ads.txt
+  Cache-Control: public, max-age=3600

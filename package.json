@@ -1,0 +1,15 @@
+{
+  "name": "data-to-the-people",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Independent data journalism. Static site, no framework.",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "build": "node tools/build.mjs",
+    "serve": "npx --yes http-server dist -p 8080 -c-1",
+    "preview": "node tools/preview.mjs dist/index.html > preview.html",
+    "og": "node tools/og.mjs"
+  },
+  "//": "No dependencies, deliberately. `npm run og` needs Playwright installed ad hoc (npm i -D playwright && npx playwright install chromium); it is kept out of this file so hosts do not install a browser on every deploy."
+}
