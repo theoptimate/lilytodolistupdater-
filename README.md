@@ -5,6 +5,7 @@ beyond Node. Deploy the repository root to any static host.
 
 ```
 npm run build     # write the whole site into dist/
+npm run check     # build, then fail on anything that would break a launch
 npm run serve     # preview dist/ at http://localhost:8080
 npm run preview   # collapse the homepage into one self-contained file
 npm run og        # regenerate the 1200x630 social cards (needs Playwright)
@@ -18,11 +19,15 @@ Set your domain. Either edit `SITE.origin` in `tools/build.mjs`, or set `SITE_OR
 in your host's environment — env vars win over the literals in the file.
 
 ```
-SITE_ORIGIN=https://yourdomain.com npm run build
+SITE_ORIGIN=https://yourdomain.com SITE_EMAIL=hello@yourdomain.com npm run check
 ```
 
 It feeds every canonical URL, Open Graph tag and sitemap entry. The SEO is wrong until
-it is right.
+it is right, so `npm run check` warns while it is still the placeholder.
+
+Page bodies in `src/` write `{{ORIGIN}}`, `{{EMAIL}}` and `{{SITE_NAME}}` instead of
+literal values, so the domain lives in exactly one place. Never paste a literal URL or
+address into a fragment — the preflight will catch it, but the token is the point.
 
 Deployment, and the Cloudflare Pages vs Vercel question, are in **`DEPLOY.md`**.
 

@@ -17,7 +17,12 @@ const out = (p) => join(OUT, p);
    so you can point a preview build at a staging domain without a commit.
 
      SITE_ORIGIN     https://datatothepeople.org
+     SITE_EMAIL      hello@datatothepeople.org
      ADSENSE_PUB_ID  pub-1234567890123456     (no "ca-" prefix)
+
+   Page bodies in src/ write {{ORIGIN}}, {{EMAIL}} and {{SITE_NAME}} rather than
+   literal values, so changing the domain is one variable and never a hunt
+   through the fragments.
 
    Setting ADSENSE_PUB_ID also emits the real AdSense loader and writes the
    publisher ID into the bundled site.js and ads.txt. Ad unit IDs come from
@@ -32,7 +37,7 @@ const SITE = {
   blurb: "Independent data journalism. Every graphic is built from public records, " +
          "shows its working, and is free to read and reuse.",
   author: "Data to the People",
-  email: "hello@datatothepeople.org",
+  email: process.env.SITE_EMAIL || "hello@datatothepeople.org",
   locale: "en_US",
   twitter: "",                              // e.g. "@datatothepeople" — omit if none
 };
@@ -376,7 +381,10 @@ async function build() {
   }
 
   for (const p of PAGES) {
-    const body = await readFile(join("src", p.src), "utf8");
+    const body = (await readFile(join("src", p.src), "utf8"))
+      .replaceAll("{{ORIGIN}}", SITE.origin)
+      .replaceAll("{{EMAIL}}", SITE.email)
+      .replaceAll("{{SITE_NAME}}", SITE.name);
     const html = `<!doctype html>
 <html lang="en">
 <head>

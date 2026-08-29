@@ -82,6 +82,20 @@ which nothing here does.
    is a new domain, add it to Cloudflare (or register it through Cloudflare
    Registrar) before step 5, so the same shortcut applies.
 
+3. **Run the preflight.**
+
+   ```
+   SITE_ORIGIN=https://yourdomain.com SITE_EMAIL=hello@yourdomain.com npm run check
+   ```
+
+   It builds, then reads `dist/` and fails on the things that break a launch
+   silently: a canonical that disagrees with the origin, an `og:url` that
+   disagrees with the canonical, an internal link or `og:image` resolving to
+   nothing, a sitemap entry with no page behind it, an indexable page missing
+   from the sitemap, more or fewer than one `<h1>`, and any surviving reference
+   to the placeholder domain. Fix everything it calls an ERROR before you connect
+   a host.
+
 There is nothing else. No secrets, no database, no API keys.
 
 ---
@@ -106,6 +120,7 @@ There is nothing else. No secrets, no database, no API keys.
    | Name | Value | When |
    |---|---|---|
    | `SITE_ORIGIN` | `https://yourdomain.com` | now |
+   | `SITE_EMAIL` | `hello@yourdomain.com` | now |
    | `NODE_VERSION` | `20` | if the build picks an older Node |
    | `ADSENSE_PUB_ID` | `pub-…` | after AdSense approval |
    | `AD_SLOT_HOME_FEED` | numeric unit ID | after approval |
@@ -174,6 +189,10 @@ Check these by hand. They are the things that silently break.
   and the statement of purpose.
 - [PageSpeed Insights](https://pagespeed.web.dev/) on the homepage.
 - Submit the sitemap in [Search Console](https://search.google.com/search-console).
+
+Most of that list is also what `npm run check` automates — run it locally before
+every deploy and the manual pass shrinks to the host-specific rows (headers,
+redirects, trailing slash, Rich Results, PageSpeed).
 
 ---
 
