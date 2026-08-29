@@ -1,569 +1,232 @@
-<title>Half-Staff Nation</title>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data to the People — charts from the public record</title>
+<meta name="description" content="Independent data journalism built from public records. Open method, sourced numbers, free to read. Start with seven years of the US flag at half-staff.">
+<link rel="canonical" href="https://datatothepeople.org/">
+<meta name="theme-color" content="#F6F5F1" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E0E0D" media="(prefers-color-scheme: dark)">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Data to the People">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Data to the People — charts from the public record">
+<meta property="og:description" content="Independent data journalism built from public records. Open method, sourced numbers, free to read. Start with seven years of the US flag at half-staff.">
+<meta property="og:url" content="https://datatothepeople.org/">
+<meta property="og:image" content="https://datatothepeople.org/assets/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Data to the People — Charts from the public record">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Data to the People — charts from the public record">
+<meta name="twitter:description" content="Independent data journalism built from public records. Open method, sourced numbers, free to read. Start with seven years of the US flag at half-staff.">
+<meta name="twitter:image" content="https://datatothepeople.org/assets/og-default.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
-<style>
-:root{
-  --bg:#E9ECF1; --panel:#FBFCFD; --ink:#0E131C; --ink2:#4C5768; --ink3:#78818F;
-  --rule:#D3D9E2; --rule2:#E4E8EE; --empty:#DEE3EA;
-  --c-figure:#1B4F9E; --c-shooting:#C0173C; --c-pandemic:#6E4BC9; --c-attack:#B87400;
-  --c-annual:#9AA5B5;
-  --flag-red:#B31942;
-  --shadow:0 1px 0 rgba(14,19,28,.05), 0 18px 44px -28px rgba(14,19,28,.35);
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700..900&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,800;1,400&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="alternate" type="application/rss+xml" title="Data to the People" href="https://datatothepeople.org/feed.xml">
+
+<!-- AdSense loader. Uncomment and set your publisher ID once approved; it must
+     match AD_CLIENT in /assets/site.js and the ID in /ads.txt.
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+-->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Data to the People",
+  "url": "https://datatothepeople.org/",
+  "email": "hello@datatothepeople.org",
+  "description": "Independent data journalism. Every graphic is built from public records, shows its working, and is free to read and reuse.",
+  "logo": "https://datatothepeople.org/assets/og-default.png"
 }
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --bg:#080B11; --panel:#121722; --ink:#EEF1F6; --ink2:#A3ADBD; --ink3:#727C8D;
-    --rule:#242B38; --rule2:#1B212C; --empty:#232936;
-    --c-figure:#5B90DE; --c-shooting:#E2596F; --c-pandemic:#9C7FE8; --c-attack:#BE851E;
-    --c-annual:#5A6577;
-    --flag-red:#E2596F;
-    --shadow:0 1px 0 rgba(0,0,0,.4), 0 18px 44px -28px rgba(0,0,0,.9);
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Data to the People",
+  "url": "https://datatothepeople.org/",
+  "inLanguage": "en-US",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Data to the People"
   }
 }
-:root[data-theme="dark"]{
-  --bg:#080B11; --panel:#121722; --ink:#EEF1F6; --ink2:#A3ADBD; --ink3:#727C8D;
-  --rule:#242B38; --rule2:#1B212C; --empty:#232936;
-  --c-figure:#5B90DE; --c-shooting:#E2596F; --c-pandemic:#9C7FE8; --c-attack:#BE851E;
-  --c-annual:#5A6577;
-  --flag-red:#E2596F;
-  --shadow:0 1px 0 rgba(0,0,0,.4), 0 18px 44px -28px rgba(0,0,0,.9);
-}
+</script>
+</head>
+<body>
+<a class="s-skip" href="#main">Skip to content</a>
 
-*{box-sizing:border-box}
-body{
-  background:var(--bg); color:var(--ink);
-  font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
-  font-size:15px; line-height:1.55; margin:0;
-  -webkit-font-smoothing:antialiased;
-}
-.sheet{
-  max-width:1100px; margin:0 auto; padding:0 clamp(14px,3.2vw,34px) 72px;
-}
-.panel{
-  background:var(--panel); box-shadow:var(--shadow);
-  padding:clamp(22px,4vw,52px) clamp(18px,3.6vw,48px) clamp(30px,4vw,54px);
-}
-
-/* ---------- masthead ---------- */
-.eyebrow{
-  font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
-  font-size:11px; font-weight:500; letter-spacing:.20em; text-transform:uppercase;
-  color:var(--ink2); display:flex; gap:10px; align-items:center; flex-wrap:wrap;
-}
-.eyebrow::before{
-  content:""; width:34px; height:5px; background:var(--flag-red); flex:0 0 auto;
-}
-h1{
-  font-family:Anton,"Arial Narrow",Impact,sans-serif; font-weight:400;
-  font-size:clamp(46px,9.2vw,104px); line-height:.88; letter-spacing:-.005em;
-  margin:18px 0 0; text-transform:uppercase; text-wrap:balance;
-}
-h1 .thin{ -webkit-text-stroke:2px var(--ink); color:transparent; }
-.standfirst{
-  margin:20px 0 0; max-width:60ch; font-size:clamp(15px,1.6vw,18px); color:var(--ink2);
-}
-.standfirst strong{ color:var(--ink); font-weight:600 }
-
-/* ---------- hero stats ---------- */
-.stats{
-  margin-top:34px; padding-top:24px; border-top:1px solid var(--rule);
-  display:grid; gap:22px 30px;
-  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-}
-.stat .n{
-  font-family:Anton,"Arial Narrow",Impact,sans-serif; font-size:clamp(40px,5.4vw,58px);
-  line-height:.92; font-variant-numeric:tabular-nums; display:block;
-}
-.stat .n span{ font-size:.44em; letter-spacing:.02em; color:var(--ink2); margin-left:.18em }
-.stat .k{
-  margin-top:9px; font-family:"IBM Plex Mono",monospace; font-size:11px;
-  letter-spacing:.10em; text-transform:uppercase; color:var(--ink3); max-width:24ch;
-}
-.stat.peak .n{ color:var(--flag-red) }
-
-/* ---------- section furniture ---------- */
-section{ margin-top:clamp(44px,6vw,72px) }
-h2{
-  font-family:Anton,"Arial Narrow",Impact,sans-serif; font-weight:400; text-transform:uppercase;
-  font-size:clamp(24px,3.4vw,34px); line-height:1; letter-spacing:.005em; margin:0;
-}
-.sub{ margin:10px 0 0; color:var(--ink2); max-width:66ch; font-size:14.5px }
-
-/* ---------- legend ---------- */
-.legend{
-  display:flex; flex-wrap:wrap; gap:8px 20px; margin:22px 0 16px; list-style:none; padding:0;
-  font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.06em;
-  text-transform:uppercase; color:var(--ink2);
-}
-.legend li{ display:flex; align-items:center; gap:7px }
-.swatch{ width:11px; height:14px; flex:0 0 auto; border-radius:1px }
-
-/* ---------- the calendar barcode ---------- */
-.scroller{ overflow-x:auto; padding-bottom:6px }
-.calendar{ min-width:700px }
-.row{ display:grid; grid-template-columns:64px 1fr 118px; align-items:center; gap:14px }
-.ruler{ display:flex; margin-bottom:7px }
-.ruler .mo{
-  font-family:"IBM Plex Mono",monospace; font-size:9.5px; letter-spacing:.10em;
-  color:var(--ink3); border-left:1px solid var(--rule); padding-left:4px; min-width:0;
-  overflow:hidden; white-space:nowrap;
-}
-.ruler .mo:first-child{ border-left:0; padding-left:0 }
-
-.yearrow{ margin-bottom:6px }
-.ylabel{
-  font-family:Anton,"Arial Narrow",Impact,sans-serif; font-size:26px; line-height:1;
-  font-variant-numeric:tabular-nums; color:var(--ink);
-}
-.band{
-  display:grid; height:30px; background:var(--empty); position:relative;
-}
-.band i{ display:block; height:100%; grid-row:1 }
-.band u{
-  position:absolute; top:-5px; bottom:-5px; width:0; opacity:0; pointer-events:none;
-  border-left:1.5px solid var(--ink); transition:opacity .08s;
-}
-@media (prefers-reduced-motion:no-preference){
-  .band{ clip-path:inset(0 100% 0 0); animation:unfurl .85s cubic-bezier(.2,.72,.2,1) forwards;
-         animation-delay:calc(var(--i) * 85ms); }
-  @keyframes unfurl{ to{ clip-path:inset(0 0 0 0) } }
-}
-.count{ display:flex; align-items:center; gap:8px; justify-content:flex-end }
-.count .bar{ height:9px; background:var(--ink); opacity:.16; flex:0 0 auto }
-.count .v{
-  font-family:"IBM Plex Mono",monospace; font-weight:600; font-size:14px;
-  font-variant-numeric:tabular-nums; min-width:26px; text-align:right;
-}
-.yearrow.is-peak .count .v{ color:var(--flag-red) }
-.yearrow.is-peak .count .bar{ background:var(--flag-red); opacity:.85 }
-
-.axisnote{
-  display:grid; grid-template-columns:64px 1fr 118px; gap:14px; margin-top:10px;
-  font-family:"IBM Plex Mono",monospace; font-size:10px; letter-spacing:.08em;
-  text-transform:uppercase; color:var(--ink3);
-}
-.axisnote span:last-child{ text-align:right }
-.swipe{ display:none; margin:10px 0 0; font-family:"IBM Plex Mono",monospace; font-size:10px;
-  letter-spacing:.10em; text-transform:uppercase; color:var(--ink3) }
-@media (max-width:780px){ .swipe{ display:block } }
-
-/* ---------- tooltip ---------- */
-#tip{
-  position:fixed; z-index:50; pointer-events:none; opacity:0; transition:opacity .09s;
-  background:var(--ink); color:var(--panel); padding:8px 11px; max-width:280px;
-  box-shadow:0 10px 30px -12px rgba(0,0,0,.6);
-}
-#tip.on{ opacity:1 }
-#tip .d{ font-family:"IBM Plex Mono",monospace; font-size:10px; letter-spacing:.09em;
-  text-transform:uppercase; opacity:.72 }
-#tip .t{ font-size:13.5px; font-weight:600; line-height:1.35; margin-top:3px }
-#tip .c{ font-family:"IBM Plex Mono",monospace; font-size:10px; letter-spacing:.06em;
-  text-transform:uppercase; margin-top:5px; display:flex; align-items:center; gap:6px }
-#tip .c b{ width:8px; height:8px; border-radius:1px; display:inline-block }
-
-/* ---------- annotations ---------- */
-.notes{ display:grid; gap:18px; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); margin-top:26px }
-.note{ border-top:2px solid var(--ink); padding-top:11px; font-size:14px; color:var(--ink2); max-width:40ch }
-.note b{ color:var(--ink); font-weight:600 }
-.note.red{ border-top-color:var(--flag-red) }
-
-/* ---------- longest orders ---------- */
-.ranks{ list-style:none; padding:0; margin:24px 0 0; display:grid; gap:2px }
-.rank{ display:grid; grid-template-columns:1fr 150px; gap:14px; align-items:center;
-  padding:9px 0; border-bottom:1px solid var(--rule2) }
-.rank .who{ font-size:14.5px; font-weight:500 }
-.rank .when{ font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.05em;
-  color:var(--ink3); text-transform:uppercase; margin-top:2px }
-.rank .len{ display:flex; align-items:center; gap:7px; justify-content:flex-end }
-.rank .len i{ height:11px; display:block; background:var(--c-figure) }
-.rank .len em{ font-style:normal; font-family:"IBM Plex Mono",monospace; font-weight:600;
-  font-size:13px; font-variant-numeric:tabular-nums; min-width:20px; text-align:right }
-
-/* ---------- category split ---------- */
-.split{ display:flex; height:44px; margin-top:24px; gap:2px }
-.split div{ min-width:2px }
-.splitkey{ list-style:none; padding:0; margin:16px 0 0; display:grid; gap:0;
-  grid-template-columns:repeat(auto-fit,minmax(180px,1fr)) }
-.splitkey li{ padding:11px 0; border-top:1px solid var(--rule2) }
-.splitkey .lbl{ display:flex; align-items:center; gap:8px; font-size:13.5px; font-weight:500 }
-.splitkey .num{ font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--ink3);
-  letter-spacing:.06em; margin-top:3px; padding-left:19px }
-
-/* ---------- table ---------- */
-details{ margin-top:30px; border-top:1px solid var(--rule); padding-top:16px }
-summary{ font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.12em;
-  text-transform:uppercase; color:var(--ink2); cursor:pointer }
-summary:focus-visible{ outline:2px solid var(--flag-red); outline-offset:3px }
-.tablewrap{ overflow-x:auto; margin-top:16px }
-table{ border-collapse:collapse; width:100%; font-size:13px; min-width:520px }
-th,td{ text-align:right; padding:8px 10px; border-bottom:1px solid var(--rule2);
-  font-variant-numeric:tabular-nums }
-th:first-child,td:first-child{ text-align:left }
-thead th{ font-family:"IBM Plex Mono",monospace; font-size:10px; letter-spacing:.08em;
-  text-transform:uppercase; color:var(--ink3); font-weight:500 }
-tfoot td{ font-weight:600; border-bottom:0 }
-
-/* ---------- footer ---------- */
-footer{ margin-top:clamp(40px,6vw,64px); padding-top:20px; border-top:2px solid var(--ink);
-  font-size:12.5px; color:var(--ink3); display:grid; gap:12px }
-footer p{ margin:0; max-width:78ch }
-footer b{ color:var(--ink2); font-weight:600 }
-.flagbar{ display:flex; height:6px; gap:2px; margin-bottom:20px }
-.flagbar i{ flex:1 }
-</style>
-
-<div class="sheet">
-<div class="panel">
-
-  <p class="eyebrow">4 U.S.C. §7 &middot; Presidential proclamations &middot; 2019&ndash;2025</p>
-  <h1>Seven Years<br><span class="thin">at</span> Half-Staff</h1>
-  <p class="standfirst">Every day the flag comes down is a decision &mdash; five of them written into law each year, the rest ordered by the president after a death, a shooting, or a disaster. Across the last seven full calendar years the flag flew at half-staff on <strong id="lead-total">&mdash;</strong> days, or roughly <strong id="lead-avg">&mdash;</strong> days a year. Below, each year is drawn as a barcode of 365 days.</p>
-
-  <div class="stats">
-    <div class="stat"><span class="n" id="s-total">&mdash;</span><p class="k">Days at half-staff, 2019&ndash;2025</p></div>
-    <div class="stat"><span class="n" id="s-share">&mdash;<span>%</span></span><p class="k">Of all days in the period</p></div>
-    <div class="stat peak"><span class="n" id="s-peak">&mdash;</span><p class="k" id="s-peak-k">Peak year</p></div>
-    <div class="stat"><span class="n" id="s-low">&mdash;</span><p class="k" id="s-low-k">Quietest year</p></div>
+<header class="s-header">
+  <div class="s-header-in">
+    <a class="s-wordmark" href="/"><svg class="s-mark" viewBox="0 0 20 20" aria-hidden="true">
+<rect x="0" y="11" width="4" height="9" fill="currentColor"/>
+<rect x="6" y="6" width="4" height="14" fill="currentColor"/>
+<rect x="12" y="0" width="4" height="20" fill="var(--s-blue)"/>
+</svg>Data to the People</a>
+    <nav class="s-nav" aria-label="Sections">
+        <a href="/graphics/half-staff/">Graphics</a>
+        <a href="/method/">Method</a>
+        <a href="/about/">About</a>
+    </nav>
   </div>
+</header>
 
-  <section>
-    <h2>The calendar, day by day</h2>
-    <p class="sub">One column per day. Colour marks why the flag was lowered; pale grey days are full-staff. Hover any day for the order behind it.</p>
+<main id="main">
+<section class="s-section s-wrap">
+  <p class="s-eyebrow">Independent &middot; No paywall &middot; Every source published</p>
+  <h1 class="s-h1">Public records,<br><span class="s-hi">made public.</span></h1>
+  <p class="s-lede">Governments publish an enormous amount and explain almost none of it. We take
+  one public record at a time, count it carefully, and draw it so you can see the shape of the
+  thing &mdash; then hand over the data so you can check our work.</p>
+</section>
 
-    <ul class="legend" id="legend"></ul>
+<section class="s-section s-wrap">
+  <div class="s-lead">
+    <div>
+      <p class="s-tag"><b></b>Latest graphic &middot; Government</p>
+      <h2 class="s-leadtitle"><a href="/graphics/half-staff/">Seven Years at Half-Staff</a></h2>
+      <p>Five days a year are written into the Flag Code. Every other day the flag comes down is
+      a decision someone made &mdash; after a death, a shooting, a disaster. Between 2019 and 2025
+      that happened on <strong>281 days</strong>, about eleven percent of all days, and the count
+      swings from 61 in 2021 to 19 in 2024.</p>
+      <p>Each year is drawn as a barcode of 365 days. Hover any day to see the order behind it.</p>
+      <a class="s-more" href="/graphics/half-staff/">Read the graphic <span>&rarr;</span></a>
+    </div>
 
-    <div class="scroller">
-      <div class="calendar">
-        <div class="row"><span></span><div class="ruler" id="ruler"></div><span></span></div>
-        <div id="cal"></div>
-        <div class="axisnote"><span>Year</span><span>Jan 1 &rarr; Dec 31</span><span>Days</span></div>
+    <figure class="s-preview">
+      <figcaption class="s-preview-h"><span>Days at half-staff</span><span>2019&ndash;2025</span></figcaption>
+      <div class="s-bars" id="s-bars"
+           data-rows='[[2019,32],[2020,23],[2021,61],[2022,54],[2023,45],[2024,19],[2025,47]]'></div>
+      <p class="s-preview-f">Working draft: nine periods still have inferred end dates and are
+      flagged in the data. <a href="/method/">How we handle that</a>.</p>
+    </figure>
+  </div>
+</section>
+
+<aside class="s-ad s-wrap" data-slot="home-feed" aria-label="Advertisement">
+  <span class="s-ad-label">Advertisement</span>
+</aside>
+
+<section class="s-section s-wrap">
+  <h2 class="s-h2">How a graphic gets made</h2>
+  <p class="s-lede" style="margin-bottom:36px">Three steps, in this order, every time.</p>
+  <div class="s-steps">
+    <div class="s-step">
+      <p class="k">First &mdash; the primary record</p>
+      <p>Proclamations, filings, roll calls, disaster declarations. Never a number lifted from
+      another article. If the primary source is unreachable, the graphic says so on its face.</p>
+    </div>
+    <div class="s-step">
+      <p class="k">Then &mdash; count it in the open</p>
+      <p>The counting rule is written down before the chart is drawn: what one unit is, what
+      overlaps, what is excluded. It ships with the graphic so you can disagree with it precisely.</p>
+    </div>
+    <div class="s-step">
+      <p class="k">Last &mdash; publish the data too</p>
+      <p>Every figure on the page is computed from a dataset you can read in the page source.
+      Correct one entry and the whole graphic updates. Nothing is typed in by hand.</p>
+    </div>
+  </div>
+</section>
+
+<section class="s-section s-wrap">
+  <h2 class="s-h2">In the works</h2>
+  <p class="s-lede" style="margin-bottom:32px">What we are building next, and how far along it is.
+  Nothing here is published yet.</p>
+  <ul class="s-queue">
+    <li>
+      <div>
+        <div class="t">Every federal disaster declaration since 2000</div>
+        <div class="d">Which counties FEMA has declared, how often, and how that maps onto population.</div>
+      </div>
+      <span class="st">Researching</span>
+    </li>
+    <li>
+      <div>
+        <div class="t">The FOIA backlog, agency by agency</div>
+        <div class="d">Requests received, requests answered, and how long the queue has been growing.</div>
+      </div>
+      <span class="st">Researching</span>
+    </li>
+    <li>
+      <div>
+        <div class="t">From first complaint to recall</div>
+        <div class="d">The gap between the earliest consumer complaint and the vehicle recall that followed it.</div>
+      </div>
+      <span class="st">Planned</span>
+    </li>
+    <li>
+      <div>
+        <div class="t">Where the grant money lands</div>
+        <div class="d">Federal grant obligations by congressional district, adjusted for population.</div>
+      </div>
+      <span class="st">Planned</span>
+    </li>
+  </ul>
+</section>
+
+<section class="s-section s-wrap">
+  <div class="s-lead">
+    <div>
+      <h2 class="s-h2">Take it and use it</h2>
+      <p class="s-lede" style="margin-top:0">Every graphic here is CC BY 4.0. Republish it, put it
+      in a lesson plan, drop it in a deck &mdash; credit <em>Data to the People</em> and link back.
+      The underlying federal records are public domain and always will be.</p>
+      <a class="s-more" href="/about/">Why the site works this way <span>&rarr;</span></a>
+    </div>
+    <div>
+      <h2 class="s-h2">Found a mistake?</h2>
+      <p class="s-lede" style="margin-top:0">Corrections are the point, not an embarrassment. Send
+      the entry and the source that contradicts it and we will fix the data, log the change, and
+      credit you unless you would rather we did not.</p>
+      <a class="s-more" href="mailto:hello@datatothepeople.org">Email a correction <span>&rarr;</span></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="s-footer">
+  <div class="s-wrap">
+    <div class="s-footer-in">
+      <div>
+        <a class="s-wordmark" href="/"><svg class="s-mark" viewBox="0 0 20 20" aria-hidden="true">
+<rect x="0" y="11" width="4" height="9" fill="currentColor"/>
+<rect x="6" y="6" width="4" height="14" fill="currentColor"/>
+<rect x="12" y="0" width="4" height="20" fill="var(--s-blue)"/>
+</svg>Data to the People</a>
+        <p class="s-colophon">Independent data journalism. Every graphic is built from public records, shows its working, and is free to read and reuse.</p>
+      </div>
+      <div>
+        <h4>Read</h4>
+        <ul>
+          <li><a href="/graphics/half-staff/">Seven Years at Half-Staff</a></li>
+          <li><a href="/method/">Method and corrections</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy and cookies</a></li>
+          <li><a href="mailto:hello@datatothepeople.org">Contact</a></li>
+        </ul>
       </div>
     </div>
-    <p class="swipe">Scroll the chart sideways &rarr;</p>
-
-    <div class="notes">
-      <div class="note red"><b>January 20, 2025.</b> The one gap in the 30-day mourning period for Jimmy Carter: flags went to full staff for the inauguration, then back down for another eight days.</div>
-      <div class="note"><b>May is the densest month.</b> Peace Officers Memorial Day and Memorial Day are fixed &mdash; but Buffalo, Uvalde, San Jose and the one-millionth COVID death all landed in the same three weeks of May in different years.</div>
-      <div class="note"><b>2024 is the outlier.</b> Nineteen days, the lowest of the seven &mdash; and five of those were the standing observances that require no proclamation at all. Just four presidential orders fell in the whole year.</div>
+    <div class="s-legal">
+      <span>&copy; 2026 Data to the People</span>
+      <span>Graphics licensed CC BY 4.0 — reuse with credit</span>
+      <span>Underlying records are US federal public domain</span>
     </div>
-  </section>
+  </div>
+</footer>
 
-  <section>
-    <h2>The longest orders</h2>
-    <p class="sub">A former president draws 30 days. A sitting member of Congress draws two. Most mass shootings draw four or five &mdash; sunset on the fourth day after.</p>
-    <ol class="ranks" id="ranks"></ol>
-  </section>
-
-  <section>
-    <h2>What brings it down</h2>
-    <p class="sub">Share of all half-staff days, 2019&ndash;2025, by the reason given in the proclamation.</p>
-    <div class="split" id="split"></div>
-    <ul class="splitkey" id="splitkey"></ul>
-
-    <details>
-      <summary>View the underlying table</summary>
-      <div class="tablewrap"><table id="tbl"></table></div>
-    </details>
-  </section>
-
-  <footer>
-    <div class="flagbar">
-      <i style="background:var(--c-figure)"></i><i style="background:var(--c-shooting)"></i>
-      <i style="background:var(--c-pandemic)"></i><i style="background:var(--c-attack)"></i>
-      <i style="background:var(--c-annual)"></i>
-    </div>
-    <p><b>What is counted.</b> Calendar days on which the U.S. flag was ordered to half-staff nationwide, either by presidential proclamation or by the standing observances in the Flag Code (Peace Officers Memorial Day, Memorial Day until noon, the National Fallen Firefighters Memorial Service, Patriot Day and Pearl Harbor Remembrance Day). Overlapping orders count once. State-level orders by governors &mdash; far more numerous &mdash; are excluded.</p>
-    <p><b>Sources and caveats.</b> Compiled from presidential proclamations published in the Federal Register and contemporaneous White House and governors&rsquo; notices. Entries marked <span style="font-family:'IBM Plex Mono',monospace">~</span> in the tooltip have an approximate end date and should be checked against the Federal Register before republication.</p>
-  </footer>
-
-</div>
-</div>
-
-<div id="tip" role="status" aria-live="off"></div>
-
-<script type="application/json" id="episodes">
-[
-{"y":2019,"s":"2019-02-07","e":"2019-02-08","c":"figure","t":"Rep. John Dingell","ev":"dingell","approx":true},
-{"y":2019,"s":"2019-05-15","e":"2019-05-15","c":"annual","t":"Peace Officers Memorial Day"},
-{"y":2019,"s":"2019-05-27","e":"2019-05-27","c":"annual","t":"Memorial Day (until noon)"},
-{"y":2019,"s":"2019-05-31","e":"2019-06-04","c":"shooting","t":"Virginia Beach municipal shooting","ev":"vabeach"},
-{"y":2019,"s":"2019-07-16","e":"2019-07-23","c":"figure","t":"Justice John Paul Stevens","ev":"stevens","approx":true},
-{"y":2019,"s":"2019-08-04","e":"2019-08-08","c":"shooting","t":"El Paso, Texas and Dayton, Ohio","ev":"elpaso"},
-{"y":2019,"s":"2019-09-11","e":"2019-09-11","c":"annual","t":"Patriot Day"},
-{"y":2019,"s":"2019-10-06","e":"2019-10-06","c":"annual","t":"National Fallen Firefighters Memorial Service"},
-{"y":2019,"s":"2019-10-17","e":"2019-10-18","c":"figure","t":"Rep. Elijah Cummings","ev":"cummings","approx":true},
-{"y":2019,"s":"2019-10-25","e":"2019-10-25","c":"figure","t":"Rep. Elijah Cummings (interment)","ev":"cummings","approx":true},
-{"y":2019,"s":"2019-12-06","e":"2019-12-10","c":"shooting","t":"NAS Pensacola shooting","ev":"pensacola","approx":true},
-{"y":2019,"s":"2019-12-07","e":"2019-12-07","c":"annual","t":"Pearl Harbor Remembrance Day"},
-
-{"y":2020,"s":"2020-05-15","e":"2020-05-15","c":"annual","t":"Peace Officers Memorial Day"},
-{"y":2020,"s":"2020-05-21","e":"2020-05-24","c":"pandemic","t":"100,000 American deaths from COVID-19","ev":"covid100k"},
-{"y":2020,"s":"2020-05-25","e":"2020-05-25","c":"annual","t":"Memorial Day (until noon)"},
-{"y":2020,"s":"2020-07-18","e":"2020-07-18","c":"figure","t":"Rep. John Lewis","ev":"lewis"},
-{"y":2020,"s":"2020-07-30","e":"2020-07-30","c":"figure","t":"Rep. John Lewis (interment)","ev":"lewis"},
-{"y":2020,"s":"2020-09-11","e":"2020-09-11","c":"annual","t":"Patriot Day"},
-{"y":2020,"s":"2020-09-18","e":"2020-09-29","c":"figure","t":"Justice Ruth Bader Ginsburg","ev":"rbg"},
-{"y":2020,"s":"2020-10-04","e":"2020-10-04","c":"annual","t":"National Fallen Firefighters Memorial Service"},
-{"y":2020,"s":"2020-12-07","e":"2020-12-07","c":"annual","t":"Pearl Harbor Remembrance Day"},
-
-{"y":2021,"s":"2021-01-08","e":"2021-01-10","c":"attack","t":"Capitol Police Officer Brian Sicknick","ev":"sicknick"},
-{"y":2021,"s":"2021-02-22","e":"2021-02-26","c":"pandemic","t":"500,000 American deaths from COVID-19","ev":"covid500k"},
-{"y":2021,"s":"2021-03-18","e":"2021-03-22","c":"shooting","t":"Atlanta-area spa shootings","ev":"atlanta"},
-{"y":2021,"s":"2021-03-23","e":"2021-03-27","c":"shooting","t":"Boulder, Colorado supermarket shooting","ev":"boulder"},
-{"y":2021,"s":"2021-04-02","e":"2021-04-06","c":"attack","t":"Capitol Police Officer William Evans","ev":"evans","approx":true},
-{"y":2021,"s":"2021-04-16","e":"2021-04-20","c":"shooting","t":"Indianapolis FedEx facility shooting","ev":"fedex"},
-{"y":2021,"s":"2021-05-15","e":"2021-05-15","c":"annual","t":"Peace Officers Memorial Day"},
-{"y":2021,"s":"2021-05-26","e":"2021-05-30","c":"shooting","t":"San Jose VTA rail yard shooting","ev":"sanjose"},
-{"y":2021,"s":"2021-05-31","e":"2021-05-31","c":"annual","t":"Memorial Day (until noon)"},
-{"y":2021,"s":"2021-08-26","e":"2021-08-30","c":"attack","t":"Abbey Gate bombing, Kabul","ev":"kabul"},
-{"y":2021,"s":"2021-09-11","e":"2021-09-11","c":"annual","t":"Patriot Day"},
-{"y":2021,"s":"2021-10-03","e":"2021-10-03","c":"annual","t":"National Fallen Firefighters Memorial Service"},
-{"y":2021,"s":"2021-10-18","e":"2021-10-22","c":"figure","t":"Gen. Colin Powell","ev":"powell"},
-{"y":2021,"s":"2021-12-05","e":"2021-12-09","c":"figure","t":"Sen. Bob Dole","ev":"dole"},
-{"y":2021,"s":"2021-12-07","e":"2021-12-07","c":"annual","t":"Pearl Harbor Remembrance Day"},
-{"y":2021,"s":"2021-12-12","e":"2021-12-16","c":"attack","t":"Kentucky tornado outbreak","ev":"kytornado"},
-{"y":2021,"s":"2021-12-28","e":"2021-12-31","c":"figure","t":"Sen. Harry Reid","ev":"reid"},
-
-{"y":2022,"s":"2022-01-01","e":"2022-01-13","c":"figure","t":"Sen. Harry Reid","ev":"reid"},
-{"y":2022,"s":"2022-03-23","e":"2022-03-27","c":"figure","t":"Sec. Madeleine Albright","ev":"albright","approx":true},
-{"y":2022,"s":"2022-05-12","e":"2022-05-16","c":"pandemic","t":"One million American deaths from COVID-19","ev":"covid1m"},
-{"y":2022,"s":"2022-05-14","e":"2022-05-18","c":"shooting","t":"Tops supermarket shooting, Buffalo","ev":"buffalo"},
-{"y":2022,"s":"2022-05-15","e":"2022-05-15","c":"annual","t":"Peace Officers Memorial Day"},
-{"y":2022,"s":"2022-05-24","e":"2022-05-28","c":"shooting","t":"Robb Elementary School, Uvalde","ev":"uvalde"},
-{"y":2022,"s":"2022-05-30","e":"2022-05-30","c":"annual","t":"Memorial Day (until noon)"},
-{"y":2022,"s":"2022-07-05","e":"2022-07-09","c":"shooting","t":"Highland Park parade shooting","ev":"highlandpark"},
-{"y":2022,"s":"2022-09-09","e":"2022-09-19","c":"figure","t":"Queen Elizabeth II","ev":"queen"},
-{"y":2022,"s":"2022-09-11","e":"2022-09-11","c":"annual","t":"Patriot Day"},
-{"y":2022,"s":"2022-10-02","e":"2022-10-02","c":"annual","t":"National Fallen Firefighters Memorial Service"},
-{"y":2022,"s":"2022-11-22","e":"2022-11-26","c":"shooting","t":"Club Q, Colorado Springs and Chesapeake, Virginia","ev":"clubq"},
-{"y":2022,"s":"2022-12-07","e":"2022-12-07","c":"annual","t":"Pearl Harbor Remembrance Day"},
-
-{"y":2023,"s":"2023-01-23","e":"2023-01-26","c":"shooting","t":"Monterey Park and Half Moon Bay, California","ev":"montereypark"},
-{"y":2023,"s":"2023-02-14","e":"2023-02-17","c":"shooting","t":"Michigan State University shooting","ev":"msu"},
-{"y":2023,"s":"2023-03-28","e":"2023-03-31","c":"shooting","t":"Covenant School, Nashville","ev":"covenant"},
-{"y":2023,"s":"2023-04-11","e":"2023-04-14","c":"shooting","t":"Old National Bank, Louisville","ev":"louisville"},
-{"y":2023,"s":"2023-05-07","e":"2023-05-10","c":"shooting","t":"Allen Premium Outlets, Texas","ev":"allen"},
-{"y":2023,"s":"2023-05-15","e":"2023-05-15","c":"annual","t":"Peace Officers Memorial Day"},
-{"y":2023,"s":"2023-05-29","e":"2023-05-29","c":"annual","t":"Memorial Day (until noon)"},
-{"y":2023,"s":"2023-08-28","e":"2023-08-30","c":"shooting","t":"Dollar General shooting, Jacksonville","ev":"jacksonville","approx":true},
-{"y":2023,"s":"2023-09-11","e":"2023-09-11","c":"annual","t":"Patriot Day"},
-{"y":2023,"s":"2023-09-29","e":"2023-10-05","c":"figure","t":"Sen. Dianne Feinstein","ev":"feinstein"},
-{"y":2023,"s":"2023-10-01","e":"2023-10-01","c":"annual","t":"National Fallen Firefighters Memorial Service"},
-{"y":2023,"s":"2023-10-26","e":"2023-10-30","c":"shooting","t":"Lewiston, Maine shootings","ev":"lewiston"},
-{"y":2023,"s":"2023-11-25","e":"2023-11-29","c":"figure","t":"First Lady Rosalynn Carter","ev":"rosalynn"},
-{"y":2023,"s":"2023-12-07","e":"2023-12-07","c":"annual","t":"Pearl Harbor Remembrance Day"},
-{"y":2023,"s":"2023-12-19","e":"2023-12-19","c":"figure","t":"Justice Sandra Day O'Connor (interment)","ev":"oconnor"},
-
-{"y":2024,"s":"2024-02-15","e":"2024-02-18","c":"shooting","t":"Kansas City Super Bowl parade shooting","ev":"kcparade","approx":true},
-{"y":2024,"s":"2024-05-15","e":"2024-05-15","c":"annual","t":"Peace Officers Memorial Day"},
-{"y":2024,"s":"2024-05-27","e":"2024-05-27","c":"annual","t":"Memorial Day (until noon)"},
-{"y":2024,"s":"2024-07-14","e":"2024-07-16","c":"shooting","t":"Butler, Pennsylvania rally shooting","ev":"butler"},
-{"y":2024,"s":"2024-09-05","e":"2024-09-08","c":"shooting","t":"Apalachee High School, Georgia","ev":"apalachee"},
-{"y":2024,"s":"2024-09-11","e":"2024-09-11","c":"annual","t":"Patriot Day"},
-{"y":2024,"s":"2024-10-06","e":"2024-10-06","c":"annual","t":"National Fallen Firefighters Memorial Service"},
-{"y":2024,"s":"2024-12-07","e":"2024-12-07","c":"annual","t":"Pearl Harbor Remembrance Day"},
-{"y":2024,"s":"2024-12-29","e":"2024-12-31","c":"figure","t":"President Jimmy Carter","ev":"carter"},
-
-{"y":2025,"s":"2025-01-01","e":"2025-01-19","c":"figure","t":"President Jimmy Carter","ev":"carter"},
-{"y":2025,"s":"2025-01-21","e":"2025-01-28","c":"figure","t":"President Jimmy Carter (resumed after Inauguration Day)","ev":"carter"},
-{"y":2025,"s":"2025-04-21","e":"2025-04-26","c":"figure","t":"Pope Francis","ev":"francis"},
-{"y":2025,"s":"2025-05-04","e":"2025-05-04","c":"annual","t":"National Fallen Firefighters Memorial Service"},
-{"y":2025,"s":"2025-05-15","e":"2025-05-15","c":"annual","t":"Peace Officers Memorial Day"},
-{"y":2025,"s":"2025-05-26","e":"2025-05-26","c":"annual","t":"Memorial Day (until noon)"},
-{"y":2025,"s":"2025-08-27","e":"2025-08-31","c":"shooting","t":"Annunciation Catholic School, Minneapolis","ev":"annunciation"},
-{"y":2025,"s":"2025-09-10","e":"2025-09-14","c":"shooting","t":"Killing of Charlie Kirk","ev":"kirk"},
-{"y":2025,"s":"2025-09-11","e":"2025-09-11","c":"annual","t":"Patriot Day"},
-{"y":2025,"s":"2025-12-07","e":"2025-12-07","c":"annual","t":"Pearl Harbor Remembrance Day"}
-]
-</script>
-
-<script>
-(function(){
-  "use strict";
-  var EPISODES = JSON.parse(document.getElementById("episodes").textContent);
-  var YEARS = [2019,2020,2021,2022,2023,2024,2025];
-
-  // Fixed category order — validated for CVD separation in this sequence.
-  var CATS = [
-    {k:"figure",   label:"Death of a public figure", v:"--c-figure"},
-    {k:"shooting", label:"Mass shooting",            v:"--c-shooting"},
-    {k:"pandemic", label:"COVID-19 milestone",       v:"--c-pandemic"},
-    {k:"attack",   label:"Attack or disaster",       v:"--c-attack"},
-    {k:"annual",   label:"Standing observance",      v:"--c-annual"}
-  ];
-  var CAT = {};
-  CATS.forEach(function(c){ CAT[c.k] = c; });
-
-  var MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-  var DIM = [31,28,31,30,31,30,31,31,30,31,30,31];
-
-  function key(d){ return d.toISOString().slice(0,10); }
-  function parse(s){ return new Date(s + "T00:00:00Z"); }
-  function isLeap(y){ return (y%4===0 && y%100!==0) || y%400===0; }
-  function pretty(s){
-    var d = parse(s);
-    return MONTHS[d.getUTCMonth()] + " " + d.getUTCDate() + ", " + d.getUTCFullYear();
-  }
-
-  // ---- build the day map (event categories win over standing observances) ----
-  var days = new Map();
-  EPISODES.forEach(function(ep){
-    var d = parse(ep.s), end = parse(ep.e);
-    while (d <= end){
-      var k = key(d), cur = days.get(k);
-      if (!cur || (cur.c === "annual" && ep.c !== "annual")) days.set(k, ep);
-      d.setUTCDate(d.getUTCDate() + 1);
-    }
-  });
-
-  // ---- aggregates ----
-  var perYear = {}, perCat = {}, total = 0, totalDaysInPeriod = 0;
-  YEARS.forEach(function(y){ perYear[y] = 0; });
-  CATS.forEach(function(c){ perCat[c.k] = 0; });
-  var byYearCat = {};
-  YEARS.forEach(function(y){ byYearCat[y] = {}; CATS.forEach(function(c){ byYearCat[y][c.k] = 0; }); });
-
-  days.forEach(function(ep, k){
-    var y = +k.slice(0,4);
-    if (perYear[y] === undefined) return;
-    perYear[y]++; perCat[ep.c]++; byYearCat[y][ep.c]++; total++;
-  });
-  YEARS.forEach(function(y){ totalDaysInPeriod += isLeap(y) ? 366 : 365; });
-
-  var counts = YEARS.map(function(y){ return perYear[y]; });
-  var maxYear = Math.max.apply(null, counts);
-  var peakY = YEARS[counts.indexOf(maxYear)];
-  var minYear = Math.min.apply(null, counts);
-  var lowY = YEARS[counts.indexOf(minYear)];
-  var avg = Math.round(total / YEARS.length);
-
-  function set(id, txt){ var el = document.getElementById(id); if (el) el.textContent = txt; }
-  set("lead-total", total);  set("lead-avg", avg);
-  set("s-total", total);
-  document.getElementById("s-share").firstChild.nodeValue =
-    (Math.round(total / totalDaysInPeriod * 1000) / 10).toFixed(1);
-  set("s-peak", maxYear);  set("s-peak-k", "Days in " + peakY + ", the peak year");
-  set("s-low", minYear);   set("s-low-k", "Days in " + lowY + ", the quietest");
-
-  // ---- legend ----
-  document.getElementById("legend").innerHTML = CATS.map(function(c){
-    return '<li><span class="swatch" style="background:var(' + c.v + ')"></span>' + c.label + '</li>';
-  }).join("") + '<li><span class="swatch" style="background:var(--empty)"></span>Full staff</li>';
-
-  // ---- month ruler ----
-  document.getElementById("ruler").innerHTML = DIM.map(function(n, i){
-    return '<div class="mo" style="flex:' + n + ' 1 0">' + MONTHS[i].toUpperCase() + '</div>';
-  }).join("");
-
-  // ---- the barcode: draw contiguous runs so block edges stay crisp ----
-  var cal = document.getElementById("cal");
-  cal.innerHTML = YEARS.map(function(y, yi){
-    var n = isLeap(y) ? 366 : 365;
-    var runs = "", d = parse(y + "-01-01"), i = 0;
-    while (i < n){
-      var here = days.get(key(d));
-      if (!here){ d.setUTCDate(d.getUTCDate() + 1); i++; continue; }
-      var from = i;
-      while (i < n && days.get(key(d)) === here){ d.setUTCDate(d.getUTCDate() + 1); i++; }
-      runs += '<i style="grid-column:' + (from + 1) + '/span ' + (i - from) +
-              ';background:var(' + CAT[here.c].v + ')"></i>';
-    }
-    var w = Math.round(perYear[y] / maxYear * 78) + 4;
-    return '<div class="row yearrow' + (y === peakY ? ' is-peak' : '') + '" style="--i:' + yi + '">' +
-      '<span class="ylabel">' + y + '</span>' +
-      '<div class="band" data-y="' + y + '" data-n="' + n + '" ' +
-        'style="grid-template-columns:repeat(' + n + ',1fr)" role="img" ' +
-        'aria-label="' + y + ': flag at half-staff on ' + perYear[y] + ' days">' +
-        runs + '<u></u></div>' +
-      '<div class="count"><span class="bar" style="width:' + w + 'px"></span>' +
-        '<span class="v">' + perYear[y] + '</span></div>' +
-    '</div>';
-  }).join("");
-
-  // ---- hover: resolve the day from pointer position, so every day is reachable ----
-  var tip = document.getElementById("tip");
-  var mark = null;
-  function hide(){
-    tip.classList.remove("on");
-    if (mark){ mark.style.opacity = 0; mark = null; }
-  }
-  cal.addEventListener("mousemove", function(e){
-    var band = e.target.closest && e.target.closest(".band");
-    if (!band){ hide(); return; }
-    var r = band.getBoundingClientRect(), n = +band.dataset.n;
-    var idx = Math.floor((e.clientX - r.left) / r.width * n);
-    if (idx < 0) idx = 0;
-    if (idx > n - 1) idx = n - 1;
-    var d = parse(band.dataset.y + "-01-01");
-    d.setUTCDate(d.getUTCDate() + idx);
-    var k = key(d), ep = days.get(k);
-
-    var u = band.lastElementChild;
-    if (mark && mark !== u) mark.style.opacity = 0;
-    u.style.left = (idx / n * 100) + "%";
-    u.style.opacity = 1;
-    mark = u;
-
-    tip.innerHTML = ep
-      ? '<div class="d">' + pretty(k) + (ep.approx ? ' &nbsp;~ approximate' : '') + '</div>' +
-        '<div class="t">' + ep.t + '</div>' +
-        '<div class="c"><b style="background:var(' + CAT[ep.c].v + ')"></b>' + CAT[ep.c].label + '</div>'
-      : '<div class="d">' + pretty(k) + '</div><div class="t">Full staff</div>';
-    tip.classList.add("on");
-
-    var x = Math.min(e.clientX + 16, window.innerWidth - tip.offsetWidth - 12);
-    var ty = e.clientY - tip.offsetHeight - 16;
-    if (ty < 8) ty = e.clientY + 22;
-    tip.style.left = Math.max(8, x) + "px";
-    tip.style.top = ty + "px";
-  });
-  cal.addEventListener("mouseleave", hide);
-  window.addEventListener("scroll", hide, {passive:true});
-
-  // ---- longest orders, grouped by event ----
-  var evs = {};
-  EPISODES.forEach(function(ep){
-    if (ep.c === "annual") return;
-    var id = ep.ev || ep.t;
-    if (!evs[id]) evs[id] = {t:ep.t.replace(/ \(.*\)$/, ""), c:ep.c, n:0, s:ep.s, e:ep.e};
-    var d = parse(ep.s), end = parse(ep.e);
-    while (d <= end){ evs[id].n++; d.setUTCDate(d.getUTCDate() + 1); }
-    if (ep.s < evs[id].s) evs[id].s = ep.s;
-    if (ep.e > evs[id].e) evs[id].e = ep.e;
-  });
-  var top = Object.keys(evs).map(function(k){ return evs[k]; })
-    .sort(function(a,b){ return b.n - a.n; }).slice(0, 7);
-  var topMax = top[0].n;
-  document.getElementById("ranks").innerHTML = top.map(function(e){
-    return '<li class="rank"><div><div class="who">' + e.t + '</div>' +
-      '<div class="when">' + pretty(e.s) + ' &ndash; ' + pretty(e.e) + '</div></div>' +
-      '<div class="len"><i style="width:' + Math.round(e.n / topMax * 112) + 'px;background:var(' +
-        CAT[e.c].v + ')"></i><em>' + e.n + '</em></div></li>';
-  }).join("");
-
-  // ---- category split ----
-  document.getElementById("split").innerHTML = CATS.map(function(c){
-    return '<div style="flex:' + perCat[c.k] + ' 1 0;background:var(' + c.v + ')" ' +
-      'title="' + c.label + ': ' + perCat[c.k] + ' days"></div>';
-  }).join("");
-  document.getElementById("splitkey").innerHTML = CATS.map(function(c){
-    var pct = Math.round(perCat[c.k] / total * 100);
-    return '<li><div class="lbl"><span class="swatch" style="background:var(' + c.v + ')"></span>' +
-      c.label + '</div><div class="num">' + perCat[c.k] + ' days &nbsp;&middot;&nbsp; ' + pct + '%</div></li>';
-  }).join("");
-
-  // ---- table view ----
-  document.getElementById("tbl").innerHTML =
-    '<thead><tr><th>Year</th>' + CATS.map(function(c){ return '<th>' + c.label + '</th>'; }).join("") +
-    '<th>Total</th></tr></thead><tbody>' +
-    YEARS.map(function(y){
-      return '<tr><td>' + y + '</td>' +
-        CATS.map(function(c){ return '<td>' + (byYearCat[y][c.k] || "&mdash;") + '</td>'; }).join("") +
-        '<td>' + perYear[y] + '</td></tr>';
-    }).join("") +
-    '</tbody><tfoot><tr><td>2019&ndash;2025</td>' +
-    CATS.map(function(c){ return '<td>' + perCat[c.k] + '</td>'; }).join("") +
-    '<td>' + total + '</td></tr></tfoot>';
-})();
-</script>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>

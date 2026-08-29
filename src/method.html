@@ -1,0 +1,66 @@
+<div class="s-wrap s-narrow"><p class="s-crumb"><a href="/">Home</a> / Method</p></div>
+
+<section class="s-section s-wrap s-narrow">
+  <h1 class="s-h1" style="font-size:clamp(34px,5vw,56px)">Method and corrections</h1>
+  <p class="s-lede">The rules every graphic on this site is built under, what we currently know to
+  be uncertain, and how to tell us we are wrong.</p>
+</section>
+
+<section class="s-section s-wrap s-narrow">
+  <div class="s-prose">
+    <div class="s-notice">
+      <strong>Open correction on the current graphic.</strong> Nine of the half-staff periods in
+      <a href="/graphics/half-staff/">Seven Years at Half-Staff</a> have end dates we inferred from
+      standard practice rather than confirmed against the proclamation itself. They are marked
+      <code>~</code> in the tooltip and <code>"approx": true</code> in the data. Treat that graphic
+      as a working draft until they are verified.
+    </div>
+
+    <h2>Sourcing</h2>
+    <p>Every figure traces to a primary record. For US federal material that usually means the
+    Federal Register, an agency's own bulk data, or the record of a proceeding. Where a
+    contemporaneous news report is the only available confirmation of a date or a detail, it is
+    used, but the entry is flagged as unconfirmed rather than quietly promoted to fact.</p>
+
+    <h2>Counting</h2>
+    <p>The counting rule is fixed before the chart exists, and it is written on the page. In
+    general:</p>
+    <ul>
+      <li><strong>One unit counts once.</strong> If two orders cover the same calendar day, that
+      day is one day, not two.</li>
+      <li><strong>Overlaps resolve by specificity.</strong> A one-off event beats a standing
+      annual observance for the same day, because the event is the thing being measured.</li>
+      <li><strong>Scope is stated, not implied.</strong> "National orders only, state orders
+      excluded" is a choice that changes the number by a lot, so it appears on the graphic.</li>
+      <li><strong>Nothing is typed in twice.</strong> Totals, shares and rankings are computed
+      from the dataset at render time, so a corrected entry propagates everywhere at once.</li>
+    </ul>
+
+    <h2>Confidence labels</h2>
+    <table class="s-table">
+      <thead><tr><th>Label</th><th>What it means</th></tr></thead>
+      <tbody>
+        <tr><td>Unmarked</td><td>Confirmed against a primary record or a direct citation of one.</td></tr>
+        <tr><td><code>~</code> / <code>approx</code></td><td>The event is real; a date or duration is inferred from standard practice and has not been checked against the order itself.</td></tr>
+        <tr><td>Omitted</td><td>We could not establish that the event met the graphic's definition. Notable omissions are named in the graphic's footnotes rather than left silent.</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Corrections</h2>
+    <p>Send the entry, what it should say, and the source that shows it &mdash;
+    <a href="mailto:hello@datatothepeople.org">hello@datatothepeople.org</a>. What happens next:</p>
+    <ul>
+      <li>Factual errors are fixed in the dataset, which updates every derived number on the page.</li>
+      <li>The graphic's footer records what changed and when. Corrections are not silently absorbed.</li>
+      <li>If a correction changes the headline finding, it is stated at the top of the graphic, not
+      in a footnote.</li>
+      <li>Reporters of substantive corrections are credited unless they ask not to be.</li>
+    </ul>
+
+    <h2>Limits worth knowing</h2>
+    <p>Two things this site cannot do for you. It does not do statistical inference &mdash; these
+    are counts of a record, and a count of a record is a count of what got recorded, which is not
+    always the same as what happened. And it does not cover state and local records at anything
+    like federal depth, because they are not published in comparable form.</p>
+  </div>
+</section>
