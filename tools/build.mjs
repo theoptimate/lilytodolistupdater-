@@ -64,6 +64,50 @@ const PAGES = [
     ],
   },
   {
+    src: "statement-of-purpose.html",
+    out: "posts/statement-of-purpose/index.html",
+    url: "/posts/statement-of-purpose/",
+    title: "A statement of purpose — Data to the People",
+    description:
+      "What this site is for, what it refuses to publish, who pays for it, and what is " +
+      "already wrong with its first graphic. The founding post.",
+    og: "og-default.png",
+    section: "Posts",
+    published: "2026-08-29",
+    modified: "2026-08-29",
+    priority: "0.8",
+    changefreq: "yearly",
+    jsonld: (p) => [
+      {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        headline: "A statement of purpose",
+        description: p.description,
+        image: [SITE.origin + "/assets/" + p.og],
+        datePublished: p.published,
+        dateModified: p.modified,
+        author: { "@type": "Organization", name: SITE.author, url: SITE.origin + "/about/" },
+        publisher: {
+          "@type": "Organization",
+          name: SITE.name,
+          logo: { "@type": "ImageObject", url: SITE.origin + "/assets/og-default.png" },
+        },
+        mainEntityOfPage: { "@type": "WebPage", "@id": SITE.origin + p.url },
+        articleSection: "Editorial",
+        isAccessibleForFree: true,
+        license: "https://creativecommons.org/licenses/by/4.0/",
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: SITE.origin + "/" },
+          { "@type": "ListItem", position: 2, name: "A statement of purpose" },
+        ],
+      },
+    ],
+  },
+  {
     src: "half-staff.html",
     out: "graphics/half-staff/index.html",
     url: "/graphics/half-staff/",
@@ -267,6 +311,7 @@ ${body}
       <div>
         <h4>Read</h4>
         <ul>
+          <li><a href="/posts/statement-of-purpose/">A statement of purpose</a></li>
           <li><a href="/graphics/half-staff/">Seven Years at Half-Staff</a></li>
           <li><a href="/method/">Method and corrections</a></li>
         </ul>

@@ -31,7 +31,7 @@ tools/build.mjs   the generator: page metadata, <head>, header, footer, sitemap,
 tools/og.mjs      social card renderer
 assets/           site.css, site.js, og-*.png
 index.html        ── generated ──
-graphics/, about/, method/, privacy/, 404.html, sitemap.xml, robots.txt, ads.txt
+posts/, graphics/, about/, method/, privacy/, 404.html, sitemap.xml, robots.txt, ads.txt
 ```
 
 Never edit a generated page directly; it is overwritten on the next build. Page titles,
@@ -64,6 +64,16 @@ height as the real unit, so the layout does not shift when ads switch on.
 Placement is deliberately conservative — one unit on the homepage, two on an article,
 none on the privacy page, all labelled and none adjacent to navigation or chart controls.
 Adding more is the fastest way to lose both search rankings and AdSense standing.
+
+## The first post
+
+`src/statement-of-purpose.html` — the founding editorial, at `/posts/statement-of-purpose/`.
+It states the three rules a graphic has to meet, what the site refuses to publish, that
+advertising pays for it, and that the launch graphic ships with nine unverified entries.
+
+**Sign it.** There is a comment in the source at the sign-off. A statement of purpose with
+no name on it is the weakest version of itself — replace the placeholder byline with a real
+one and a link to verifiable prior work. This is the highest-leverage edit in the repo.
 
 ## The graphic
 
