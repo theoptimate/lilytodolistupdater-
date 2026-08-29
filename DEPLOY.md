@@ -4,6 +4,10 @@ This is a static site: HTML, one stylesheet, one script, no framework, no runtim
 no dependencies. `node tools/build.mjs` writes everything into `dist/`. Any host
 that can run Node and serve a folder will do.
 
+> **Decided: Cloudflare Pages.** The comparison below is kept as the reasoning
+> behind it. The Cloudflare account already hosts `hattenindustries.com`, so the
+> DNS half of the custom-domain step is a dropdown rather than a records chase.
+>
 > **Verify the plan terms yourself.** The comparison below was written without
 > network access to cloudflare.com or vercel.com, so the pricing and licence
 > details are from general knowledge and may have moved. The one that decides the
@@ -73,6 +77,10 @@ which nothing here does.
    branch; make it `main` and treat other branches as previews.
 2. **Have your domain ready.** `SITE_ORIGIN` must be the real one or every
    canonical URL, `og:url` and sitemap entry points somewhere that does not exist.
+   If the domain is already in this Cloudflare account, there is nothing to set up
+   in advance — Pages will offer the zone and write the DNS record for you. If it
+   is a new domain, add it to Cloudflare (or register it through Cloudflare
+   Registrar) before step 5, so the same shortcut applies.
 
 There is nothing else. No secrets, no database, no API keys.
 
@@ -112,9 +120,19 @@ There is nothing else. No secrets, no database, no API keys.
 
 4. **Save and Deploy.** First build takes about a minute.
 
-5. **Custom domain** (Custom domains → Set up a domain). Add the apex and `www`,
-   and let Cloudflare redirect one to the other — pick whichever you used in
-   `SITE_ORIGIN` as the target, and never change your mind afterwards.
+5. **Custom domain** (Custom domains → Set up a domain). Because the zone is
+   already in this account, Cloudflare creates the CNAME itself and issues the
+   certificate — no records to copy, usually live within a minute or two.
+
+   Add both the apex and `www` and let Cloudflare redirect one to the other. Pick
+   whichever form you put in `SITE_ORIGIN` as the target and do not change your
+   mind later: every canonical tag, sitemap entry and inbound link is built on
+   that choice.
+
+   Using a subdomain of an existing site works the same way — pick it in the same
+   dropdown. Note that a Pages project can only own a hostname, not a path, so a
+   subfolder like `hattenindustries.com/data/` would need a Worker in front to
+   route it. Doable, but not step one.
 
 6. **Redeploy** once the domain is attached, so `SITE_ORIGIN` is baked into the
    canonical tags.
