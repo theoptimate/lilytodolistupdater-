@@ -21,8 +21,20 @@ export const SOURCES = [
     label: "IFTTT / automated alert",
     kind: "company",
     domains: ["ifttt.com", "zapier.com", "make.com", "google.com"],
-    subjects: [/^ifttt/i, /new (company|business|filing|registration)/i, /google alert/i, /\bnew results for\b/i],
-    trust: { financials: "unverified", volume: "high" },
+    subjects: [/^ifttt/i, /new on betalist/i, /new (company|business|filing|registration)/i, /google alert/i, /\bnew results for\b/i],
+    /* One launch per email, arriving many times a day. These are competitor and
+       demand signals — somebody thought this was worth building — not things to
+       buy, and the volume is high enough that they drown a digest if ranked
+       alongside listings. */
+    trust: { financials: "unverified", volume: "very-high" },
+  },
+  {
+    id: "registry-filing",
+    label: "Company registry / regulatory filing",
+    kind: "company",
+    domains: ["company-information.service.gov.uk", "sec.gov", "opencorporates.com"],
+    subjects: [/incorporat/i, /form d\b/i, /\bfiling\b/i, /registered agent/i],
+    trust: { financials: "none", volume: "high" },
   },
   {
     id: "business-for-sale",
@@ -32,6 +44,7 @@ export const SOURCES = [
       "bizbuysell.com", "bizquest.com", "flippa.com", "acquire.com", "microacquire.com",
       "empireflippers.com", "quietlight.com", "websiteclosers.com", "loopnet.com",
       "sunbeltnetwork.com", "transworldma.com", "dealstream.com", "businessesforsale.com",
+      "moneynomad.com", "latonas.com", "fecommunications.com", "bizex.net",
     ],
     subjects: [/for sale/i, /asking price/i, /new listing/i, /businesses matching/i, /acquisition opportunit/i],
     trust: { financials: "seller-claimed", volume: "high" },
@@ -40,8 +53,12 @@ export const SOURCES = [
     id: "market-signal",
     label: "Market signal / newsletter",
     kind: "trend",
-    domains: ["producthunt.com", "crunchbasedaily.com", "crunchbase.com", "substack.com", "beehiiv.com", "ycombinator.com"],
-    subjects: [/funding round/i, /raised \$/i, /launch(es|ed)?\b/i, /request for startups/i],
+    domains: [
+      "producthunt.com", "crunchbasedaily.com", "crunchbase.com", "substack.com",
+      "beehiiv.com", "ycombinator.com", "axios.com", "crainalerts.com", "barrons.com",
+      "nytimes.com", "platformer.news",
+    ],
+    subjects: [/funding round/i, /raised \$/i, /request for startups/i, /pro rata/i, /dealbook/i],
     trust: { financials: "reported", volume: "high" },
   },
 ];
@@ -63,6 +80,20 @@ export function classify(message) {
   const body = (message.text || "").slice(0, 4000);
   const byBody = SOURCES.find((s) => s.domains.some((d) => body.includes(d)));
   return byBody || UNKNOWN;
+}
+
+/* A price cut on a listing already in the ledger is one of the few genuinely
+   informative things a marketplace email carries: it is the seller telling you
+   what the market said. Detected here so the extractor is told to look for it. */
+export function priceMove(message) {
+  const text = message.text || "";
+  const now = /new asking price[:\s]*(?:usd\s*)?\$?([\d,]+)/i.exec(text);
+  const was = /original price[:\s]*(?:usd\s*)?\$?([\d,]+)/i.exec(text);
+  if (!now || !was) return null;
+  const to = Number(now[1].replace(/,/g, ""));
+  const from = Number(was[1].replace(/,/g, ""));
+  if (!Number.isFinite(to) || !Number.isFinite(from) || from <= 0) return null;
+  return { from, to, pct: Math.round(((from - to) / from) * 100) };
 }
 
 /* Newsletters and alert digests carry many items in one email. The extractor is

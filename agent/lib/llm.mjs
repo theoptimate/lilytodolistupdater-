@@ -66,6 +66,53 @@ export async function available() {
 
 /* system: [stable, volatile] — the stable half carries the cache breakpoint, so a
    run over 40 emails pays for the profile and the rubric once. */
+/* Same call, with Anthropic's hosted web search and fetch attached. Structured
+   output is not used here: search results carry citations, and the two features do
+   not combine, so the JSON is asked for in the prompt and parsed on the way out. */
+export async function search({ stable, user, maxTokens = 16000 }) {
+  const anthropic = await getClient();
+  if (!anthropic || usage.degraded) return null;
+  try {
+    const response = await anthropic.messages.create({
+      model: MODEL,
+      max_tokens: maxTokens,
+      system: [{ type: "text", text: stable, cache_control: { type: "ephemeral" } }],
+      messages: [{ role: "user", content: user }],
+      thinking: { type: "adaptive" },
+      output_config: { effort: EFFORT },
+      tools: [
+        { type: "web_search_20260209", name: "web_search", max_uses: 12 },
+        { type: "web_fetch_20260209", name: "web_fetch", max_uses: 8 },
+      ],
+    });
+    track(response);
+    const text = response.content.filter((b) => b.type === "text").map((b) => b.text).join("").trim();
+    return parseJson(text);
+  } catch (err) {
+    usage.failures++;
+    process.stderr.write(`  ! verification call failed: ${err.message}\n`);
+    if (usage.failures >= GIVE_UP_AFTER) usage.degraded = true;
+    return null;
+  }
+}
+
+function track(response) {
+  usage.calls++;
+  usage.model = response.model || MODEL;
+  usage.input += response.usage?.input_tokens || 0;
+  usage.output += response.usage?.output_tokens || 0;
+  usage.cacheRead += response.usage?.cache_read_input_tokens || 0;
+  usage.cacheWrite += response.usage?.cache_creation_input_tokens || 0;
+}
+
+function parseJson(text) {
+  try { return JSON.parse(text); } catch { /* fall through */ }
+  const start = text.indexOf("{");
+  const end = text.lastIndexOf("}");
+  if (start === -1 || end <= start) return null;
+  try { return JSON.parse(text.slice(start, end + 1)); } catch { return null; }
+}
+
 export async function ask({ stable, volatile = "", user, schema, maxTokens = 16000 }) {
   const anthropic = await getClient();
   if (!anthropic || usage.degraded) return null;
@@ -98,12 +145,7 @@ export async function ask({ stable, volatile = "", user, schema, maxTokens = 160
 
   usage.failures = 0;
 
-  usage.calls++;
-  usage.model = response.model || MODEL;
-  usage.input += response.usage?.input_tokens || 0;
-  usage.output += response.usage?.output_tokens || 0;
-  usage.cacheRead += response.usage?.cache_read_input_tokens || 0;
-  usage.cacheWrite += response.usage?.cache_creation_input_tokens || 0;
+  track(response);
 
   if (response.stop_reason === "refusal") {
     process.stderr.write(`  ! model declined (${response.stop_details?.category || "unspecified"})\n`);
@@ -112,12 +154,7 @@ export async function ask({ stable, volatile = "", user, schema, maxTokens = 160
 
   const text = response.content.filter((b) => b.type === "text").map((b) => b.text).join("").trim();
   if (!schema) return text;
-  try {
-    return JSON.parse(text);
-  } catch {
-    /* Structured output makes this near-impossible, but a truncated response at
-       max_tokens would land here and must not take the run down. */
-    const brace = text.indexOf("{");
-    try { return JSON.parse(text.slice(brace)); } catch { return null; }
-  }
+  /* Structured output makes a parse failure near-impossible, but a response
+     truncated at max_tokens would land here and must not take the run down. */
+  return parseJson(text);
 }

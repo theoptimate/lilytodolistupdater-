@@ -1,0 +1,10 @@
+{
+  "email": "../../samples/bizbuysell-digest.eml",
+  "note": "Three listings in one HTML digest. The test is that they stay three records and that the money survives the quoted-printable decode.",
+  "expect": [
+    { "title_contains": ["landscaping"], "fields": { "asking_price_usd": 485000, "revenue_annual_usd": 1120000, "profit_annual_usd": 210000 } },
+    { "title_contains": ["pet food"], "fields": { "asking_price_usd": 145000, "profit_annual_usd": 88000 } },
+    { "title_contains": ["records retrieval"], "fields": { "asking_price_usd": 310000, "profit_annual_usd": 132000 } }
+  ],
+  "allow_extra": 0
+}

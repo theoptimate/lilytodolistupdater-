@@ -5,6 +5,11 @@
 import { DIMENSIONS } from "./fit.mjs";
 
 const money = (n) => (typeof n === "number" ? `$${Math.round(n).toLocaleString()}` : "—");
+/* An annual figure when the email gave one; otherwise the monthly figure, labelled
+   as monthly. Never the monthly figure multiplied by twelve. */
+const earnings = (o) => (typeof o.profit_annual_usd === "number"
+  ? `${money(o.profit_annual_usd)}/yr`
+  : typeof o.profit_monthly_usd === "number" ? `${money(o.profit_monthly_usd)}/mo` : "—");
 const pct = (n) => `${Math.round((n / 5) * 100)}%`;
 
 const bar = (score) => {
@@ -74,11 +79,12 @@ export function render(run) {
 
   L.push("## Shortlist");
   L.push("");
-  L.push("| Fit | Opportunity | Source | Asking | Profit | The catch |");
+  L.push("| Fit | Opportunity | Source | Asking | Earnings | The catch |");
   L.push("|---|---|---|---|---|---|");
   for (const o of top.slice(0, 15)) {
     const title = o.url ? `[${o.title}](${o.url})` : o.title;
-    L.push(`| ${bar(o.score)} ${o.score.toFixed(1)} | ${title} | ${o.source_label} | ${money(o.asking_price_usd)} | ${money(o.profit_annual_usd)} | ${(o.the_catch || "—").replace(/\|/g, "/")} |`);
+    const cut = o.price_cut_pct > 0 ? ` ↓${o.price_cut_pct}%` : (o.price_move ? ` ↓${o.price_move.pct}%` : "");
+    L.push(`| ${bar(o.score)} ${o.score.toFixed(1)} | ${title} | ${o.source_label} | ${money(o.asking_price_usd)}${cut} | ${earnings(o)} | ${(o.the_catch || "—").replace(/\|/g, "/")} |`);
   }
   L.push("");
 
@@ -95,6 +101,17 @@ export function render(run) {
         L.push(`- ${d.label} ${pct(s)} — ${o.rationale?.[d.key] || "(heuristic score, no rationale)"}`);
       }
       if (o.first_check) L.push(`- **Cheapest check** — ${o.first_check}`);
+      if (o.price_history?.length > 1) {
+        L.push(`- **Price history** — ${o.price_history.map((h) => `${money(h.price)} (${h.at.slice(0, 10)})`).join(" → ")}`);
+      } else if (o.price_move) {
+        L.push(`- **Price cut** — ${money(o.price_move.from)} → ${money(o.price_move.to)}, down ${o.price_move.pct}%`);
+      }
+      if (o.verification) {
+        const v = o.verification;
+        L.push(`- **Checked against the web** — ${v.found === false ? "could not find this listing online" : `still listed: ${v.still_listed || "unknown"}`}${v.competitors?.length ? `; already done by ${v.competitors.map((c) => c.name).join(", ")}` : ""}`);
+        for (const c of v.contradictions || []) L.push(`  - **Contradiction** — the email says "${c.claim}"; ${c.evidence} (${c.url})`);
+        if (v.regulatory) L.push(`  - **Regulatory** — ${v.regulatory}`);
+      }
       if (o.missing?.length) L.push(`- **Still unknown** — ${o.missing.join("; ")}`);
       if (o.evidence?.length) L.push(`- **Quoted from the email** — ${o.evidence.map((e) => `"${e}"`).join(" ")}`);
       L.push(`- **Provenance** — ${o.provenance.subject} (${o.provenance.from}, ${o.provenance.received.slice(0, 10)})`);
@@ -113,7 +130,7 @@ export function render(run) {
 
   L.push("---");
   L.push("");
-  L.push(`Profile: \`${profile}\`${cost ? ` · model spend this run: $${cost.toFixed(3)}` : ""}`);
+  L.push(`Profile: \`${profile}\`${run.calibrated ? " · weights calibrated from your past verdicts" : ""}${cost ? ` · model spend this run: $${cost.toFixed(3)}` : ""}`);
   L.push("");
   L.push("Rate anything here with `node agent/run.mjs feedback \"<name>\" keep|drop \"<why>\"` — verdicts feed the next run's synthesis.");
   return L.join("\n");

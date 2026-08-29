@@ -1,0 +1,10 @@
+{
+  "email": "../../samples/ifttt-alert.eml",
+  "note": "Three newly incorporated companies. They are signals, not listings: no financials exist and none should appear.",
+  "expect": [
+    { "title_contains": ["harbourline"], "fields": { "asking_price_usd": null } },
+    { "title_contains": ["northfield"], "fields": { "asking_price_usd": null } },
+    { "title_contains": ["tidewater"], "fields": { "asking_price_usd": null } }
+  ],
+  "allow_extra": 0
+}

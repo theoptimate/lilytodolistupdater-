@@ -14,7 +14,9 @@
     "og": "node tools/og.mjs",
     "check": "node tools/build.mjs && node tools/check.mjs",
     "agent": "node agent/run.mjs",
-    "agent:test": "node --test agent/test/*.test.mjs"
+    "agent:test": "node --test agent/test/*.test.mjs",
+    "agent:audit": "node agent/eval/eval.mjs",
+    "agent:weekly": "agent/schedule/weekly.sh"
   },
   "//": "No dependencies, deliberately. `npm run og` needs Playwright installed ad hoc (npm i -D playwright && npx playwright install chromium); it is kept out of this file so hosts do not install a browser on every deploy."
 }

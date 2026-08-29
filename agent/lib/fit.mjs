@@ -54,9 +54,12 @@ export function kills(opportunity, profile) {
       reasons.push(rule.label || `matched ${rule.match.join("/")}`);
     }
   }
+  /* Only a stated budget can reject on price. An unset or zero capital figure means
+     "not decided yet", and rejecting every priced listing on that basis would empty
+     the digest for the least defensible reason there is. */
   const cash = profile.operator?.constraints?.capital_usd;
   const price = opportunity.asking_price_usd;
-  if (typeof cash === "number" && typeof price === "number" && price > cash * (profile.operator?.constraints?.leverage || 1)) {
+  if (typeof cash === "number" && cash > 0 && typeof price === "number" && price > cash * (profile.operator?.constraints?.leverage || 1)) {
     reasons.push(`asking $${price.toLocaleString()} is beyond the capital available`);
   }
   return reasons;
@@ -101,6 +104,14 @@ export function heuristicScore(opportunity, profile) {
     ecosystem: cap(1 + s.ecosystem_terms.length * 1.5),
   };
   return { scores, rationale: {}, heuristic: true, signals: s };
+}
+
+/* Calibration (see calibrate.mjs) can replace the starting weights with ones
+   derived from what you actually kept. Applied here so every caller gets them. */
+export function applyWeights(weights) {
+  if (!weights) return false;
+  for (const d of DIMENSIONS) if (typeof weights[d.key] === "number") d.weight = weights[d.key];
+  return true;
 }
 
 export function total(scores) {
@@ -164,12 +175,13 @@ Rules:
   cannot name one, the score is 2 or below.
 - Never invent facts about the opportunity that are absent from its record.`;
 
-export async function scoreAll(opportunities, profile, { useLlm = true, ask, chunk = 10 } = {}) {
-  const out = new Map();
+export async function scoreAll(opportunities, profile, { useLlm = true, ask, chunk = 10, precomputed = null } = {}) {
+  const out = new Map((precomputed || []).map((row) => [row.id, row]));
 
   if (useLlm && ask) {
-    for (let i = 0; i < opportunities.length; i += chunk) {
-      const batch = opportunities.slice(i, i + chunk);
+    const pending = opportunities.filter((o) => !out.has(o.id));
+    for (let i = 0; i < pending.length; i += chunk) {
+      const batch = pending.slice(i, i + chunk);
       const user = `Score these ${batch.length} opportunities.\n\n${JSON.stringify(
         batch.map((o) => ({
           id: o.id, title: o.title, kind: o.kind, summary: o.summary, source: o.source_label,

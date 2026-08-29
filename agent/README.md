@@ -14,10 +14,12 @@ tests, its own dependency. `npm run check` at the root does not cover it.
    [1] ingest      decode MIME, quoted-printable, HTML → text
    [2] classify    which feed is this, and how much is its arithmetic worth
    [3] extract     one record per listing/idea, every number quotable  ← model
-   [4] dedupe      fingerprint against the ledger; a repeat is a signal, not a row
-   [5] score       fit against you + the agent + the Mae ecosystem      ← model
-   [6] wildcard    seeded draw: constraints, plus a forced collision
-   [7] synthesise  candidate ventures, each with a first customer       ← model
+   [4] audit       every figure traced back to its email, or the run fails
+   [5] dedupe      fingerprint against the ledger; price history across weeks
+   [6] score       fit against you + the agent + the Mae ecosystem      ← model
+   [7] verify      the listing, the competitors, the contradictions     ← model + web
+   [8] wildcard    seeded draw: constraints, plus a forced collision
+   [9] synthesise  candidate ventures, each with a first customer       ← model
         │
   digest.md + ledger.jsonl + run.json
 ```
@@ -47,6 +49,8 @@ network — it just gets much worse, and says so at the top of the digest.
 | `--shortlist` | 12 | how many opportunities reach synthesis |
 | `--ventures` | 3 | how many candidates to propose |
 | `--limit` | all | stop after N emails (cheap first run) |
+| `--enrich [n]` | off | check the top n against the web before ranking them |
+| `--records` / `--scores` / `--ventures-in` | — | stages an assistant already did (see the bridge) |
 | `--no-llm` | off | force the heuristic path |
 | `--out` | `agent/out` | where the digest lands |
 
@@ -61,12 +65,75 @@ keeping outside a script that also writes files. Any of these work:
 1. **Gmail via an MCP-connected assistant.** Ask it to search and dump, e.g.
    `from:(ideabrowser.com OR bizbuysell.com OR ifttt.com) newer_than:7d`, writing
    `[{ "id", "from", "subject", "date", "body" }, …]` to a file. That shape is what
-   `--in file.json` expects; `html` is accepted instead of `body`.
+   `--in file.json` expects; `html` is accepted instead of `body`. The same assistant
+   can do the model stages too — see the bridge below.
 2. **A Gmail filter → label → export.** Anything that leaves `.eml` files in a folder.
 3. **A forwarding rule** into a mailbox you `mbox`-export weekly.
 4. **IMAP,** if you want it live — write the fetch, hand this the JSON.
 
 Filter aggressively upstream. Cost and quality both scale with what you let in.
+
+## The bridge: running the model stages without an API key
+
+An assistant that already reads the mailbox can do the extraction, scoring and
+synthesis itself. `bridge` writes the exact prompts and inputs to disk so that is a
+repeatable path rather than pasting emails into a chat window:
+
+```bash
+node agent/run.mjs bridge --in agent/state/inbox/2026-08-29.json
+# → state/bridge/<date>/emails.json and extract-prompt.md
+# the assistant writes records.json (and optionally scores.json, ventures.json)
+
+node agent/eval/eval.mjs --in <mail> --records <records.json>    # audit first
+node agent/run.mjs --in <mail> --records <records.json> --scores <scores.json>
+```
+
+Supplied records get their ids and provenance stamped here, not by whoever produced
+them, so they carry the same guarantees as the API path — and a record naming an
+email that is not in the batch is dropped and reported.
+
+## The audit: the no-invented-numbers rule, enforced
+
+```bash
+node agent/eval/eval.mjs --in <mail> --records <records.json>
+```
+
+Every numeric field must appear in the email it came from, in some form
+(`485000`, `485,000`, `$485K` all count), and every evidence quote must actually be
+in the body. Anything else fails the run. It needs no model and no network, which is
+what lets `weekly.sh` gate on it. On this project's first real batch it caught two
+misquotes and both were capture defects, not extraction defects — which is the kind
+of bug that is otherwise invisible.
+
+`node agent/eval/eval.mjs --fixtures` is the other half: labelled emails in
+`eval/fixtures/`, reporting recall against known opportunities. It needs a model.
+
+## Verification
+
+`--enrich` sends the top of the shortlist through Claude with web search and fetch,
+asking four narrow questions: is this listing real and still live, who already does
+this, does anything on the web contradict a claim in the email, and what regulation
+governs it. Contradictions are surfaced at the top of the digest, not buried.
+
+It does not re-value anything. It exists to catch the two failures that waste a
+week: a listing that sold three weeks ago, and a market with four funded incumbents
+nobody mentioned.
+
+## Calibration
+
+```bash
+node agent/run.mjs feedback "Klixer" drop "physical product, no leverage"
+node agent/run.mjs calibrate
+```
+
+Calibration joins your verdicts to the scores those items were given and reports
+which of the six dimensions actually separated what you kept from what you dropped.
+Dimensions that separated gain weight, ones that did not lose it, bounded at ±0.05
+per run and renormalised. It refuses to run below eight judged items, because with
+fewer than that the differences are noise.
+
+A dimension that never separates anything is not measuring something you act on —
+that is a signal to change the question it asks, not just its weight.
 
 ## The profile is the product
 
@@ -109,21 +176,20 @@ It is the only thing here that makes the agent better over time, and it costs a 
 
 ## Known gaps
 
-Ordered by what would improve output most, not by effort:
-
-1. **No enrichment.** Nothing verifies a listing, checks whether a domain resolves,
-   reads a for-sale page, or looks up whether the idea already has four funded
-   competitors. Everything is judged on what the email said.
-2. **Recall is unmeasured.** There is no fixture set of emails with known correct
-   extractions, so a prompt change cannot be shown to be an improvement.
-3. **No calibration.** Fit scores are never checked against what actually happened.
-   The feedback file is the raw material for that and nothing consumes it yet beyond
-   the prompt.
+1. **Verification is shallow.** `--enrich` checks the top of the shortlist and takes
+   the web at its word. It does not read a broker's data room, pull Companies House
+   filings, or check whether a domain's traffic claim survives contact with reality.
+2. **Recall is measured on three fixtures.** Enough to catch a regression, not enough
+   to compare two prompts with confidence. Add a fixture each time extraction gets
+   something wrong — that is the cheapest possible dataset.
+3. **Calibration needs verdicts you have not recorded yet.** It cannot help until
+   roughly ten opportunities have been judged, and it only ever nudges weights: it
+   will not discover a dimension the rubric is missing.
 4. **Single mailbox, single operator.** No multi-user profiles, no shared ledger.
-5. **No scheduler.** It is a command; cron, a GitHub Action, or an assistant routine
-   has to run it weekly.
-6. **The ledger only grows.** Nothing ages an opportunity out or notices that a
-   listing has sold.
+5. **Nothing ages out.** The ledger notices a price falling but not a listing being
+   sold or withdrawn — a row goes stale silently.
+6. **The wildcard decks are mine, not yours.** They were written blind. The cards
+   that keep producing nothing should be deleted, and that only happens by hand.
 
 ## Files
 
@@ -136,9 +202,14 @@ lib/fit.mjs           kill criteria, six-dimension rubric, scoring
 lib/wildcard.mjs      the seeded draw
 lib/synth.mjs         opportunities + profile + constraint → ventures
 lib/store.mjs         ledger, dedupe, run history, feedback
+lib/enrich.mjs        web verification of the shortlist
+lib/calibrate.mjs     do the scores predict what you keep?
 lib/report.mjs        the markdown digest
 lib/llm.mjs           the only file that talks to Claude
 lib/rng.mjs           seeded randomness
+eval/eval.mjs         the audit and the fixture run
+eval/fixtures/        labelled emails with known correct extractions
+schedule/weekly.sh    the whole thing as one command, gated on the audit
 config/profile.json   you, the agent, Mae, the thesis, the kill criteria
 config/wildcards.json the decks
 state/                ledger, runs, feedback (gitignored — it is your data)

@@ -197,3 +197,86 @@ test("the synthesis prompt carries the profile, the constraint and past verdicts
   assert.match(prompt, /\[drop\] Old idea/);
   assert.match(prompt, /Inventory-heavy retail/);
 });
+
+/* ---- the stages added after the first batch ----------------------------- */
+
+import { forms, auditRecord } from "../eval/eval.mjs";
+import { join as joinVerdicts, analyse, reweight, MIN_JUDGED } from "../lib/calibrate.mjs";
+
+test("the audit recognises the ways an email writes a number", () => {
+  assert.ok(forms(485000).includes("485,000"));
+  assert.ok(forms(485000).includes("485k"));
+  assert.ok(forms(2617908).includes("2,617,908"));
+  assert.ok(forms(12699.68).includes("12,699.68"));
+  assert.ok(forms(4000000).includes("4m"));
+});
+
+test("the audit fails a figure that is not in the email, and passes one that is", () => {
+  const email = "Asking Price: $485,000\nCash Flow: $210,000\nEstablished 1998.";
+  const good = { title: "x", asking_price_usd: 485000, profit_annual_usd: 210000, evidence: ["Asking Price: $485,000"] };
+  assert.deepEqual(auditRecord(good, email).unsupported, []);
+  assert.deepEqual(auditRecord(good, email).badQuotes, []);
+
+  const invented = { title: "x", asking_price_usd: 485000, revenue_annual_usd: 1400000, evidence: [] };
+  assert.equal(auditRecord(invented, email).unsupported.length, 1);
+  assert.equal(auditRecord(invented, email).unsupported[0].field, "revenue_annual_usd");
+
+  const misquoted = { title: "x", evidence: ["Highly profitable turnkey operation with strong margins"] };
+  assert.equal(auditRecord(misquoted, email).badQuotes.length, 1);
+});
+
+test("a repeat sighting at a lower price becomes a price history", () => {
+  const ledger = new Map();
+  const listing = (price, at) => ({
+    id: "p1", title: "Channel", asking_price_usd: price,
+    provenance: { message_id: `m-${at}`, received: `${at}T00:00:00.000Z` },
+  });
+  reconcile(ledger, [listing(49000, "2026-08-07")]);
+  reconcile(ledger, [listing(48000, "2026-08-17")]);
+  reconcile(ledger, [listing(47000, "2026-08-25")]);
+
+  const row = ledger.get("p1");
+  assert.equal(row.seen_count, 3);
+  assert.equal(row.asking_price_usd, 47000, "the row carries the current price");
+  assert.deepEqual(row.price_history.map((h) => h.price), [49000, 48000, 47000]);
+  assert.deepEqual(row.price_history.map((h) => h.at.slice(0, 10)), ["2026-08-07", "2026-08-17", "2026-08-25"]);
+  assert.equal(row.price_cut_pct, 4);
+
+  reconcile(ledger, [listing(47000, "2026-08-29")]);
+  assert.equal(ledger.get("p1").price_history.length, 3, "an unchanged price does not add a point");
+});
+
+test("calibration refuses to run on too little evidence", async () => {
+  const rows = joinVerdicts(new Map(), [{ target: "nothing", verdict: "keep" }]);
+  assert.equal(rows.length, 0);
+  assert.ok(MIN_JUDGED >= 8, "the floor exists so noise is not mistaken for signal");
+});
+
+test("calibration finds the dimension that separated keeps from drops", () => {
+  const scores = (edge, dist) => ({ edge, distribution: dist, speed: 3, capital: 3, durability: 3, ecosystem: 3 });
+  const rows = [
+    { verdict: "keep", scores: scores(5, 3) }, { verdict: "keep", scores: scores(5, 3) },
+    { verdict: "keep", scores: scores(4, 3) }, { verdict: "keep", scores: scores(5, 3) },
+    { verdict: "drop", scores: scores(1, 3) }, { verdict: "drop", scores: scores(2, 3) },
+    { verdict: "drop", scores: scores(1, 3) }, { verdict: "drop", scores: scores(1, 3) },
+  ];
+  const { per, keeps, drops } = analyse(rows);
+  assert.equal(keeps, 4);
+  assert.equal(drops, 4);
+  assert.ok(per.edge.separation > 3, "edge separated them");
+  assert.equal(per.distribution.separation, 0, "distribution did not");
+  assert.equal(per.speed.separation, 0);
+
+  const weights = reweight(per);
+  const sum = Object.values(weights).reduce((a, b) => a + b, 0);
+  assert.ok(Math.abs(sum - 1) < 0.01, `weights still sum to 1, got ${sum}`);
+  assert.ok(weights.edge > 0.25, "the dimension that predicted gains weight");
+  assert.ok(weights.distribution < 0.25, "the one that did not, loses it");
+});
+
+test("a verdict joins to a ledger row by id or by part of its title", () => {
+  const ledger = new Map([["a1", { id: "a1", title: "Empire Flippers #94153 - Amazon reimbursements", scores: { edge: 4 } }]]);
+  assert.equal(joinVerdicts(ledger, [{ target: "a1", verdict: "keep" }]).length, 1);
+  assert.equal(joinVerdicts(ledger, [{ target: "amazon reimbursements", verdict: "drop" }]).length, 1);
+  assert.equal(joinVerdicts(ledger, [{ target: "something else entirely", verdict: "drop" }]).length, 0);
+});

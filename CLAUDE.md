@@ -56,7 +56,12 @@ never a force-push, never a rewrite of published history.
 `package.json` (one dependency, the Anthropic SDK), its own tests
 (`npm run agent:test`) and its own README. `npm run check` does not cover it, and it
 writes nothing into `dist/`. Its `state/` and `config/profile.json` are gitignored —
-they are personal data, not project files.
+they hold mailbox content and personal data, not project files, and must stay
+untracked.
+
+Its one inviolable rule: **no figure appears anywhere that is not in the email it
+came from.** `npm run agent:audit` enforces it and the weekly script fails closed on
+it. If you touch extraction, run it.
 
 ## Where things are documented
 

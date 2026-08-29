@@ -6,7 +6,7 @@
    revenue figure is worse than no figure — it survives into the ranking and quietly
    decides what gets worked on. */
 
-import { classify, itemHint } from "./sources.mjs";
+import { classify, itemHint, priceMove } from "./sources.mjs";
 import { ask } from "./llm.mjs";
 import { createHash } from "node:crypto";
 
@@ -16,8 +16,8 @@ const OPPORTUNITY = {
   type: "object",
   additionalProperties: false,
   required: ["title", "kind", "summary", "url", "asking_price_usd", "revenue_annual_usd",
-             "profit_annual_usd", "location", "industry_tags", "customer", "problem",
-             "why_now", "evidence", "confidence", "missing"],
+             "profit_annual_usd", "revenue_monthly_usd", "profit_monthly_usd", "location",
+             "industry_tags", "customer", "problem", "why_now", "evidence", "confidence", "missing"],
   properties: {
     title: { type: "string", description: "The listing, company or idea name as written in the email." },
     kind: { type: "string", enum: ["idea", "company", "for_sale", "trend", "other"] },
@@ -26,6 +26,11 @@ const OPPORTUNITY = {
     asking_price_usd: { type: ["number", "null"] },
     revenue_annual_usd: { type: ["number", "null"] },
     profit_annual_usd: { type: ["number", "null"], description: "SDE, net profit or EBITDA as stated. Null unless stated." },
+    /* Marketplaces quote monthly as often as annual. Recording the figure in the
+       period the email used it in is what keeps the no-invented-numbers rule honest:
+       annualising a monthly claim is arithmetic the seller did not do. */
+    revenue_monthly_usd: { type: ["number", "null"] },
+    profit_monthly_usd: { type: ["number", "null"] },
     location: { type: ["string", "null"] },
     industry_tags: { type: "array", items: { type: "string" }, description: "3-6 lowercase tags." },
     customer: { type: ["string", "null"], description: "Who pays, per the email." },
@@ -41,7 +46,7 @@ const OPPORTUNITY = {
   },
 };
 
-const SCHEMA = {
+export const SCHEMA = {
   type: "object",
   additionalProperties: false,
   required: ["opportunities", "notes"],
@@ -51,7 +56,7 @@ const SCHEMA = {
   },
 };
 
-const SYSTEM = `You read business email — curated idea newsletters, automated new-company
+export const SYSTEM = `You read business email — curated idea newsletters, automated new-company
 alerts, and business-for-sale listings — and pull out the concrete opportunities in them.
 
 Rules, in order of importance:
@@ -116,33 +121,18 @@ const fingerprint = (o, source) => createHash("sha1")
   .digest("hex")
   .slice(0, 16);
 
-export async function extract(message, { useLlm = true } = {}) {
-  const source = classify(message);
-  const body = (message.text || "").slice(0, MAX_BODY_CHARS);
-  const truncated = (message.text || "").length > MAX_BODY_CHARS;
-
-  const user = [
-    `Source: ${source.label} (${source.id}). Financials from this source are ${source.trust.financials}.`,
-    `Expect roughly ${itemHint(message, source)} opportunit${itemHint(message, source) === 1 ? "y" : "ies"} in this email.`,
-    `From: ${message.from}`,
-    `Subject: ${message.subject}`,
-    `Date: ${message.date}`,
-    truncated ? `\n[The body below is the first ${MAX_BODY_CHARS} characters of a longer email.]` : "",
-    "\n---\n",
-    body,
-  ].filter(Boolean).join("\n");
-
-  const result = (useLlm && await ask({ stable: SYSTEM, user, schema: SCHEMA }))
-    || heuristicExtract(message, source);
-
-  const stamped = (result.opportunities || []).map((o) => ({
+/* Provenance and identity are attached here, not by whoever produced the records,
+   so an assistant-supplied batch (see the bridge in run.mjs) carries exactly the
+   same guarantees as one the model produced inside this process. */
+export function stamp(opportunities, message, source, { truncated = false } = {}) {
+  const move = priceMove(message);
+  return (opportunities || []).map((o) => ({
     ...o,
-    id: fingerprint(o, source),
+    id: o.id || fingerprint(o, source),
     source: source.id,
     source_label: source.label,
     financial_trust: source.trust.financials,
-    /* Provenance travels with the record forever. Without it a six-week-old idea in
-       the ledger is unfalsifiable. */
+    price_move: move,
     provenance: {
       message_id: message.id,
       from: message.from,
@@ -152,6 +142,38 @@ export async function extract(message, { useLlm = true } = {}) {
     },
     first_seen: new Date().toISOString(),
   }));
+}
+
+export function promptFor(message) {
+  const source = classify(message);
+  const body = (message.text || "").slice(0, MAX_BODY_CHARS);
+  return { source, system: SYSTEM, schema: SCHEMA, user: userFor(message, source, body, (message.text || "").length > MAX_BODY_CHARS) };
+}
+
+function userFor(message, source, body, truncated) {
+  return [
+    `Source: ${source.label} (${source.id}). Financials from this source are ${source.trust.financials}.`,
+    `Expect roughly ${itemHint(message, source)} opportunit${itemHint(message, source) === 1 ? "y" : "ies"} in this email.`,
+    `From: ${message.from}`,
+    `Subject: ${message.subject}`,
+    `Date: ${message.date}`,
+    truncated ? `\n[The body below is the first ${MAX_BODY_CHARS} characters of a longer email.]` : "",
+    "\n---\n",
+    body,
+  ].filter(Boolean).join("\n");
+}
+
+export async function extract(message, { useLlm = true } = {}) {
+  const source = classify(message);
+  const body = (message.text || "").slice(0, MAX_BODY_CHARS);
+  const truncated = (message.text || "").length > MAX_BODY_CHARS;
+
+  const user = userFor(message, source, body, truncated);
+
+  const result = (useLlm && await ask({ stable: SYSTEM, user, schema: SCHEMA }))
+    || heuristicExtract(message, source);
+
+  const stamped = stamp(result.opportunities, message, source, { truncated });
 
   return { opportunities: stamped, notes: result.notes || "", source: source.id, truncated };
 }

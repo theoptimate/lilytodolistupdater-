@@ -1,0 +1,8 @@
+{
+  "email": "../../samples/idea-browser.eml",
+  "note": "One idea, no prices anywhere. The failure this catches is an extractor that invents a market size or a revenue figure to fill the schema.",
+  "expect": [
+    { "title_contains": ["permit"], "fields": { "asking_price_usd": null, "revenue_annual_usd": null, "profit_annual_usd": null } }
+  ],
+  "allow_extra": 0
+}
