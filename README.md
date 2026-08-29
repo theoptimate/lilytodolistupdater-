@@ -7,6 +7,8 @@ beyond Node. Deploy the repository root to any static host.
 node tools/build.mjs      # regenerate every page, sitemap.xml, robots.txt, ads.txt
 node tools/og.mjs         # regenerate the 1200x630 social cards (needs Playwright)
 npx http-server . -p 8099 # preview locally
+
+node tools/preview.mjs index.html > preview.html   # one self-contained file
 ```
 
 ## Do these two things first
