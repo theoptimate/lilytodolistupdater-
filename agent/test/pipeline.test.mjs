@@ -149,9 +149,12 @@ test("the two rubrics ask different questions and both sum to one", () => {
     assert.equal(dims.reduce((n, d) => n + d.weight, 0).toFixed(2), "1.00", mode);
   }
   setMode("build");
-  assert.ok(DIMENSIONS.some((d) => d.key === "operability"), "build asks whether Mae can run it");
   assert.ok(DIMENSIONS.some((d) => d.key === "demand"), "build asks who already pays");
   assert.ok(!DIMENSIONS.some((d) => d.key === "capital"), "build does not ask what it costs to buy");
+  /* Automatability is a gate in the kill criteria, not a scored dimension: every
+     competitor can automate too, so scoring for it rewards nobody in particular. */
+  assert.ok(!DIMENSIONS.some((d) => d.key === "operability"),
+    "being agent-operable is a constraint, not an advantage");
   setMode("buy");
   assert.ok(DIMENSIONS.some((d) => d.key === "capital"), "buy does");
   assert.throws(() => setMode("acquihire"), /unknown mode/);

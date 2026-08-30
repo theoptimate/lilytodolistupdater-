@@ -11,6 +11,14 @@ import { readFile } from "node:fs/promises";
 
 /* Two rubrics, because the question is not the same one.
 
+   Note what is deliberately NOT a scored dimension in build mode: whether an agent
+   can run the work. Self-hosted agents are a commodity — anyone can have one by
+   Friday — so scoring for automatability rewards a property every competitor shares,
+   and it double-counts, since the same fact already shows up in time-to-first-dollar
+   and in cost. "Can one person plus a schedule run this?" is a gate, and gates belong
+   in kill criteria, where failing one removes the thing instead of docking it a
+   fraction of a point.
+
    BUY asks whether an existing business is worth taking over: can you afford it,
    can you operate it, is the moat real. BUILD asks whether you should make the
    thing yourself, and there the price of somebody else's company is irrelevant —
@@ -31,11 +39,10 @@ export const RUBRICS = {
     { key: "ecosystem",    weight: 0.10, label: "Ecosystem leverage",   ask: "Does it make the rest of the portfolio stronger, or just busier?" },
   ],
   build: [
-    { key: "edge",         weight: 0.20, label: "Unfair advantage",  ask: "What can you, Claude and Mae do that a competent stranger with the same idea cannot?" },
-    { key: "demand",       weight: 0.20, label: "Proven demand",     ask: "Does something in this batch prove people already pay for this, and how much? A broker listing with monthly profit is proof; a newsletter's enthusiasm is not." },
-    { key: "distribution", weight: 0.20, label: "Route to first ten", ask: "Can you reach the first ten paying customers through a channel you can actually get to this month?" },
+    { key: "edge",         weight: 0.25, label: "Unfair advantage",  ask: "What can you do that a competent stranger with the same idea, the same open-source tools and the same weekend cannot? Owning an agent is not an answer — everyone can rent one. Knowledge, access, an existing channel and an existing asset are answers." },
+    { key: "demand",       weight: 0.25, label: "Proven demand",     ask: "Does something in this batch prove people already pay for this, and how much? A broker listing with monthly profit is proof; a newsletter's enthusiasm is not." },
+    { key: "distribution", weight: 0.25, label: "Route to first ten", ask: "Can you reach the first ten paying customers through a channel you can actually get to this month?" },
     { key: "speed",        weight: 0.15, label: "Time to first dollar", ask: "Weeks, not quarters, before someone pays." },
-    { key: "operability",  weight: 0.15, label: "Agent-operable",    ask: "Can Mae run the delivery on a loop — heartbeat, scheduled tasks, a chat channel customers already use — or does it need hands, a payroll and a warehouse?" },
     { key: "durability",   weight: 0.10, label: "Why now / durability", ask: "Is there a reason this is possible now, and something left over once the obvious version is commoditised?" },
   ],
 };
@@ -138,11 +145,9 @@ export function heuristicScore(opportunity, profile) {
     capital: cap(opportunity.asking_price_usd ? 2 : 3),
     durability: cap(opportunity.why_now ? 3 : 2),
     ecosystem: cap(1 + s.ecosystem_terms.length * 1.5),
-    /* Build-mode dimensions. Both are cheap proxies: a stated monthly profit is
-       somebody paying, and automatable terms hint at work Mae could carry. */
+    /* Build-mode proxy: a stated monthly profit means somebody is paying. */
     demand: cap((typeof opportunity.profit_monthly_usd === "number"
       || typeof opportunity.profit_annual_usd === "number") ? 4 : 1),
-    operability: cap(1 + s.automatable_terms.length * 1.5),
   };
   const scores = Object.fromEntries(DIMENSIONS.map((d) => [d.key, guess[d.key] ?? 2]));
   return { scores, rationale: {}, heuristic: true, signals: s };

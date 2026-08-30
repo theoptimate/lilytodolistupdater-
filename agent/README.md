@@ -90,10 +90,14 @@ you run it, is the moat real. Its rubric weighs capital fit and ecosystem levera
   somebody publishing what a customer pays, what the work earns, and what the market
   thinks the whole thing is worth. That is the most reliable demand data in the
   batch, and it is free.
-- The rubric changes: capital fit disappears (you are not buying), and two dimensions
-  take its place — **proven demand** ("does something in this batch show people
-  already paying for this, and how much?") and **agent-operable** ("can Mae run the
-  delivery on a loop, or does it need hands and a payroll?").
+- The rubric changes: capital fit disappears (you are not buying) and **proven demand**
+  takes its place — "does something in this batch show people already paying for this,
+  and how much?"
+- What is deliberately *not* a dimension: whether an agent can run the work. Self-hosted
+  agents are a commodity, so scoring for automatability rewards a property every
+  competitor shares, and double-counts what time-to-first-dollar already measures.
+  "Can one person plus a schedule run this?" is a gate in the kill criteria, where
+  failing it removes the thing rather than docking it a fraction of a point.
 - **Kill criteria only apply to proposals.** Rejecting a listing for mentioning
   inventory would delete the evidence rather than the plan, so in build mode the
   criteria are recorded against listings and applied only to ideas. Launch
@@ -174,12 +178,14 @@ Mae — plus the thesis and the kill criteria. Scoring asks "can *this group* wi
 not "is this a good business", so an unfilled profile produces confident, useless
 output. The run warns when fields still read `FILL_ME`.
 
-Be precise about what the ecosystem actually is. Mae is an OpenClaw agent on a Mac
-mini: always-on execution, scheduled loops, persistent local memory, and a gateway
-onto the chat channels customers already use. That is *labour and reach*, not an
-audience — and the scoring is very different for the two. Its gaps are worth writing
-down as honestly as its assets: one machine, a residential connection, no brand, and
-nothing it does can be accountable without a human owning the outcome.
+Be precise about what the ecosystem actually is, and especially about what it is not.
+Mae is an OpenClaw agent on a Mac mini — always-on execution, scheduled loops, local
+memory, a gateway onto chat platforms. That is *infrastructure*: it sets what running
+something costs, not why a customer would choose you. The profile has a
+`not_an_edge` list for exactly this, because an asset in the wrong column quietly
+inflates every score it touches. The honest residue is narrow and worth keeping:
+near-zero marginal cost at small scale, and data that can stay on hardware you own —
+which is a sales argument, not a moat.
 
 The kill criteria are the highest-value part of the file: things decided in advance
 that you will not do. They run before scoring, they are absolute, and they are what
