@@ -69,7 +69,7 @@ export function reweight(per) {
   return proposed;
 }
 
-export async function calibrate({ ledger, feedback, out }) {
+export async function calibrate({ ledger, feedback, out, mode = "buy" }) {
   const rows = join(ledger, feedback);
   if (rows.length < MIN_JUDGED) {
     return { enough: false, judged: rows.length, need: MIN_JUDGED };
@@ -80,15 +80,18 @@ export async function calibrate({ ledger, feedback, out }) {
     return { enough: false, judged: rows.length, need: MIN_JUDGED, reason: "verdicts are all one way" };
   }
   const weights = reweight(per);
-  const record = { generated: new Date().toISOString(), judged: rows.length, keeps, drops, per, weights };
+  /* Weights are meaningless across rubrics — build and buy do not share dimensions,
+     so the mode is stored and checked before they are ever applied. */
+  const record = { generated: new Date().toISOString(), mode, judged: rows.length, keeps, drops, per, weights };
   await mkdir(dirname(out), { recursive: true });
   await writeFile(out, JSON.stringify(record, null, 2));
   return { enough: true, ...record };
 }
 
-export async function loadWeights(path) {
+export async function loadWeights(path, mode = "buy") {
   try {
-    const { weights } = JSON.parse(await readFile(path, "utf8"));
-    return weights || null;
+    const saved = JSON.parse(await readFile(path, "utf8"));
+    if ((saved.mode || "buy") !== mode) return null;
+    return saved.weights || null;
   } catch { return null; }
 }

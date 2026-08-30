@@ -9,7 +9,7 @@ import { fileURLToPath } from "node:url";
 import { parseEml, parseMbox, htmlToText, decodeWords, load } from "../lib/email.mjs";
 import { classify, itemHint } from "../lib/sources.mjs";
 import { extract, heuristicExtract } from "../lib/extract.mjs";
-import { kills, signals, heuristicScore, total, scoreAll, DIMENSIONS } from "../lib/fit.mjs";
+import { kills, signals, heuristicScore, total, scoreAll, setMode, RUBRICS, DIMENSIONS } from "../lib/fit.mjs";
 import { rng, sample } from "../lib/rng.mjs";
 import { draw } from "../lib/wildcard.mjs";
 import { reconcile } from "../lib/store.mjs";
@@ -106,6 +106,7 @@ test("signals find the overlap between an opportunity and the profile", () => {
 });
 
 test("weights sum to one and the total respects them", () => {
+  setMode("buy");
   assert.equal(DIMENSIONS.reduce((n, d) => n + d.weight, 0).toFixed(2), "1.00");
   const perfect = Object.fromEntries(DIMENSIONS.map((d) => [d.key, 5]));
   assert.equal(total(perfect), 5);
@@ -114,13 +115,46 @@ test("weights sum to one and the total respects them", () => {
 
 test("scoring sorts by fit and zeroes anything killed", async () => {
   const pool = [
-    { id: "a", title: "Pet food store", summary: "Inventory included", industry_tags: [], missing: [] },
-    { id: "b", title: "Records retrieval for paralegals", summary: "records administration, retainers", industry_tags: ["records"], missing: [] },
+    { id: "a", kind: "for_sale", title: "Pet food store", summary: "Inventory included", industry_tags: [], missing: [] },
+    { id: "b", kind: "for_sale", title: "Records retrieval for paralegals", summary: "records administration, retainers", industry_tags: ["records"], missing: [] },
   ];
-  const scored = await scoreAll(pool, PROFILE, { useLlm: false });
+  const scored = await scoreAll(pool, PROFILE, { useLlm: false, mode: "buy" });
   assert.equal(scored[0].id, "b");
   assert.equal(scored.at(-1).score, 0);
   assert.ok(scored.at(-1).killed.length);
+});
+
+test("in build mode a listing is evidence, not a rejected purchase", async () => {
+  setMode("build");
+  const pool = [
+    { id: "listing", kind: "for_sale", title: "Pet food store", summary: "Inventory included", industry_tags: [], missing: [] },
+    { id: "idea", kind: "idea", title: "Dropship pet food", summary: "Inventory and shipping", industry_tags: [], missing: [] },
+  ];
+  const scored = await scoreAll(pool, PROFILE, { useLlm: false, mode: "build" });
+  const listing = scored.find((o) => o.id === "listing");
+  const idea = scored.find((o) => o.id === "idea");
+
+  assert.deepEqual(listing.killed, [], "a listing is not rejected — it is evidence about a market");
+  assert.ok(listing.kill_notes.length, "the criteria it would have tripped are still recorded");
+  assert.ok(listing.score > 0);
+
+  assert.ok(idea.killed.length, "a proposal to build the same thing is rejected");
+  assert.equal(idea.score, 0);
+  setMode("buy");
+});
+
+test("the two rubrics ask different questions and both sum to one", () => {
+  for (const mode of ["buy", "build"]) {
+    const dims = setMode(mode);
+    assert.equal(dims.reduce((n, d) => n + d.weight, 0).toFixed(2), "1.00", mode);
+  }
+  setMode("build");
+  assert.ok(DIMENSIONS.some((d) => d.key === "operability"), "build asks whether Mae can run it");
+  assert.ok(DIMENSIONS.some((d) => d.key === "demand"), "build asks who already pays");
+  assert.ok(!DIMENSIONS.some((d) => d.key === "capital"), "build does not ask what it costs to buy");
+  setMode("buy");
+  assert.ok(DIMENSIONS.some((d) => d.key === "capital"), "buy does");
+  assert.throws(() => setMode("acquihire"), /unknown mode/);
 });
 
 test("the same seed draws the same cards, a different seed does not", async () => {

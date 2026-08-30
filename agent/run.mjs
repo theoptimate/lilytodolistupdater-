@@ -18,7 +18,7 @@ import { fileURLToPath } from "node:url";
 import { load } from "./lib/email.mjs";
 import { extract, stamp, promptFor, SCHEMA as EXTRACT_SCHEMA } from "./lib/extract.mjs";
 import { classify } from "./lib/sources.mjs";
-import { loadProfile, scoreAll, applyWeights, DIMENSIONS } from "./lib/fit.mjs";
+import { loadProfile, scoreAll, applyWeights, setMode, DIMENSIONS } from "./lib/fit.mjs";
 import { enrich } from "./lib/enrich.mjs";
 import { calibrate, loadWeights, MIN_JUDGED } from "./lib/calibrate.mjs";
 import { loadDecks, draw } from "./lib/wildcard.mjs";
@@ -55,9 +55,10 @@ if (args[0] === "feedback") {
 /* ---- calibrate subcommand ----------------------------------------------- */
 
 if (args[0] === "calibrate") {
+  setMode(flag("mode", "buy"));
   const ledger = await loadLedger(P("state/opportunities.jsonl"));
   const feedback = await loadFeedback(P("state/feedback.jsonl"));
-  const result = await calibrate({ ledger, feedback, out: P("state/calibration.json") });
+  const result = await calibrate({ ledger, feedback, out: P("state/calibration.json"), mode: flag("mode", "buy") });
 
   if (!result.enough) {
     console.log(`${result.judged} judged item(s); ${MIN_JUDGED} are needed before the differences mean anything${result.reason ? ` (${result.reason})` : ""}.`);
@@ -135,13 +136,15 @@ const enrichTop  = has("enrich") ? Number(flag("enrich", 6)) || 6 : 0;
 
 const profile = await loadProfile(profilePath);
 const run = profile.run || {};
+const mode = flag("mode", run.mode || "buy");
+setMode(mode);
 const shortlistSize = Number(flag("shortlist", run.shortlist || 12));
 const ventureCount  = Number(flag("ventures", run.ventures || 3));
 
 const warnings = [];
 const started = new Date().toISOString();
 
-const calibrated = applyWeights(await loadWeights(P("state/calibration.json")));
+const calibrated = applyWeights(await loadWeights(P("state/calibration.json"), mode));
 if (calibrated) console.log("using calibrated weights from state/calibration.json");
 
 /* ---- ingest ------------------------------------------------------------- */
@@ -152,7 +155,7 @@ if (!messages.length) {
   console.error(`no email found at ${input}`);
   process.exit(1);
 }
-console.log(`read ${messages.length} email(s) from ${input}`);
+console.log(`read ${messages.length} email(s) from ${input} — ${mode === "build" ? "BUILD mode: listings are evidence, not purchases" : "BUY mode"}`);
 
 const modelReady = useLlm && await available();
 if (!modelReady && !recordsIn) {
@@ -200,7 +203,7 @@ const pool = [...fresh, ...repeats];
 /* ---- score -------------------------------------------------------------- */
 
 const precomputed = scoresIn ? (await readJson(scoresIn)).scored : null;
-const scored = await scoreAll(pool, profile, { useLlm: modelReady, ask, precomputed });
+const scored = await scoreAll(pool, profile, { useLlm: modelReady, ask, precomputed, mode });
 const live = scored.filter((o) => !o.killed.length);
 const shortlist = live.slice(0, shortlistSize);
 console.log(`scored ${scored.length}; ${scored.length - live.length} rejected by kill criteria`);
@@ -260,6 +263,7 @@ const record = {
   input,
   profile: profilePath,
   seed,
+  mode,
   calibrated,
   model: modelReady ? usage.model : (recordsIn ? "assistant-supplied (bridge)" : "none"),
   supplied: { records: recordsIn || null, scores: scoresIn || null, ventures: venturesIn || null },

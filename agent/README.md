@@ -16,7 +16,7 @@ tests, its own dependency. `npm run check` at the root does not cover it.
    [3] extract     one record per listing/idea, every number quotable  ← model
    [4] audit       every figure traced back to its email, or the run fails
    [5] dedupe      fingerprint against the ledger; price history across weeks
-   [6] score       fit against you + the agent + the Mae ecosystem      ← model
+   [6] score       fit against you + Claude + Mae, under the mode's rubric ← model
    [7] verify      the listing, the competitors, the contradictions     ← model + web
    [8] wildcard    seeded draw: constraints, plus a forced collision
    [9] synthesise  candidate ventures, each with a first customer       ← model
@@ -49,6 +49,7 @@ network — it just gets much worse, and says so at the top of the digest.
 | `--shortlist` | 12 | how many opportunities reach synthesis |
 | `--ventures` | 3 | how many candidates to propose |
 | `--limit` | all | stop after N emails (cheap first run) |
+| `--mode` | from the profile | `build` or `buy` — see below |
 | `--enrich [n]` | off | check the top n against the web before ranking them |
 | `--records` / `--scores` / `--ventures-in` | — | stages an assistant already did (see the bridge) |
 | `--no-llm` | off | force the heuristic path |
@@ -72,6 +73,37 @@ keeping outside a script that also writes files. Any of these work:
 4. **IMAP,** if you want it live — write the fetch, hand this the JSON.
 
 Filter aggressively upstream. Cost and quality both scale with what you let in.
+
+## Two modes, two questions
+
+```bash
+node agent/run.mjs --in <mail> --mode build     # what should we make?
+node agent/run.mjs --in <mail> --mode buy       # what is worth taking over?
+```
+
+**buy** asks whether an existing business is worth operating: can you afford it, can
+you run it, is the moat real. Its rubric weighs capital fit and ecosystem leverage.
+
+**build** asks something else entirely, and the difference is not cosmetic:
+
+- A listing stops being a purchase and becomes **evidence**. A broker page is
+  somebody publishing what a customer pays, what the work earns, and what the market
+  thinks the whole thing is worth. That is the most reliable demand data in the
+  batch, and it is free.
+- The rubric changes: capital fit disappears (you are not buying), and two dimensions
+  take its place — **proven demand** ("does something in this batch show people
+  already paying for this, and how much?") and **agent-operable** ("can Mae run the
+  delivery on a loop, or does it need hands and a payroll?").
+- **Kill criteria only apply to proposals.** Rejecting a listing for mentioning
+  inventory would delete the evidence rather than the plan, so in build mode the
+  criteria are recorded against listings and applied only to ideas. Launch
+  announcements are neither, and get their own section: who else is moving.
+- Synthesis is told, in the prompt, that a proposal to buy something is a wasted
+  slot, and every venture must name the record that proves demand — or say plainly
+  that nothing does.
+
+The digest reflects the split: *What people are already paying for* (evidence),
+*Buildable, ranked* (proposals), *Who else is moving* (competitors).
 
 ## The bridge: running the model stages without an API key
 
@@ -137,10 +169,17 @@ that is a signal to change the question it asks, not just its weight.
 
 ## The profile is the product
 
-`config/profile.json` holds the three parties the ranking is about — you, the agent,
-and the Mae ecosystem — plus the thesis and the kill criteria. Scoring asks "can *this
-group* win this", not "is this a good business", so an unfilled profile produces
-confident, useless output. The run warns when fields still read `FILL_ME`.
+`config/profile.json` holds the three parties the ranking is about — you, Claude, and
+Mae — plus the thesis and the kill criteria. Scoring asks "can *this group* win this",
+not "is this a good business", so an unfilled profile produces confident, useless
+output. The run warns when fields still read `FILL_ME`.
+
+Be precise about what the ecosystem actually is. Mae is an OpenClaw agent on a Mac
+mini: always-on execution, scheduled loops, persistent local memory, and a gateway
+onto the chat channels customers already use. That is *labour and reach*, not an
+audience — and the scoring is very different for the two. Its gaps are worth writing
+down as honestly as its assets: one machine, a residential connection, no brand, and
+nothing it does can be accountable without a human owning the outcome.
 
 The kill criteria are the highest-value part of the file: things decided in advance
 that you will not do. They run before scoring, they are absolute, and they are what
@@ -190,6 +229,10 @@ It is the only thing here that makes the agent better over time, and it costs a 
    sold or withdrawn — a row goes stale silently.
 6. **The wildcard decks are mine, not yours.** They were written blind. The cards
    that keep producing nothing should be deleted, and that only happens by hand.
+7. **Build mode infers demand from adjacent markets.** "This mechanism earns $13k a
+   month over there" is not proof it earns anything in the category you would point
+   it at, and the digest says so per venture — but the pipeline cannot check it.
+   That is what the falsifiable test in each venture is for.
 
 ## Files
 

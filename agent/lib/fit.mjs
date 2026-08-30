@@ -9,14 +9,50 @@
 
 import { readFile } from "node:fs/promises";
 
-export const DIMENSIONS = [
-  { key: "edge",         weight: 0.25, label: "Unfair advantage", ask: "What do you already know or own that a random buyer does not?" },
-  { key: "distribution", weight: 0.25, label: "Distribution",     ask: "Can you reach the first 100 customers through a channel you already control?" },
-  { key: "speed",        weight: 0.15, label: "Time to first dollar", ask: "Weeks, not quarters, before someone pays." },
-  { key: "capital",      weight: 0.15, label: "Capital fit",      ask: "Does it fit the cash and hours actually available?" },
-  { key: "durability",   weight: 0.10, label: "Why now / durability", ask: "Is there a reason this is possible now, and a reason it stays possible?" },
-  { key: "ecosystem",    weight: 0.10, label: "Ecosystem leverage", ask: "Does it make the rest of the portfolio stronger, or just busier?" },
-];
+/* Two rubrics, because the question is not the same one.
+
+   BUY asks whether an existing business is worth taking over: can you afford it,
+   can you operate it, is the moat real. BUILD asks whether you should make the
+   thing yourself, and there the price of somebody else's company is irrelevant —
+   what matters is whether anything in the mail proves people already pay for it,
+   and whether Mae can run the delivery without a payroll.
+
+   Listings do not stop mattering in build mode. They stop being purchases and
+   become the best evidence in the batch: a broker's page is somebody publishing
+   what a customer pays, every month, with a multiple attached. */
+
+export const RUBRICS = {
+  buy: [
+    { key: "edge",         weight: 0.25, label: "Unfair advantage",     ask: "What do you already know or own that a random buyer does not?" },
+    { key: "distribution", weight: 0.25, label: "Distribution",         ask: "Can you reach the first 100 customers through a channel you already control?" },
+    { key: "speed",        weight: 0.15, label: "Time to first dollar", ask: "Weeks, not quarters, before someone pays." },
+    { key: "capital",      weight: 0.15, label: "Capital fit",          ask: "Does it fit the cash and hours actually available?" },
+    { key: "durability",   weight: 0.10, label: "Why now / durability", ask: "Is there a reason this is possible now, and a reason it stays possible?" },
+    { key: "ecosystem",    weight: 0.10, label: "Ecosystem leverage",   ask: "Does it make the rest of the portfolio stronger, or just busier?" },
+  ],
+  build: [
+    { key: "edge",         weight: 0.20, label: "Unfair advantage",  ask: "What can you, Claude and Mae do that a competent stranger with the same idea cannot?" },
+    { key: "demand",       weight: 0.20, label: "Proven demand",     ask: "Does something in this batch prove people already pay for this, and how much? A broker listing with monthly profit is proof; a newsletter's enthusiasm is not." },
+    { key: "distribution", weight: 0.20, label: "Route to first ten", ask: "Can you reach the first ten paying customers through a channel you can actually get to this month?" },
+    { key: "speed",        weight: 0.15, label: "Time to first dollar", ask: "Weeks, not quarters, before someone pays." },
+    { key: "operability",  weight: 0.15, label: "Agent-operable",    ask: "Can Mae run the delivery on a loop — heartbeat, scheduled tasks, a chat channel customers already use — or does it need hands, a payroll and a warehouse?" },
+    { key: "durability",   weight: 0.10, label: "Why now / durability", ask: "Is there a reason this is possible now, and something left over once the obvious version is commoditised?" },
+  ],
+};
+
+/* The live rubric. Mutated in place by setMode so every importer sees one rubric,
+   and the weights calibration writes back land on the right one. */
+export const DIMENSIONS = [...RUBRICS.buy];
+export let MODE = "buy";
+
+export function setMode(mode) {
+  const rubric = RUBRICS[mode];
+  if (!rubric) throw new Error(`unknown mode "${mode}" — expected buy or build`);
+  DIMENSIONS.length = 0;
+  DIMENSIONS.push(...rubric.map((d) => ({ ...d })));
+  MODE = mode;
+  return DIMENSIONS;
+}
 
 export async function loadProfile(path) {
   const profile = JSON.parse(await readFile(path, "utf8"));
@@ -95,14 +131,20 @@ export function signals(opportunity, profile) {
 export function heuristicScore(opportunity, profile) {
   const s = signals(opportunity, profile);
   const cap = (n) => Math.max(0, Math.min(5, n));
-  const scores = {
+  const guess = {
     edge: cap(1 + s.edge_terms.length),
     distribution: cap(1 + s.distribution_terms.length * 1.5),
     speed: cap(opportunity.kind === "for_sale" ? 3 : 2),
     capital: cap(opportunity.asking_price_usd ? 2 : 3),
     durability: cap(opportunity.why_now ? 3 : 2),
     ecosystem: cap(1 + s.ecosystem_terms.length * 1.5),
+    /* Build-mode dimensions. Both are cheap proxies: a stated monthly profit is
+       somebody paying, and automatable terms hint at work Mae could carry. */
+    demand: cap((typeof opportunity.profit_monthly_usd === "number"
+      || typeof opportunity.profit_annual_usd === "number") ? 4 : 1),
+    operability: cap(1 + s.automatable_terms.length * 1.5),
   };
+  const scores = Object.fromEntries(DIMENSIONS.map((d) => [d.key, guess[d.key] ?? 2]));
   return { scores, rationale: {}, heuristic: true, signals: s };
 }
 
@@ -155,6 +197,10 @@ const SCORE_SCHEMA = {
 
 const rubricText = (profile) => `You score business opportunities for one specific operator, not in the abstract.
 
+THE QUESTION THIS RUN IS ASKING: ${MODE === "build"
+  ? `what should this operator BUILD? Nothing here is going to be purchased. A business for sale is evidence — somebody is publishing what a customer pays and what the work earns — and it is scored on whether it points at something worth building, never on whether it is worth buying.`
+  : `what is worth acquiring and operating?`}
+
 WHO IS DOING THE WORK
 ${JSON.stringify({ operator: profile.operator, agent: profile.agent, ecosystem: profile.ecosystem }, null, 2)}
 
@@ -175,7 +221,7 @@ Rules:
   cannot name one, the score is 2 or below.
 - Never invent facts about the opportunity that are absent from its record.`;
 
-export async function scoreAll(opportunities, profile, { useLlm = true, ask, chunk = 10, precomputed = null } = {}) {
+export async function scoreAll(opportunities, profile, { useLlm = true, ask, chunk = 10, precomputed = null, mode = MODE } = {}) {
   const out = new Map((precomputed || []).map((row) => [row.id, row]));
 
   if (useLlm && ask) {
@@ -197,7 +243,19 @@ export async function scoreAll(opportunities, profile, { useLlm = true, ask, chu
 
   return opportunities.map((o) => {
     const scored = out.get(o.id) || heuristicScore(o, profile);
-    const killed = kills(o, profile);
+    /* Kill criteria are about what you will not build. In build mode a listing is
+       evidence about a market, not a proposal, so rejecting it would delete the
+       proof rather than the plan — the criteria are recorded against it and not
+       applied. */
+    /* Kill criteria say what you will not build or buy. They belong on proposals
+       only: in build mode that is ideas and trends, since a listing is evidence and
+       a launch announcement is a competitor sighting — neither is something you are
+       proposing to do, and rejecting them deletes information rather than a plan. */
+    const proposal = mode === "build"
+      ? ["idea", "trend", "other"].includes(o.kind)
+      : ["for_sale", "company", "other"].includes(o.kind);
+    const evidenceOnly = !proposal;
+    const killed = evidenceOnly ? [] : kills(o, profile);
     return {
       ...o,
       scores: scored.scores,
@@ -207,6 +265,7 @@ export async function scoreAll(opportunities, profile, { useLlm = true, ask, chu
       signals: signals(o, profile),
       heuristic_score: Boolean(scored.heuristic),
       killed,
+      kill_notes: evidenceOnly ? kills(o, profile) : [],
       score: killed.length ? 0 : total(scored.scores),
     };
   }).sort((a, b) => b.score - a.score);

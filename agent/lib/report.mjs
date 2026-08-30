@@ -18,8 +18,15 @@ const bar = (score) => {
 };
 
 export function render(run) {
-  const { started, counts, opportunities, ventures, discarded, wildcards, profile, warnings, cost } = run;
+  const { started, counts, opportunities, ventures, discarded, wildcards, profile, warnings, cost, mode } = run;
+  const build = mode === "build";
   const top = opportunities.filter((o) => !o.killed.length);
+  /* In build mode a priced listing is evidence about a market, and mixing it into the
+     same ranked table as an idea invites reading it as a shopping list. */
+  const buildable = build ? top.filter((o) => ["idea", "trend", "other"].includes(o.kind)) : top;
+  const proof = build ? top.filter((o) => o.kind === "for_sale") : [];
+  /* Launch announcements are neither. They are who you will meet. */
+  const sightings = build ? top.filter((o) => o.kind === "company") : [];
   const killed = opportunities.filter((o) => o.killed.length);
   const L = [];
 
@@ -27,6 +34,10 @@ export function render(run) {
   L.push("");
   L.push(`${counts.messages} email${counts.messages === 1 ? "" : "s"} · ${counts.extracted} opportunit${counts.extracted === 1 ? "y" : "ies"} extracted · ${counts.fresh} new · ${counts.repeats} seen before · ${killed.length} auto-rejected`);
   L.push("");
+  if (build) {
+    L.push("**Build run.** Nothing here is a shopping list. The listings are evidence of what people already pay for; the ventures are what to make.");
+    L.push("");
+  }
   L.push(`Seed \`${wildcards.seed}\` — rerun with \`--seed ${wildcards.seed}\` to reproduce this exact draw.`);
   L.push("");
 
@@ -48,6 +59,7 @@ export function render(run) {
     if (v.thesis) L.push(v.thesis);
     L.push("");
     if (v.who_pays) L.push(`- **Who pays** — ${v.who_pays}`);
+    if (v.demand_evidence) L.push(`- **Someone already pays for this** — ${v.demand_evidence}`);
     if (v.why_us) L.push(`- **Why us** — ${v.why_us}`);
     if (v.first_dollar_path) L.push(`- **First dollar** — ${v.first_dollar_path}`);
     if (v.falsifiable_test) L.push(`- **Test that would kill it** — ${v.falsifiable_test}`);
@@ -77,18 +89,32 @@ export function render(run) {
     L.push("");
   }
 
-  L.push("## Shortlist");
+  if (build && proof.length) {
+    L.push("## What people are already paying for");
+    L.push("");
+    L.push("_Listings from this batch, read as market evidence. The price column is what a broker thinks the whole thing is worth — useful as a ceiling, not as a plan._");
+    L.push("");
+    L.push("| What it does | Earns | Priced at | Who pays | What it proves |");
+    L.push("|---|---|---|---|---|");
+    for (const o of proof.slice(0, 15)) {
+      const title = o.url ? `[${o.title}](${o.url})` : o.title;
+      L.push(`| ${title} | ${earnings(o)} | ${money(o.asking_price_usd)} | ${(o.customer || "—").replace(/\|/g, "/")} | ${(o.rationale?.demand || o.the_catch || "—").replace(/\|/g, "/")} |`);
+    }
+    L.push("");
+  }
+
+  L.push(build ? "## Buildable, ranked" : "## Shortlist");
   L.push("");
   L.push("| Fit | Opportunity | Source | Asking | Earnings | The catch |");
   L.push("|---|---|---|---|---|---|");
-  for (const o of top.slice(0, 15)) {
+  for (const o of buildable.slice(0, 15)) {
     const title = o.url ? `[${o.title}](${o.url})` : o.title;
     const cut = o.price_cut_pct > 0 ? ` ↓${o.price_cut_pct}%` : (o.price_move ? ` ↓${o.price_move.pct}%` : "");
     L.push(`| ${bar(o.score)} ${o.score.toFixed(1)} | ${title} | ${o.source_label} | ${money(o.asking_price_usd)}${cut} | ${earnings(o)} | ${(o.the_catch || "—").replace(/\|/g, "/")} |`);
   }
   L.push("");
 
-  const detailed = top.slice(0, 5);
+  const detailed = (build ? buildable : top).slice(0, 5);
   if (detailed.length) {
     L.push("## Why those scored the way they did");
     L.push("");
@@ -117,6 +143,15 @@ export function render(run) {
       L.push(`- **Provenance** — ${o.provenance.subject} (${o.provenance.from}, ${o.provenance.received.slice(0, 10)})`);
       L.push("");
     }
+  }
+
+  if (sightings.length) {
+    L.push("## Who else is moving");
+    L.push("");
+    L.push("_Launch announcements, not opportunities. Recorded because they tell you which windows are being entered right now._");
+    L.push("");
+    for (const o of sightings) L.push(`- **${o.title}** — ${o.summary} ${o.rationale?.demand || ""}`);
+    L.push("");
   }
 
   if (killed.length) {
