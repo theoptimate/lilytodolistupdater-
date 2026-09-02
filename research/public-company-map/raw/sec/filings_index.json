@@ -1,0 +1,1194 @@
+{
+  "MU": {
+    "cik": "0000723125",
+    "name": "MICRON TECHNOLOGY INC",
+    "tickers": [
+      "MU"
+    ],
+    "exchanges": [
+      "Nasdaq"
+    ],
+    "sic": "3674",
+    "filings": {
+      "10-K": {
+        "filed": "2025-10-03",
+        "accn": "0000723125-25-000028",
+        "doc": "mu-20250828.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/723125/000072312525000028/mu-20250828.htm"
+      },
+      "10-Q": {
+        "filed": "2026-06-25",
+        "accn": "0000723125-26-000015",
+        "doc": "mu-20260528.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/723125/000072312526000015/mu-20260528.htm"
+      },
+      "8-K": {
+        "filed": "2026-08-26",
+        "accn": "0001104659-26-101067",
+        "doc": "tm2624017d1_8k.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/723125/000110465926101067/tm2624017d1_8k.htm"
+      }
+    }
+  },
+  "SNDK": {
+    "cik": "0002023554",
+    "name": "Sandisk Corp",
+    "tickers": [
+      "SNDK"
+    ],
+    "exchanges": [
+      "Nasdaq"
+    ],
+    "sic": "3572",
+    "filings": {
+      "10-K": {
+        "filed": "2026-08-17",
+        "accn": "0001628280-26-057406",
+        "doc": "sndk-20260703.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/2023554/000162828026057406/sndk-20260703.htm"
+      },
+      "10-Q": {
+        "filed": "2026-05-01",
+        "accn": "0001628280-26-029401",
+        "doc": "sndk-20260403.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/2023554/000162828026029401/sndk-20260403.htm"
+      },
+      "8-K": {
+        "filed": "2026-08-05",
+        "accn": "0001628280-26-053346",
+        "doc": "sndk-20260805.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/2023554/000162828026053346/sndk-20260805.htm"
+      },
+      "S-1": {
+        "filed": "2025-04-18",
+        "accn": "0001193125-25-085694",
+        "doc": "d934557ds1.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/2023554/000119312525085694/d934557ds1.htm"
+      },
+      "424B4": {
+        "filed": "2025-06-06",
+        "accn": "0001193125-25-137164",
+        "doc": "d934557d424b4.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/2023554/000119312525137164/d934557d424b4.htm"
+      }
+    }
+  },
+  "RMBS": {
+    "cik": "0000917273",
+    "name": "RAMBUS INC",
+    "tickers": [
+      "RMBS"
+    ],
+    "exchanges": [
+      "Nasdaq"
+    ],
+    "sic": "3674",
+    "filings": {
+      "10-K": {
+        "filed": "2026-02-18",
+        "accn": "0001193125-26-057101",
+        "doc": "rmbs-20251231.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/917273/000119312526057101/rmbs-20251231.htm"
+      },
+      "10-Q": {
+        "filed": "2026-07-28",
+        "accn": "0001193125-26-321000",
+        "doc": "rmbs-20260630.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/917273/000119312526321000/rmbs-20260630.htm"
+      },
+      "8-K": {
+        "filed": "2026-08-05",
+        "accn": "0001193125-26-333887",
+        "doc": "d122300d8k.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/917273/000119312526333887/d122300d8k.htm"
+      }
+    }
+  },
+  "ALAB": {
+    "cik": "0001736297",
+    "name": "Astera Labs, Inc.",
+    "tickers": [
+      "ALAB"
+    ],
+    "exchanges": [
+      "Nasdaq"
+    ],
+    "sic": "3674",
+    "filings": {
+      "10-K": {
+        "filed": "2026-02-20",
+        "accn": "0001736297-26-000010",
+        "doc": "alab-20251231.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1736297/000173629726000010/alab-20251231.htm"
+      },
+      "10-Q": {
+        "filed": "2026-08-05",
+        "accn": "0001736297-26-000035",
+        "doc": "alab-20260630.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1736297/000173629726000035/alab-20260630.htm"
+      },
+      "8-K": {
+        "filed": "2026-08-04",
+        "accn": "0001736297-26-000033",
+        "doc": "alab-20260804.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1736297/000173629726000033/alab-20260804.htm"
+      },
+      "S-1": {
+        "filed": "2024-02-21",
+        "accn": "0001193125-24-040419",
+        "doc": "d285484ds1.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1736297/000119312524040419/d285484ds1.htm"
+      },
+      "424B4": {
+        "filed": "2024-03-21",
+        "accn": "0001193125-24-073873",
+        "doc": "d285484d424b4.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1736297/000119312524073873/d285484d424b4.htm"
+      }
+    }
+  },
+  "LITE": {
+    "cik": "0001633978",
+    "name": "Lumentum Holdings Inc.",
+    "tickers": [
+      "LITE"
+    ],
+    "exchanges": [
+      "Nasdaq"
+    ],
+    "sic": "3669",
+    "filings": {
+      "10-K": {
+        "filed": "2026-08-17",
+        "accn": "0001628280-26-057358",
+        "doc": "lite-20260627.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1633978/000162828026057358/lite-20260627.htm"
+      },
+      "10-Q": {
+        "filed": "2026-05-06",
+        "accn": "0001628280-26-030777",
+        "doc": "lite-20260328.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1633978/000162828026030777/lite-20260328.htm"
+      },
+      "8-K": {
+        "filed": "2026-08-11",
+        "accn": "0001628280-26-055726",
+        "doc": "lite-20260811.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1633978/000162828026055726/lite-20260811.htm"
+      }
+    }
+  },
+  "COHR": {
+    "cik": "0000820318",
+    "name": "COHERENT CORP.",
+    "tickers": [
+      "COHR"
+    ],
+    "exchanges": [
+      "NYSE"
+    ],
+    "sic": "3827",
+    "filings": {
+      "10-K": {
+        "filed": "2026-08-14",
+        "accn": "0000820318-26-000020",
+        "doc": "iivi-20260630.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/820318/000082031826000020/iivi-20260630.htm"
+      },
+      "10-Q": {
+        "filed": "2026-05-06",
+        "accn": "0000820318-26-000013",
+        "doc": "iivi-20260331.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/820318/000082031826000013/iivi-20260331.htm"
+      },
+      "8-K": {
+        "filed": "2026-08-31",
+        "accn": "0001193125-26-375462",
+        "doc": "d110649d8k.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/820318/000119312526375462/d110649d8k.htm"
+      }
+    }
+  },
+  "CRDO": {
+    "cik": "0001807794",
+    "name": "Credo Technology Group Holding Ltd",
+    "tickers": [
+      "CRDO"
+    ],
+    "exchanges": [
+      "Nasdaq"
+    ],
+    "sic": "3674",
+    "filings": {
+      "10-K": {
+        "filed": "2026-06-15",
+        "accn": "0001628280-26-043303",
+        "doc": "crdo-20260502.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1807794/000162828026043303/crdo-20260502.htm"
+      },
+      "10-Q": {
+        "filed": "2026-03-03",
+        "accn": "0001628280-26-014017",
+        "doc": "crdo-20260131.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1807794/000162828026014017/crdo-20260131.htm"
+      },
+      "8-K": {
+        "filed": "2026-09-01",
+        "accn": "0001628280-26-059795",
+        "doc": "crdo-20260901.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1807794/000162828026059795/crdo-20260901.htm"
+      },
+      "S-1": {
+        "filed": "2022-01-03",
+        "accn": "0001628280-22-000095",
+        "doc": "credotechnologygroups-1.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1807794/000162828022000095/credotechnologygroups-1.htm"
+      },
+      "424B4": {
+        "filed": "2022-01-27",
+        "accn": "0001628280-22-001369",
+        "doc": "credotechnologygroup424b4.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1807794/000162828022001369/credotechnologygroup424b4.htm"
+      }
+    }
+  },
+  "FN": {
+    "cik": "0001408710",
+    "name": "Fabrinet",
+    "tickers": [
+      "FN"
+    ],
+    "exchanges": [
+      "NYSE"
+    ],
+    "sic": "3661",
+    "filings": {
+      "10-K": {
+        "filed": "2026-08-18",
+        "accn": "0001408710-26-000028",
+        "doc": "fn-20260626.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1408710/000140871026000028/fn-20260626.htm"
+      },
+      "10-Q": {
+        "filed": "2026-05-05",
+        "accn": "0001408710-26-000016",
+        "doc": "fn-20260327.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1408710/000140871026000016/fn-20260327.htm"
+      },
+      "8-K": {
+        "filed": "2026-08-17",
+        "accn": "0001408710-26-000026",
+        "doc": "fn-20260811.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1408710/000140871026000026/fn-20260811.htm"
+      },
+      "S-1": {
+        "filed": "2011-02-18",
+        "accn": "0001193125-11-040356",
+        "doc": "ds1.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1408710/000119312511040356/ds1.htm"
+      },
+      "424B4": {
+        "filed": "2011-03-04",
+        "accn": "0001193125-11-055831",
+        "doc": "d424b4.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1408710/000119312511055831/d424b4.htm"
+      }
+    }
+  },
+  "GLW": {
+    "cik": "0000024741",
+    "name": "CORNING INC /NY",
+    "tickers": [
+      "GLW"
+    ],
+    "exchanges": [
+      "NYSE"
+    ],
+    "sic": "3357",
+    "filings": {
+      "10-K": {
+        "filed": "2026-02-12",
+        "accn": "0000024741-26-000124",
+        "doc": "glw-20251231.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/24741/000002474126000124/glw-20251231.htm"
+      },
+      "10-Q": {
+        "filed": "2026-07-29",
+        "accn": "0000024741-26-000255",
+        "doc": "glw-20260630.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/24741/000002474126000255/glw-20260630.htm"
+      },
+      "8-K": {
+        "filed": "2026-07-28",
+        "accn": "0000024741-26-000253",
+        "doc": "glw-20260728.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/24741/000002474126000253/glw-20260728.htm"
+      }
+    }
+  },
+  "AAOI": {
+    "cik": "0001158114",
+    "name": "APPLIED OPTOELECTRONICS, INC.",
+    "tickers": [
+      "AAOI"
+    ],
+    "exchanges": [
+      "Nasdaq"
+    ],
+    "sic": "3674",
+    "filings": {
+      "10-K": {
+        "filed": "2026-02-26",
+        "accn": "0001437749-26-005875",
+        "doc": "aaoi20251231_10k.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1158114/000143774926005875/aaoi20251231_10k.htm"
+      },
+      "10-Q": {
+        "filed": "2026-08-06",
+        "accn": "0001437749-26-026278",
+        "doc": "aaoi20260630_10q.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1158114/000143774926026278/aaoi20260630_10q.htm"
+      },
+      "8-K": {
+        "filed": "2026-09-01",
+        "accn": "0001683168-26-006862",
+        "doc": "aaoi_8k.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1158114/000168316826006862/aaoi_8k.htm"
+      }
+    }
+  },
+  "TSLA": {
+    "cik": "0001318605",
+    "name": "Tesla, Inc.",
+    "tickers": [
+      "TSLA"
+    ],
+    "exchanges": [
+      "Nasdaq"
+    ],
+    "sic": "3711",
+    "filings": {
+      "10-K": {
+        "filed": "2026-01-29",
+        "accn": "0001628280-26-003952",
+        "doc": "tsla-20251231.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026003952/tsla-20251231.htm"
+      },
+      "10-Q": {
+        "filed": "2026-07-23",
+        "accn": "0001628280-26-049270",
+        "doc": "tsla-20260630.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026049270/tsla-20260630.htm"
+      },
+      "8-K": {
+        "filed": "2026-07-22",
+        "accn": "0001628280-26-049213",
+        "doc": "tsla-20260722.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026049213/tsla-20260722.htm"
+      }
+    }
+  },
+  "FLNC": {
+    "cik": "0001868941",
+    "name": "Fluence Energy, Inc.",
+    "tickers": [
+      "FLNC"
+    ],
+    "exchanges": [
+      "Nasdaq"
+    ],
+    "sic": "3690",
+    "filings": {
+      "10-K": {
+        "filed": "2025-11-25",
+        "accn": "0001868941-25-000081",
+        "doc": "flnc-20250930.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1868941/000186894125000081/flnc-20250930.htm"
+      },
+      "10-Q": {
+        "filed": "2026-08-05",
+        "accn": "0001868941-26-000029",
+        "doc": "flnc-20260630.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1868941/000186894126000029/flnc-20260630.htm"
+      },
+      "8-K": {
+        "filed": "2026-09-01",
+        "accn": "0001868941-26-000037",
+        "doc": "flnc-20260827.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1868941/000186894126000037/flnc-20260827.htm"
+      },
+      "S-1": {
+        "filed": "2021-09-28",
+        "accn": "0001104659-21-119966",
+        "doc": "tm2120236-8_s1.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1868941/000110465921119966/tm2120236-8_s1.htm"
+      },
+      "424B4": {
+        "filed": "2021-10-29",
+        "accn": "0001104659-21-131847",
+        "doc": "tm2120236-13_424b4.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1868941/000110465921131847/tm2120236-13_424b4.htm"
+      }
+    }
+  },
+  "INOD": {
+    "cik": "0000903651",
+    "name": "INNODATA INC",
+    "tickers": [
+      "INOD"
+    ],
+    "exchanges": [
+      "Nasdaq"
+    ],
+    "sic": "7374",
+    "filings": {
+      "10-K": {
+        "filed": "2026-02-26",
+        "accn": "0001104659-26-020655",
+        "doc": "inod-20251231x10k.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/903651/000110465926020655/inod-20251231x10k.htm"
+      },
+      "10-Q": {
+        "filed": "2026-08-06",
+        "accn": "0001104659-26-092021",
+        "doc": "inod-20260630x10q.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/903651/000110465926092021/inod-20260630x10q.htm"
+      },
+      "8-K": {
+        "filed": "2026-08-06",
+        "accn": "0001104659-26-092133",
+        "doc": "tm2622364d1_8k.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/903651/000110465926092133/tm2622364d1_8k.htm"
+      }
+    }
+  },
+  "HP": {
+    "cik": "0000046765",
+    "name": "Helmerich & Payne, Inc.",
+    "tickers": [
+      "HP"
+    ],
+    "exchanges": [
+      "NYSE"
+    ],
+    "sic": "1381",
+    "filings": {
+      "10-K": {
+        "filed": "2025-11-21",
+        "accn": "0000046765-25-000071",
+        "doc": "hp-20250930.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/46765/000004676525000071/hp-20250930.htm"
+      },
+      "10-Q": {
+        "filed": "2026-08-06",
+        "accn": "0000046765-26-000042",
+        "doc": "hp-20260630.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/46765/000004676526000042/hp-20260630.htm"
+      },
+      "8-K": {
+        "filed": "2026-08-05",
+        "accn": "0000046765-26-000039",
+        "doc": "hp-20260805.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/46765/000004676526000039/hp-20260805.htm"
+      }
+    }
+  },
+  "PTEN": {
+    "cik": "0000889900",
+    "name": "PATTERSON UTI ENERGY INC",
+    "tickers": [
+      "PTEN"
+    ],
+    "exchanges": [
+      "Nasdaq"
+    ],
+    "sic": "1381",
+    "filings": {
+      "10-K": {
+        "filed": "2026-02-10",
+        "accn": "0000889900-26-000013",
+        "doc": "pten-20251231.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/889900/000088990026000013/pten-20251231.htm"
+      },
+      "10-Q": {
+        "filed": "2026-08-04",
+        "accn": "0000889900-26-000056",
+        "doc": "pten-20260630.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/889900/000088990026000056/pten-20260630.htm"
+      },
+      "8-K": {
+        "filed": "2026-07-30",
+        "accn": "0000889900-26-000050",
+        "doc": "pten-20260729.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/889900/000088990026000050/pten-20260729.htm"
+      }
+    }
+  },
+  "SLB": {
+    "cik": "0000087347",
+    "name": "SLB LIMITED/NV",
+    "tickers": [
+      "SLB"
+    ],
+    "exchanges": [
+      "NYSE"
+    ],
+    "sic": "1389",
+    "filings": {
+      "10-K": {
+        "filed": "2026-01-23",
+        "accn": "0001193125-26-021017",
+        "doc": "slb-20251231.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/87347/000119312526021017/slb-20251231.htm"
+      },
+      "10-Q": {
+        "filed": "2026-07-29",
+        "accn": "0001193125-26-322595",
+        "doc": "slb-20260630.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/87347/000119312526322595/slb-20260630.htm"
+      },
+      "8-K": {
+        "filed": "2026-08-31",
+        "accn": "0001193125-26-375358",
+        "doc": "d106278d8k.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/87347/000119312526375358/d106278d8k.htm"
+      }
+    }
+  },
+  "BKR": {
+    "cik": "0001701605",
+    "name": "Baker Hughes Co",
+    "tickers": [
+      "BKR"
+    ],
+    "exchanges": [
+      "Nasdaq"
+    ],
+    "sic": "3533",
+    "filings": {
+      "10-K": {
+        "filed": "2026-02-05",
+        "accn": "0001701605-26-000007",
+        "doc": "bkr-20251231.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1701605/000170160526000007/bkr-20251231.htm"
+      },
+      "10-Q": {
+        "filed": "2026-07-27",
+        "accn": "0001701605-26-000023",
+        "doc": "bkr-20260630.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1701605/000170160526000023/bkr-20260630.htm"
+      },
+      "8-K": {
+        "filed": "2026-07-27",
+        "accn": "0001701605-26-000021",
+        "doc": "bkr-20260726.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1701605/000170160526000021/bkr-20260726.htm"
+      }
+    }
+  },
+  "HAL": {
+    "cik": "0000045012",
+    "name": "HALLIBURTON CO",
+    "tickers": [
+      "HAL"
+    ],
+    "exchanges": [
+      "NYSE"
+    ],
+    "sic": "1389",
+    "filings": {
+      "10-K": {
+        "filed": "2026-02-06",
+        "accn": "0000045012-26-000015",
+        "doc": "hal-20251231.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/45012/000004501226000015/hal-20251231.htm"
+      },
+      "10-Q": {
+        "filed": "2026-07-24",
+        "accn": "0000045012-26-000061",
+        "doc": "hal-20260630.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/45012/000004501226000061/hal-20260630.htm"
+      },
+      "8-K": {
+        "filed": "2026-07-21",
+        "accn": "0000045012-26-000057",
+        "doc": "hal-20260721.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/45012/000004501226000057/hal-20260721.htm"
+      }
+    }
+  },
+  "LBRT": {
+    "cik": "0001694028",
+    "name": "Liberty Energy Inc.",
+    "tickers": [
+      "LBRT"
+    ],
+    "exchanges": [
+      "NYSE"
+    ],
+    "sic": "1389",
+    "filings": {
+      "10-K": {
+        "filed": "2026-02-02",
+        "accn": "0001694028-26-000006",
+        "doc": "lbrt-20251231.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1694028/000169402826000006/lbrt-20251231.htm"
+      },
+      "10-Q": {
+        "filed": "2026-07-23",
+        "accn": "0001694028-26-000039",
+        "doc": "lbrt-20260630.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1694028/000169402826000039/lbrt-20260630.htm"
+      },
+      "8-K": {
+        "filed": "2026-07-23",
+        "accn": "0001694028-26-000036",
+        "doc": "lbrt-20260722.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1694028/000169402826000036/lbrt-20260722.htm"
+      },
+      "S-1": {
+        "filed": "2017-02-14",
+        "accn": "0001193125-17-042988",
+        "doc": "d313047ds1.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1694028/000119312517042988/d313047ds1.htm"
+      },
+      "424B4": {
+        "filed": "2018-01-16",
+        "accn": "0001193125-18-010251",
+        "doc": "d313047d424b4.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1694028/000119312518010251/d313047d424b4.htm"
+      }
+    }
+  },
+  "ORA": {
+    "cik": "0001296445",
+    "name": "ORMAT TECHNOLOGIES, INC.",
+    "tickers": [
+      "ORA"
+    ],
+    "exchanges": [
+      "NYSE"
+    ],
+    "sic": "4911",
+    "filings": {
+      "10-K": {
+        "filed": "2026-02-26",
+        "accn": "0001296445-26-000006",
+        "doc": "ora-20251231.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1296445/000129644526000006/ora-20251231.htm"
+      },
+      "10-Q": {
+        "filed": "2026-08-06",
+        "accn": "0001296445-26-000014",
+        "doc": "ora-20260630.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1296445/000129644526000014/ora-20260630.htm"
+      },
+      "8-K": {
+        "filed": "2026-08-05",
+        "accn": "0001437749-26-025961",
+        "doc": "ora20260805_8k.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1296445/000143774926025961/ora20260805_8k.htm"
+      },
+      "424B4": {
+        "filed": "2024-12-12",
+        "accn": "0001213900-24-108059",
+        "doc": "ea0224536-424b4_ormat.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1296445/000121390024108059/ea0224536-424b4_ormat.htm"
+      }
+    }
+  },
+  "FRVO": {
+    "cik": "0001853868",
+    "name": "Fervo Energy Co",
+    "tickers": [
+      "FRVO"
+    ],
+    "exchanges": [
+      "Nasdaq"
+    ],
+    "sic": "4911",
+    "filings": {
+      "10-Q": {
+        "filed": "2026-08-13",
+        "accn": "0001628280-26-056457",
+        "doc": "frvo-20260630.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1853868/000162828026056457/frvo-20260630.htm"
+      },
+      "8-K": {
+        "filed": "2026-09-01",
+        "accn": "0001628280-26-059707",
+        "doc": "frvo-20260826.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1853868/000162828026059707/frvo-20260826.htm"
+      },
+      "S-1": {
+        "filed": "2026-04-17",
+        "accn": "0001628280-26-025821",
+        "doc": "fervoenergy-sx1.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1853868/000162828026025821/fervoenergy-sx1.htm"
+      },
+      "424B4": {
+        "filed": "2026-05-14",
+        "accn": "0001628280-26-034849",
+        "doc": "fervoenergy-424b4.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1853868/000162828026034849/fervoenergy-424b4.htm"
+      }
+    }
+  },
+  "NVDA": {
+    "cik": "0001045810",
+    "name": "NVIDIA CORP",
+    "tickers": [
+      "NVDA"
+    ],
+    "exchanges": [
+      "Nasdaq"
+    ],
+    "sic": "3674",
+    "filings": {
+      "10-K": {
+        "filed": "2026-02-25",
+        "accn": "0001045810-26-000021",
+        "doc": "nvda-20260125.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm"
+      },
+      "10-Q": {
+        "filed": "2026-08-26",
+        "accn": "0001045810-26-000075",
+        "doc": "nvda-20260726.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000075/nvda-20260726.htm"
+      },
+      "8-K": {
+        "filed": "2026-08-26",
+        "accn": "0001045810-26-000073",
+        "doc": "nvda-20260826.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000073/nvda-20260826.htm"
+      }
+    }
+  },
+  "AVGO": {
+    "cik": "0001730168",
+    "name": "Broadcom Inc.",
+    "tickers": [
+      "AVGO"
+    ],
+    "exchanges": [
+      "Nasdaq"
+    ],
+    "sic": "3674",
+    "filings": {
+      "10-K": {
+        "filed": "2025-12-18",
+        "accn": "0001730168-25-000121",
+        "doc": "avgo-20251102.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016825000121/avgo-20251102.htm"
+      },
+      "10-Q": {
+        "filed": "2026-06-09",
+        "accn": "0001730168-26-000054",
+        "doc": "avgo-20260503.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000054/avgo-20260503.htm"
+      },
+      "8-K": {
+        "filed": "2026-07-06",
+        "accn": "0001193125-26-295589",
+        "doc": "d84378d8k.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1730168/000119312526295589/d84378d8k.htm"
+      }
+    }
+  },
+  "AMD": {
+    "cik": "0000002488",
+    "name": "ADVANCED MICRO DEVICES INC",
+    "tickers": [
+      "AMD"
+    ],
+    "exchanges": [
+      "Nasdaq"
+    ],
+    "sic": "3674",
+    "filings": {
+      "10-K": {
+        "filed": "2026-02-04",
+        "accn": "0000002488-26-000018",
+        "doc": "amd-20251227.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248826000018/amd-20251227.htm"
+      },
+      "10-Q": {
+        "filed": "2026-08-05",
+        "accn": "0000002488-26-000123",
+        "doc": "amd-20260627.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248826000123/amd-20260627.htm"
+      },
+      "8-K": {
+        "filed": "2026-08-19",
+        "accn": "0000002488-26-000163",
+        "doc": "amd-20260817.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248826000163/amd-20260817.htm"
+      }
+    }
+  },
+  "AAPL": {
+    "cik": "0000320193",
+    "name": "Apple Inc.",
+    "tickers": [
+      "AAPL"
+    ],
+    "exchanges": [
+      "Nasdaq"
+    ],
+    "sic": "3571",
+    "filings": {
+      "10-K": {
+        "filed": "2025-10-31",
+        "accn": "0000320193-25-000079",
+        "doc": "aapl-20250927.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm"
+      },
+      "10-Q": {
+        "filed": "2026-07-31",
+        "accn": "0000320193-26-000020",
+        "doc": "aapl-20260627.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000020/aapl-20260627.htm"
+      },
+      "8-K": {
+        "filed": "2026-07-30",
+        "accn": "0000320193-26-000018",
+        "doc": "aapl-20260730.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000018/aapl-20260730.htm"
+      }
+    }
+  },
+  "ENPH": {
+    "cik": "0001463101",
+    "name": "Enphase Energy, Inc.",
+    "tickers": [
+      "ENPH"
+    ],
+    "exchanges": [
+      "Nasdaq"
+    ],
+    "sic": "3674",
+    "filings": {
+      "10-K": {
+        "filed": "2026-02-17",
+        "accn": "0001463101-26-000013",
+        "doc": "enph-20251231.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1463101/000146310126000013/enph-20251231.htm"
+      },
+      "10-Q": {
+        "filed": "2026-07-28",
+        "accn": "0001463101-26-000081",
+        "doc": "enph-20260630.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1463101/000146310126000081/enph-20260630.htm"
+      },
+      "8-K": {
+        "filed": "2026-08-10",
+        "accn": "0001463101-26-000092",
+        "doc": "enph-20260810.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1463101/000146310126000092/enph-20260810.htm"
+      },
+      "424B4": {
+        "filed": "2012-03-30",
+        "accn": "0001193125-12-141313",
+        "doc": "d195596d424b4.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1463101/000119312512141313/d195596d424b4.htm"
+      }
+    }
+  },
+  "NEE": {
+    "cik": "0000753308",
+    "name": "NEXTERA ENERGY INC",
+    "tickers": [
+      "NEE",
+      "NEE-PN",
+      "NEE-PS",
+      "NEE-PT",
+      "NEE-PU",
+      "NEE-PV",
+      "NEE-PW"
+    ],
+    "exchanges": [
+      "NYSE",
+      "NYSE",
+      "NYSE",
+      "NYSE",
+      "NYSE",
+      "NYSE",
+      "NYSE"
+    ],
+    "sic": "4911",
+    "filings": {
+      "10-K": {
+        "filed": "2026-02-13",
+        "accn": "0000753308-26-000015",
+        "doc": "nee-20251231.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/753308/000075330826000015/nee-20251231.htm"
+      },
+      "10-Q": {
+        "filed": "2026-07-24",
+        "accn": "0000753308-26-000060",
+        "doc": "nee-20260630.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/753308/000075330826000060/nee-20260630.htm"
+      },
+      "8-K": {
+        "filed": "2026-08-25",
+        "accn": "0001104659-26-100476",
+        "doc": "tm2623831d1_8k.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/753308/000110465926100476/tm2623831d1_8k.htm"
+      }
+    }
+  },
+  "ULS": {
+    "cik": "0001901440",
+    "name": "UL Solutions Inc.",
+    "tickers": [
+      "ULS"
+    ],
+    "exchanges": [
+      "NYSE"
+    ],
+    "sic": "8734",
+    "filings": {
+      "10-K": {
+        "filed": "2026-02-19",
+        "accn": "0001901440-26-000005",
+        "doc": "uls-20251231.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1901440/000190144026000005/uls-20251231.htm"
+      },
+      "10-Q": {
+        "filed": "2026-08-04",
+        "accn": "0001901440-26-000023",
+        "doc": "uls-20260630.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1901440/000190144026000023/uls-20260630.htm"
+      },
+      "8-K": {
+        "filed": "2026-08-04",
+        "accn": "0001901440-26-000021",
+        "doc": "uls-20260804.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1901440/000190144026000021/uls-20260804.htm"
+      },
+      "S-1": {
+        "filed": "2024-09-03",
+        "accn": "0001628280-24-039106",
+        "doc": "uls-20240903.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1901440/000162828024039106/uls-20240903.htm"
+      },
+      "424B4": {
+        "filed": "2024-09-06",
+        "accn": "0001628280-24-039710",
+        "doc": "ulsolutions-424b4.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1901440/000162828024039710/ulsolutions-424b4.htm"
+      }
+    }
+  },
+  "GTLB": {
+    "cik": "0001653482",
+    "name": "Gitlab Inc.",
+    "tickers": [
+      "GTLB"
+    ],
+    "exchanges": [
+      "Nasdaq"
+    ],
+    "sic": "7372",
+    "filings": {
+      "10-K": {
+        "filed": "2026-03-17",
+        "accn": "0001628280-26-018731",
+        "doc": "gtlb-20260131.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1653482/000162828026018731/gtlb-20260131.htm"
+      },
+      "10-Q": {
+        "filed": "2026-09-02",
+        "accn": "0001628280-26-059943",
+        "doc": "gtlb-20260731.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1653482/000162828026059943/gtlb-20260731.htm"
+      },
+      "8-K": {
+        "filed": "2026-09-01",
+        "accn": "0001628280-26-059820",
+        "doc": "gtlb-20260828.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1653482/000162828026059820/gtlb-20260828.htm"
+      },
+      "S-1": {
+        "filed": "2021-09-17",
+        "accn": "0001628280-21-018818",
+        "doc": "gitlab-sx1.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1653482/000162828021018818/gitlab-sx1.htm"
+      },
+      "424B4": {
+        "filed": "2021-10-14",
+        "accn": "0001628280-21-020056",
+        "doc": "gitlab-424b4.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1653482/000162828021020056/gitlab-424b4.htm"
+      }
+    }
+  },
+  "TEAM": {
+    "cik": "0001650372",
+    "name": "Atlassian Corp",
+    "tickers": [
+      "TEAM"
+    ],
+    "exchanges": [
+      "Nasdaq"
+    ],
+    "sic": "7372",
+    "filings": {
+      "10-K": {
+        "filed": "2026-08-14",
+        "accn": "0001650372-26-000036",
+        "doc": "team-20260630.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1650372/000165037226000036/team-20260630.htm"
+      },
+      "10-Q": {
+        "filed": "2026-05-01",
+        "accn": "0001650372-26-000027",
+        "doc": "team-20260331.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1650372/000165037226000027/team-20260331.htm"
+      },
+      "8-K": {
+        "filed": "2026-08-06",
+        "accn": "0001650372-26-000031",
+        "doc": "team-20260806.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1650372/000165037226000031/team-20260806.htm"
+      }
+    }
+  },
+  "DDOG": {
+    "cik": "0001561550",
+    "name": "Datadog, Inc.",
+    "tickers": [
+      "DDOG"
+    ],
+    "exchanges": [
+      "Nasdaq"
+    ],
+    "sic": "7372",
+    "filings": {
+      "10-K": {
+        "filed": "2026-02-18",
+        "accn": "0001628280-26-008819",
+        "doc": "ddog-20251231.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1561550/000162828026008819/ddog-20251231.htm"
+      },
+      "10-Q": {
+        "filed": "2026-08-06",
+        "accn": "0001628280-26-054458",
+        "doc": "ddog-20260630.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1561550/000162828026054458/ddog-20260630.htm"
+      },
+      "8-K": {
+        "filed": "2026-08-06",
+        "accn": "0001628280-26-053829",
+        "doc": "ddog-20260806.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1561550/000162828026053829/ddog-20260806.htm"
+      }
+    }
+  },
+  "DT": {
+    "cik": "0001773383",
+    "name": "Dynatrace, Inc.",
+    "tickers": [
+      "DT"
+    ],
+    "exchanges": [
+      "NYSE"
+    ],
+    "sic": "7372",
+    "filings": {
+      "10-K": {
+        "filed": "2026-05-20",
+        "accn": "0001773383-26-000019",
+        "doc": "dt-20260331.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1773383/000177338326000019/dt-20260331.htm"
+      },
+      "10-Q": {
+        "filed": "2026-08-05",
+        "accn": "0001773383-26-000050",
+        "doc": "dt-20260630.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1773383/000177338326000050/dt-20260630.htm"
+      },
+      "8-K": {
+        "filed": "2026-08-27",
+        "accn": "0001773383-26-000057",
+        "doc": "dt-20260826.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1773383/000177338326000057/dt-20260826.htm"
+      },
+      "S-1": {
+        "filed": "2020-06-01",
+        "accn": "0001628280-20-008710",
+        "doc": "dynatracejune2020s-1.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1773383/000162828020008710/dynatracejune2020s-1.htm"
+      },
+      "424B4": {
+        "filed": "2020-06-03",
+        "accn": "0001628280-20-008905",
+        "doc": "dynatracejune2020424b4.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1773383/000162828020008905/dynatracejune2020424b4.htm"
+      }
+    }
+  },
+  "CIEN": {
+    "cik": "0000936395",
+    "name": "CIENA CORP",
+    "tickers": [
+      "CIEN"
+    ],
+    "exchanges": [
+      "NYSE"
+    ],
+    "sic": "3661",
+    "filings": {
+      "10-K": {
+        "filed": "2025-12-12",
+        "accn": "0001628280-25-056698",
+        "doc": "cien-20251101.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/936395/000162828025056698/cien-20251101.htm"
+      },
+      "10-Q": {
+        "filed": "2026-06-04",
+        "accn": "0001628280-26-040767",
+        "doc": "cien-20260502.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/936395/000162828026040767/cien-20260502.htm"
+      },
+      "8-K": {
+        "filed": "2026-06-11",
+        "accn": "0001193125-26-267607",
+        "doc": "d118604d8k.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/936395/000119312526267607/d118604d8k.htm"
+      }
+    }
+  },
+  "MRVL": {
+    "cik": "0001835632",
+    "name": "Marvell Technology, Inc.",
+    "tickers": [
+      "MRVL"
+    ],
+    "exchanges": [
+      "Nasdaq"
+    ],
+    "sic": "3674",
+    "filings": {
+      "10-K": {
+        "filed": "2026-03-11",
+        "accn": "0001835632-26-000011",
+        "doc": "mrvl-20260131.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563226000011/mrvl-20260131.htm"
+      },
+      "10-Q": {
+        "filed": "2026-08-28",
+        "accn": "0001835632-26-000025",
+        "doc": "mrvl-20260801.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563226000025/mrvl-20260801.htm"
+      },
+      "8-K": {
+        "filed": "2026-08-27",
+        "accn": "0001835632-26-000022",
+        "doc": "mrvl-20260827.htm",
+        "url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563226000022/mrvl-20260827.htm"
+      }
+    }
+  }
+}

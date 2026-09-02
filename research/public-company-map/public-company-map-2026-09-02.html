@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Public-company map for five underappreciated adoption shifts</title>
+<style>
+  @page { size: Letter; margin: 0.85in 0.85in 0.9in 0.85in; }
+  body { font-family: "Liberation Serif", Georgia, "Times New Roman", serif; font-size: 11pt; line-height: 1.45; color: #222; margin: 0; }
+  h1 { font-family: "Liberation Sans", Helvetica, Arial, sans-serif; font-size: 18pt; font-weight: 500; line-height: 1.2; margin: 0 0 6pt 0; }
+  h2 { font-family: "Liberation Sans", Helvetica, Arial, sans-serif; font-size: 13pt; font-weight: 500; margin: 20pt 0 6pt 0; page-break-after: avoid; }
+  h3 { font-family: "Liberation Sans", Helvetica, Arial, sans-serif; font-size: 11pt; font-weight: 500; margin: 14pt 0 3pt 0; page-break-after: avoid; }
+  h4 { font-family: "Liberation Sans", Helvetica, Arial, sans-serif; font-size: 10.5pt; font-weight: 600; margin: 10pt 0 3pt 0; page-break-after: avoid; }
+  p { margin: 0 0 8pt 0; text-align: left; }
+  .meta { font-family: "Liberation Sans", Helvetica, Arial, sans-serif; font-size: 9pt; color: #555; margin-bottom: 14pt; }
+  .caption { font-family: "Liberation Sans", Helvetica, Arial, sans-serif; font-size: 9pt; color: #555; margin: 4pt 0 12pt 0; }
+  table { border-collapse: collapse; width: 100%; font-size: 9pt; margin: 6pt 0 12pt 0; page-break-inside: avoid; }
+  th, td { border: 0.4pt solid #ccc; padding: 3pt 5pt; vertical-align: top; text-align: left; }
+  th { font-family: "Liberation Sans", Helvetica, Arial, sans-serif; font-weight: 600; background: #f4f4f4; }
+  .notes { font-size: 9.5pt; color: #333; }
+  .notes ol { padding-left: 18pt; margin: 4pt 0; }
+  .notes li { margin-bottom: 3pt; }
+  .kill ol { padding-left: 18pt; margin: 4pt 0; }
+  .kill li { margin-bottom: 4pt; }
+  .rule { border: 0; border-top: 0.5pt solid #bbb; margin: 16pt 0; }
+  a { color: #1a4d8f; text-decoration: none; }
+  .small { font-size: 9.5pt; color: #444; }
+</style>
+</head>
+<body>
+
+<h1>Public-company map for five underappreciated adoption shifts</h1>
+<div class="meta">Prepared 2026-09-02 · Little Water Bear LLC · BET-LEDGER calibration · Research notes, not investment advice · No buy, sell, or size recommendations</div>
+
+<p>This note extends the 2026-09-02 thesis on five adoption shifts that still look, in places, like the CPU-to-GPU story: a commodity labeled by its old use, spending that is still a single-digit slice of the market it may eventually serve, and a public narrative that frames the thing as something else. The job here is not to re-argue that pattern. It is to put public-market exposure on a layer map, score how much of each shift is already in the price, and write the bear case before any sentence that sounds constructive. Companion files are the CSV ledger (<span class="small">public-company-map-2026-09-02.csv</span>) and the raw working notes in <span class="small">raw/</span>.</p>
+
+<p>US prices and market capitalizations for exchange-listed common shares are from the Nasdaq quote API on the morning of 2026-09-02, typically 8:50–9:00 Eastern, which is pre-open; the market-cap field is the vendor’s published figure at that stamp. International market caps are from Yahoo Finance quote pages or company IR accessed the same day and are labeled as such. Where a percentage is not in a 10-K, 20-F, 6-K, annual report, or company IR release, it is marked estimate or written “not in the record.” Yahoo’s machine quote API was blocked from this environment (HTTP 429 / unauthorized crumb); that is why the US tape is Nasdaq, not Yahoo.</p>
+
+<p>Three names were checked and dropped or reclassified. TELUS Digital (TIXT) was taken private by TELUS on 31 October 2025 and is no longer a ticker. Celestial AI is no longer private: Marvell closed the acquisition on 2 February 2026. Fervo Energy (FRVO) is a live Nasdaq listing, which the starter list asked to verify; the listing holds. Liberty Energy’s 2022 Fervo investment is a company press release, not a current 13D.</p>
+
+<h2>1. Math to memory</h2>
+
+<p>The enabling commodity is DRAM stacked beside the processor, plus the glue that moves bytes (interface chips, CXL controllers, probe cards, thermocompression bonders) and, at the edge, the unified-memory SoC designed for a laptop. HBM manufacturers as equities were excluded from the original thesis because the shortage is already the headline. That exclusion survives contact with the filings. SK hynix’s English FY2025 release says HBM revenue “more than doubled year-on-year” and “made a significant contribution” to record results of ₩97.1467 trillion. It does not print HBM as a percent of sales. Micron’s FY2025 10-K does print a container: Cloud Memory Business Unit, which “includes HBM for all data center customers,” was $13.52 billion of $37.378 billion, or 36.2 percent. That 36.2 percent is an upper bound. CMBU also holds DDR, LPDDR and GDDR. A company earnings deck puts the combined HBM plus high-capacity DIMM plus LP-server basket at $10 billion, about 27 percent. HBM-only remains not in the record. Samsung’s Memory Business is inside a conglomerate whose FY2025 revenue was ₩333.6 trillion; HBM as a share of the group is not disclosed. Priced-in scores for the three HBM IDMs are 5, 5 and 4. The architecture residual is elsewhere.</p>
+
+<h3>1.1 Layer map</h3>
+
+<table>
+<tr><th>Layer</th><th>Public names (verified listings, 2026-09-02)</th><th>Pure-play?</th></tr>
+<tr><td>HBM stacks (DRAM IDMs)</td><td>SK hynix 000660.KS; Micron MU; Samsung 005930.KS</td><td>No HBM-only listed company. All three still sell conventional DRAM and NAND.</td></tr>
+<tr><td>HBM base-die foundry</td><td>Samsung Foundry inside 005930.KS; TSMC TSM / 2330.TW</td><td>No public base-die pure-play.</td></tr>
+<tr><td>Bonding / advanced packaging tools</td><td>Hanmi 042700.KS; ASMPT 0522.HK; Besi BESI.AS; Kulicke &amp; Soffa KLIC</td><td>Hanmi is the closest HBM-bonder specialist and is priced as one. SEMES is not public.</td></tr>
+<tr><td>Test (ATE, probe cards)</td><td>Advantest 6857.T; Teradyne TER; FormFactor FORM</td><td>No HBM-test-only public company.</td></tr>
+<tr><td>High-bandwidth flash</td><td>Sandisk SNDK; Kioxia 285A.T</td><td>No HBF pure-play. Samples, not a P&amp;L line. SNDK Nasdaq GS at $1,528, $224 billion (2026-09-02).</td></tr>
+<tr><td>Memory-interface chips / CXL</td><td>Rambus RMBS; Astera Labs ALAB; Marvell MRVL; Montage 688008.SS</td><td>No remaining independent CXL-switch pure-play after XConn went to Marvell.</td></tr>
+<tr><td>Consumer unified-memory silicon</td><td>Apple AAPL; AMD AMD; Qualcomm QCOM</td><td>No “unified memory company.” Buried in SoC/PC P&amp;Ls.</td></tr>
+<tr><td>Inference-box OEMs</td><td>Super Micro SMCI; Dell; HPE; NVIDIA DGX</td><td>No public inference-box pure-play. Groq, Cerebras, SambaNova not listed on the Yahoo/Nasdaq checks used here.</td></tr>
+</table>
+<p class="caption">Table 1. Memory-shift layers. Absence of a pure-play is a finding.</p>
+
+<p>SK hynix last printed at ₩1,613,000 on 2 September 2026, about ₩1,145 trillion or roughly $840 billion at the day’s USD/KRW. Operating margin in the April–June 2026 quarter was 76 percent on ₩79.3 trillion of revenue. That is not a hidden HBM stub. Micron was $931 pre-open, $1.05 trillion. Astera Labs, the CXL/PCIe connectivity name, was $274 and $47.6 billion, 165 times trailing EBITDA on Yahoo’s key statistics — priced as AI fabric, not as a leftover interface chip. Hanmi, at ₩213,500 and about ₩20 trillion, trades at Yahoo EV/sales near 37 times. Those are not the unappreciated rows.</p>
+
+<h3>1.2 Shortlist</h3>
+
+<p><b>ASMPT Limited (0522.HK).</b> The 2025 annual report puts advanced packaging at 30 percent of the group. Thermocompression bonding for HBM4 12-high and 16-high sits inside that 30 percent, which itself sits inside a company the market still files under semiconductor assembly and SMT. Yahoo EV/sales on 2 September was about 4.0 times against Besi at 20.6 times and Hanmi at 37 times. That gap is the reason the row exists: HBM tooling is a minority of a minority, labeled by the old SMT business. It is also the reason the bear case writes itself. TCB share can be lost to Hanmi on HBM and to Besi on hybrid bonding just as SMT is being shopped. Adjusted gross margin already slipped 172 basis points in 2025. The 2010s TSV-tool cycle is the analog — the process was real, merchant-tool profits rotated, and the next interconnect bypassed the flux vendor. Kill if FY2026 advanced-packaging revenue falls below the 2025 print (about $532 million) and management stops claiming multiple HBM4 TCB customers, or if SK hynix and Samsung process-of-record slides by year-end 2027 show hybrid bonding, not TCB, as the HBM4E/HBM5 high-volume path and ASMPT has no qualified hybrid-bonder purchase order.</p>
+
+<p><b>FormFactor, Inc. (FORM).</b> Nasdaq GS, $95.00 at 8:47 Eastern on 2 September 2026. Probe cards are a consumable still labeled test-and-measurement. The FY2025 10-K (year ended 27 December 2025) prints DRAM probe-card revenue of $247.4 million, 31.6 percent of $785.0 million; SK hynix was 22.9 percent of the company (18.9 percent in FY2024). HBM is named inside the DRAM line, not separated. Yahoo EV/sales about 7.9 times versus Hanmi’s 37. FormFactor does not make HBM. It sells the needle that tests the die before the stack. The analog is not Larrabee. It is 3D-NAND staircase-etch intensity: a real step-up that then standardized, after which units tracked wafer starts, not a scarcity premium. Kill if DRAM-probe quarterly revenue is below $60 million at the 28 October 2026 print (against $73.3 million in Q4 FY2025 on company slides) or if FY2026 DRAM-probe revenue falls below $200 million while industry HBM bits are still growing.</p>
+
+<p><b>Rambus Inc. (RMBS).</b> Nasdaq GS, $83.43, $9.05 billion. FY2025 product chips — DDR5 registering clock drivers sold to the three DRAM IDMs — are the P&amp;L. HBM and CXL controller IP was 11 percent of sales and shrinking. Gross margin has sat in the mid-to-high 70s for three years (10-K). Top-five customers were 66 percent. Eight sell-side names. The 52-week range $174 to $84 is the market already voting that the AI-memory multiple was wrong. The internal analog is RDRAM: the base rate on Rambus-owned interfaces becoming the industry standard is poor. CXL.mem pooling can remain an Optane-class niche while DDR5 RCD remains the real business. Kill if product revenue in a quarter is below $80 million (Q4 FY2025 was $96.8 million) or if the FY2026 10-K shows product chips under 40 percent of revenue and contract/IP still under 12 percent — old Rambus, royalties without growth.</p>
+
+<h3>1.3 Relative value</h3>
+
+<p>Dollars per GB/s of HBM bandwidth is not in any issuer 10-K. Secondary compiler tables (Silicon Analysts, August 2026 access) put HBM3E near $300 per 36 GB stack at 1.18 TB/s, which is about $0.25 per GB/s per stack, and HBM4 near $550 per stack at more than 2 TB/s, about $0.28 per GB/s if the 2 TB/s floor holds. Cantor/Fubon commentary in August 2026 put SK hynix HBM4 to NVIDIA at $31–32 per GB, which would be closer to $0.58 per GB/s on a 2.0 TB/s 36 GB stack. SK hynix has not confirmed. Directionally, secondary prints agree that dollars per GB are rising into HBM4 while GB/s per stack also rise, so dollars per GB/s are not a clean downtrend. Treat $0.25–$0.60 as an unlabeled estimate, not a filing.</p>
+
+<h3>1.4 What would change my mind</h3>
+<div class="kill">
+<ol>
+<li>HBM IDMs: killed as an “unappreciated” sleeve already. Killed as a scarcity sleeve if 2027–28 greenfield supply normalizes contract prices and open-weight models stop tracking the frontier (original thesis). Architecture (bytes per second per dollar) can survive the scarcity premium.</li>
+<li>ASMPT: FY2026 AP revenue down year on year and no multi-customer HBM4 TCB claim by the 2026 annual report (historically early March 2027).</li>
+<li>FormFactor: two consecutive quarters of GAAP gross margin below 35 percent, or SK hynix below 10 percent of a quarter without a Samsung/Micron offset.</li>
+<li>Rambus: Intel/AMD 2027-class platforms ship CXL.mem without a Rambus IP mention, and Astera or Marvell 10-Ks show CXL controller attach that does not list Rambus as complementary.</li>
+</ol>
+</div>
+
+<h2>2. Copper to light</h2>
+
+<p>Co-packaged optics is still a rounding error of AI datacenter modules if one believes the TrendForce March 2026 penetration chart reproduced in secondary notes: 0.55 percent in 2026, 35.74 percent in 2030. That chart was not fetched as a TrendForce PDF in this pass; treat 0.5 percent / ~35 percent as a third-party estimate, not a 10-K. TrendForce’s 15 June 2026 press note is a different series: CPO and NPO dollars from about $100 million in 2025 to over $39 billion by 2030. NVIDIA’s own language is operational, not a share. The GTC Taipei / COMPUTEX 2026 blog says Spectrum-X Ethernet Photonics is “now in full production,” names TSMC, SPIL, TFC and Foxconn, and claims “5x better power efficiency” versus pluggables. Lumentum is not named in that blog excerpt. Lumentum’s 8-K is the company-side confirmation of the laser relationship.</p>
+
+<p>NVIDIA bought 2,876,415 shares of Lumentum Series A convertible preferred at $695.31 on 2 March 2026 for $2.0 billion cash, and 7,788,161 Coherent common shares at $256.80 the same day for another $2.0 billion. Both 8-Ks are primary. Coherent’s exhibit adds “five additional Coherent product families related to co-packaged optics.” Circular demand — equity plus purchase commitments — is in the record. It rhymes with 2000 vendor financing even though today’s buyers are hyperscalers with cash. That rhyme is the bear case for the whole sleeve, not a prediction.</p>
+
+<h3>2.1 Layer map</h3>
+
+<table>
+<tr><th>Layer</th><th>Public names</th><th>Pure-play?</th></tr>
+<tr><td>Switch / accelerator</td><td>NVIDIA NVDA ($5.25T); Broadcom AVGO ($1.75T); Marvell MRVL ($181B)</td><td>No CPO-switch pure-play. CPO is a SKU inside data-center networking.</td></tr>
+<tr><td>Lasers, engines, transceivers</td><td>Lumentum LITE ($77.0B); Coherent COHR ($52.5B); Innolight 300308.SZ; Eoptolink 300502.SZ; AAOI; Broadcom EML (not broken out)</td><td>No scaled CPO-engine pure-play. LITE/COHR mix chips, modules, industrial lasers. Innolight/Eoptolink are pluggable-module champions.</td></tr>
+<tr><td>Photonics foundry / advanced packaging</td><td>TSMC COUPE; Fabrinet FN (optical EMS); SPIL inside ASE 3711.TW (named by NVIDIA, not a starter)</td><td>No SiPh-foundry pure-play. COUPE is not a TSMC segment.</td></tr>
+<tr><td>Fiber, connectors, fiber management</td><td>Corning GLW; Sumitomo 5802.T; Furukawa 5801.T; Fujikura 5803.T</td><td>No CPO-connector pure-play. Conglomerates (auto wire, display glass, energy).</td></tr>
+<tr><td>Test and measurement</td><td>VIAVI, Keysight on peer strips; not in the starter list</td><td>No CPO-test pure-play identified this pass.</td></tr>
+<tr><td>Copper counter-bet (AECs)</td><td>Credo CRDO ($35.4B)</td><td>CRDO is the listed AEC leader, not a CPO name. DustPhotonics is the optical option.</td></tr>
+<tr><td>Private / recently acquired</td><td>Ayar Labs; Lightmatter; Celestial AI → Marvell 2 Feb 2026</td><td>Private optical I/O remains private.</td></tr>
+</table>
+
+<p>Lumentum FY2026 revenue was $3.014 billion, up 83 percent, Components 66.5 percent, Systems 33.5 percent. Two customers were 26.6 and 15.0 percent. Gross margin ran 18.5 percent, 28.0 percent, 41.7 percent across FY2024–26. EV/sales on Yahoo’s table sat at 26.9 times versus 4.3 times a year earlier. The Q4 FY2026 call (11 August 2026) put the first ELS-module purchase order for delivery in the second half of calendar 2027 and high-volume CPO lasers for 2028 deployments. CPO as a percent of FY2026 sales is not in the record and is qualitatively pre-revenue. Priced-in score 5. Coherent Datacenter &amp; Communications was $5.275 billion, 74.1 percent of FY2026, up 40.5 percent; CPO is listed in that bucket, not separated. One customer 20 percent. EV/sales 7.9 times, at the high of its own Yahoo table, still well below LITE. Priced-in 4: appreciated as AI optics, CPO dollars still unseparated. Credo at $189 and 31 times sales is the copper counter-bet, already the AEC narrative. Lightwave Logic ($5.12, $789 million) and POET ($7.07, $1.22 billion) are story stocks, not unappreciated businesses.</p>
+
+<h3>2.2 Shortlist</h3>
+
+<p><b>Fabrinet (FN).</b> NYSE, $400.00, $14.33 billion, 2 September 2026. FY2026 revenue $4.64 billion. Data Center was 47.9 percent — pluggable EMS, not a CPO line. Gross margin 12.0 percent, stuck. NVIDIA was 16.3 percent of FY2026, down from 27.6 percent the year before; Cisco 19.9 percent; four customers 57 percent. Net cash. Yahoo EV/sales 3.15 times versus LITE at 27. Optical packaging is where CPO engines get assembled; NVIDIA’s named CPO chain for Spectrum-X is TSMC, SPIL, TFC and Foxconn, not Fabrinet. That mix shift is in the 10-K. The 2000 analog is contract manufacturers that tooled for a DWDM boom and were left with empty lines. Kill if the FY2027 second-quarter 10-Q (calendar about February 2027) shows Data Center below 40 percent of revenue and sequential Data Center dollars down year on year, or if NVIDIA plus Cisco fall below 25 percent without a new equivalent hyperscaler, or if GAAP gross margin is below 11 percent for two consecutive years.</p>
+
+<p><b>Sumitomo Electric (5802.T).</b> The FY2025 financial section (year ended 31 March 2026) prints group net sales of ¥5,110.2 billion. Infocommunications was ¥326.6 billion, 6.4 percent of the group, up 46.3 percent, operating profit ¥77.4 billion and a 23.7 percent operating margin, on optical wiring, cables and devices for data centers. CPO as a percent of that bucket is not in the record. Yahoo still files the name under auto parts; automotive was ¥2,937 billion. Fiber, fusion splicers and multi-fiber interconnects are the CPO-attach toolkit, still labeled by the old use. The 2000 analog is Japanese cable makers that added fiber capacity into the glut. Kill if the March 2027 Yuho shows infocommunications profit down year on year while automotive is also down, or if the 30 October 2026 earnings call does not mention data-center, CPO or AI fiber as a growth driver, or if by 31 March 2027 there is no named hyperscaler optical contract in a company disclosure.</p>
+
+<p><b>Corning (GLW), CPO slice only.</b> NYSE, $143.70, $123.8 billion. Optical Communications is already the growth engine — plus 32 percent in Q2 2026 — and is in the price (EV/sales about 8 times, 1-year plus 119 percent on Yahoo). The Photonics MAP / inside-the-box CPO-NPO “$10 billion by 2030” is a company target, not FY2026 revenue. Corning itself is the 2000 analog: fiber plants into a glut. Kill if Q3 2026 Optical Communications grows less than 15 percent year on year (print around 27 October), or if the FY2026 10-K still has no Photonics/CPO revenue line, or if year-end 2026 misses the Springboard $20 billion annualized sales run-rate the company set on the Q2 call.</p>
+
+<h3>2.3 Relative value</h3>
+
+<p>Dollars per 1.6T optical port are not in the Lumentum or Coherent 10-Ks. Lumentum’s Q4 call said 1.6T transceivers have a “higher ASP” than 800G and that ELS-module ASP is “meaningfully higher” than a set of lasers, with worse margins than chips — direction only. Third-party fragments put early 1.6T modules around $1,300–$2,000, with 800G multimode above $500. LightCounting’s dollar ASP table is behind a paywall and was not in the record this pass. CPO dollars per port are not in the record at all. NVIDIA’s “4x fewer lasers” claim is a bill-of-materials statement, not an ASP. Historically every generation’s dollars per bit fell; a dated 1.6T ASP series from a primary source was not found.</p>
+
+<h3>2.4 What would change my mind</h3>
+<div class="kill">
+<ol>
+<li>Field reliability (laser failures, serviceability) keeps CPO under about 5 percent of AI modules by 2028 while cheaper pluggables and linear-drive optics stay good enough (original thesis).</li>
+<li>A named 10 percent customer on a dated 10-Q cuts optical or AI-networking orders — the 2000 analog becoming factual rather than rhyming.</li>
+<li>Lumentum 2H 2027 ELS deliveries slip a full year, or Coherent’s NVIDIA CPO product families never appear as a disclosed dollar.</li>
+</ol>
+</div>
+
+<p>This shift is only partly unappreciated. Lasers and 800G/1.6T pluggables are the 2026 narrative at LITE, Innolight and Eoptolink. What still matches the brief is the unglamorous packaging-and-fiber layer, and the fact that CPO itself remains a 2027–28 revenue story inside companies already re-rated for something adjacent.</p>
+
+<h2>3. Oil rigs to heat</h2>
+
+<p>Fervo Energy listed on Nasdaq as FRVO on 13 May 2026. The IPO priced at $27 on 12 May (70 million Class A shares, upsized). Nasdaq’s 2 September pre-open print was $18.95, market cap $5.59 billion, 52-week $42.65 / $14.60. The original thesis said the flagship would not stay cheap after the IPO. The IPO pop to the $40s and the subsequent drawdown to the high teens are both in the tape. Neither makes Fervo unlabeled. The equity is EGS. Priced-in score 4 as the category, 2 as “still a secret.”</p>
+
+<p>Cape Station is no longer an “October 2026 first power” certainty in company language. The S-1 expected first power “late 2026” and about 100 MW operating “early 2027,” and it disclosed liquidated damages if Phase I Unit 1 does not commence by 1 October 2026. The 12 August 2026 earnings release is more precise and slightly later: GeoBlock 1 test power targeted in the fourth quarter of 2026, full production by year-end; GeoBlocks 2 and 3 initial power early 2027. Mechanical completion is done on GeoBlocks 1 and 2; turbines have been spun on commissioning flow. That is progress. It is also a slippage from a dated PPA hammer. The Google 396 MW PPA (8-K 26 August 2026, press release furnished 1 September) is a different project slice: four 99 MW tranches, 15-year term, target commercial operation beginning in the third quarter of 2028, with a further 600 MW option whose guaranteed COD is no later than June 2030, subject to Google’s acceptance. Alphabet is the parent guarantor. Q2 2026 operating loss was $28.7 million, net loss $55.9 million, cash $2.11 billion after the IPO, H2 2026 capex guided at $850–900 million. Overnight cost in the S-1 was about $7,000 per kW as of 31 December 2025. The Nth-of-a-kind goal is $3,000 per kW. Co-founders Tim Latimer and Jack Norbeck hold Class B stock with about 54 percent of the vote. Founded 2017. Founder-led.</p>
+
+<p>The $45 per MWh figure in the thesis is the Department of Energy’s Enhanced Geothermal Shot program target for 2035, not a Fervo 2026 PPA price. The S-1 pages searched for this note do not print a company LCOE of $45. PPA prices are not in the Google 8-K. Do not carry $45 as a Fervo current cost.</p>
+
+<h3>3.1 Layer map</h3>
+
+<table>
+<tr><th>Layer</th><th>Public names</th><th>Pure-play?</th></tr>
+<tr><td>EGS developers</td><td>Fervo FRVO; Ormat ORA (hydrothermal + EGS pilots)</td><td>No second public EGS pure-play. Sage, XGS, Eavor, Quaise private.</td></tr>
+<tr><td>Land drilling contractors</td><td>Helmerich &amp; Payne HP ($4.62B); Patterson-UTI PTEN ($4.85B); Nabors NBR ($1.56B); Precision PDS ($1.17B)</td><td>No geothermal-drilling pure-play. FY2025 10-Ks do not break out geothermal revenue.</td></tr>
+<tr><td>Oilfield services / sensing</td><td>SLB $84.5B; Baker Hughes $62.8B; Halliburton $30.4B; Liberty $3.23B</td><td>EGS dollars not in the record.</td></tr>
+<tr><td>ORC turbines / power blocks</td><td>Ormat builds its own; Turboden sits in Mitsubishi Heavy</td><td>No public ORC-turbine pure-play.</td></tr>
+<tr><td>Pumps / electrification</td><td>Liberty (frac heritage)</td><td>No EGS-pump pure-play.</td></tr>
+<tr><td>Offtakers</td><td>Alphabet (Google Energy LLC); SCE and others in the S-1</td><td>Not EGS equities.</td></tr>
+</table>
+
+<p>Liberty Energy’s Fervo stake is real and old: a 25 July 2022 company release, $10 million, plus participation in a 2022 round that also included Helmerich &amp; Payne. Fervo’s S-1 names Liberty and HP as oilfield-service partners. Liberty is not a post-IPO 13D filer. Geothermal as a percent of Liberty revenue is not in the record. Helmerich’s FY2025 10-K records geothermal as equity-security investments — $4.1 million into “various geothermal energy companies” in FY2023, one position liquidated for $27.1 million in FY2025 — not as drilling revenue. Fervo’s Q2 2026 release says a third HP rig is on Cape Phase II. Baker Hughes and HP announced a dedicated geothermal-capable land rig “expected to be deployed later this year.” SLB’s FY2025 10-K names geothermal under New Energy and does not quantify it; the disclosed “new” line is Data Center Solutions, up 121 percent. SLB and Ormat announced an EGS pilot at an Ormat Nevada site. Ormat’s 2025 revenue was $989 million; energy storage $79 million, up 109 percent; EGS is Sage Geosystems (Series B co-lead) plus the SLB pilot, not a segment.</p>
+
+<h3>3.2 Shortlist</h3>
+
+<p><b>Helmerich &amp; Payne (HP).</b> NYSE, $46.23, $4.62 billion. Founded 1920. North America, International and Offshore Solutions are the segments. Geothermal revenue is not in the record. The stock is priced as a land-drilling contractor with a Saudi International mix and a FlexRig fleet that can point at heat. That is the brief’s definition. The analog is fifty years of EGS pilots since Fenton Hill: the wells get drilled, the power plant often does not become a fleet. Kill if two consecutive 10-Ks contain no geothermal sentence and no named EGS contract, or if Cape Station misses Q4 2026 test power and HP commentary treats the third rig as a one-off. A felt induced-seismicity event (Basel 2006, Pohang 2017) that freezes Utah or Nevada permitting is a sleeve-level kill, not an HP-only kill.</p>
+
+<p><b>SLB (SLB).</b> $56.92, $84.5 billion. FY2025 revenue $35.7 billion, down 2 percent. Geothermal is a paragraph in New Energy. The multiple is oilfield services, ChampionX, and now modular data centers. An EGS services residual can exist inside a name that will never print “EGS” as a segment. Kill if the Ormat pilot is not mentioned again by the FY2026 10-K (January 2027) and New Energy remains unquantified while Data Center Solutions is the only disclosed adjacency.</p>
+
+<p><b>Ormat (ORA).</b> $107.90, $6.64 billion. Conventional hydrothermal cash flow plus an EGS option (Sage, SLB) that is not the P&amp;L. Priced as old geothermal — volcanic geology, binary plants — which is exactly the mislabel the thesis described, except that Ormat’s cash flow is the old thing, not the shale toolkit. Kill if the Nevada EGS pilot is cancelled or silent through FY2026 results, or if electricity-segment growth depends entirely on storage and contracted hydrothermal M&amp;A with no EGS well drilled.</p>
+
+<h3>3.3 Relative value</h3>
+
+<p>Fervo’s disclosed physical unit is overnight capital cost, about $7,000 per kW at Cape Phase I, with a $3,000 per kW Nth-of-a-kind goal. At a 90 percent capacity factor that overnight figure is not LCOE. DOE’s $45 per MWh is a 2035 program target. Gas-peaker and nuclear-restart LCOE comparables were not pulled as a 2026 EIA table in this pass; Fervo’s own S-1 comparison is that $7,000 per kW “already outcompetes both traditional and small modular nuclear power in overnight capital costs.” Trend: well days at Cape are falling (Sawtooth 7: 21 days to 19,500 feet, Q2 2026 release). Cost per kW as a time series beyond the single $7,000 print is not in the record.</p>
+
+<h3>3.4 What would change my mind</h3>
+<div class="kill">
+<ol>
+<li>No GeoBlock 1 test power by 31 December 2026, or PPA liquidated damages on the 1 October 2026 Unit 1 date.</li>
+<li>Next drilling block fails to show well-cost decline versus the S-1 $7,000 per kW.</li>
+<li>Induced seismicity producing a permitting freeze in Utah or a peer EGS jurisdiction in 2026–27.</li>
+<li>Fervo H2 2026 capex below $600 million without a matching operational pull-forward — a sign the 1.1 GW by 2030 target is being quietly parked.</li>
+</ol>
+</div>
+
+<h2>4. Cars to grid</h2>
+
+<p>This is the shift that is least unappreciated as a volume story and most unappreciated as a mix-and-margin story. SEIA, 1 September 2026: the United States installed 20.2 GWh of battery storage in Q2 2026, 30.8 GWh in the first half, and Benchmark raised the 2030 cumulative outlook 11.5 percent to 683 GWh. SEIA’s CEO called storage “a powerful reliability tool.” EIA’s August 2026 vintage has operators planning 26 GW of utility-scale additions in 2027, after 43.6 GW operating at year-end 2025. More than 74 percent of Q2 capacity in the thesis geography note was in states Trump won in 2024; that geographic fact is in the SEIA release (Arizona 6.2 GWh, Texas 3.8, California 3.6). The buyer is reliability. The public narrative still says climate. That part of the thesis holds.</p>
+
+<p>What does not hold is “unappreciated public equity.” Fluence is 100 percent storage, $1.93 billion of equity on $2.26 billion of FY2025 sales, $6.4 billion of backlog, GAAP gross margin 5.1 percent in Q3 FY2026 after 13.1 percent in FY2025, guidance cut to $2.9–3.1 billion of FY2026 revenue and minus $10 million of adjusted EBITDA at the midpoint. Two customers 41 percent; AES and affiliates 24 percent; AES still controls the vote. Priced-in 4 as a storage vehicle, 2 as a quality compounder. Tesla energy generation and storage was $12.771 billion in FY2025, 13.5 percent of $94.827 billion, gross margin 29.8 percent, 46.7 GWh deployed. Q2 2026 energy gross margin 20.4 percent on a “vendor cell issue.” The stub is large and unbuyable. Priced-in as storage 1. CATL’s 2025 annual report: ESS batteries RMB 62.4 billion, 14.74 percent of revenue, 121 GWh, ESS gross margin 26.71 percent; EV batteries 74.70 percent. Priced-in as storage 3.</p>
+
+<p>BloombergNEF’s 2025 turnkey survey, as reported by Energy-Storage.News: global four-hour average $117 per kWh, down 31 percent, China $73, United States $219. NREL’s 2025 bottom-up US overnight benchmark is $334 per kWh (2024 dollars). Those are different boundaries. Tesla’s blended energy ASP, derived from segment revenue over GWh, ran $411, $321, $273 per kWh in FY2023–25 and $232 in Q2 2026, and that blend includes solar and Powerwall. The physical ratio is falling. The grid can boom in GWh while OEM dollars and margins fall. Fluence FY2025 said so in the 10-K: volume “relatively consistent,” revenue down 16 percent on lower average price per GWh.</p>
+
+<h3>4.1 Layer map</h3>
+
+<table>
+<tr><th>Layer</th><th>Public names</th><th>Pure-play?</th></tr>
+<tr><td>Cells (LFP / NMC / Na-ion)</td><td>CATL 300750.SZ / 3750.HK; BYD 1211.HK; EVE 300014.SZ; LGES 373220.KS; Samsung SDI 006400.KS</td><td>No US-listed LFP cell pure-play. No listed Na-ion pure-play (Natron ceased US operations in 2025, secondary).</td></tr>
+<tr><td>System integrators</td><td>Fluence FLNC; Tesla Megapack; Sungrow 300274.SZ; Eos EOSE (zinc); Wärtsilä exiting via JV 2026-06-15</td><td>FLNC is the liquid US Li-ion integrator. Powin, private, Chapter 11 filed June 2025.</td></tr>
+<tr><td>Inverters / PCS</td><td>Sungrow; Enphase ENPH (residential); captive PCS inside Tesla/Fluence</td><td>No utility-scale PCS pure-play in the US large-cap set.</td></tr>
+<tr><td>Developers / IPPs</td><td>NextEra NEE (5,177 MW net storage YE2025); AES (Fluence founder + fleet)</td><td>No storage-only IPP.</td></tr>
+<tr><td>Safety / thermal / insurance</td><td>Firetrace inside Halma; Fluence G&amp;A insurance +$7.4 million FY2025</td><td>No public BESS-safety or BESS-specialty-insurance pure-play.</td></tr>
+<tr><td>Interconnection / permitting</td><td>Quanta, MYR Group (specialty contractors); storage share not in the record</td><td>No interconnection-software pure-play.</td></tr>
+</table>
+
+<h3>4.2 Shortlist</h3>
+
+<p><b>EVE Energy (300014.SZ).</b> The 2025 annual report filed on CNINFO on 28 March 2026 puts energy-storage battery revenue at RMB 24.441 billion, 39.76 percent of the group, on 71.05 GWh shipped. ESS gross margin was 12.28 percent, down 244 basis points. That is closer to a storage cell company than CATL’s 14.74 percent. US coverage is thin. The ESS margin is the ASP-down reality, not a secret boom. Kill if China ESS policy (the mandatory-allocation unwind discussed in CATL’s report) plus US FEOC rules cut EVE’s export cells, or if ESS gross margin compresses another 300 basis points in the 2026 annual report.</p>
+
+<p><b>Sungrow (300274.SZ).</b> The 2025 annual report filed on CNINFO on 1 April 2026 puts energy-storage systems at RMB 37.287 billion, 41.81 percent of RMB 89.184 billion of sales, up 49.4 percent, with ESS gross margin 36.49 percent (down 20 basis points) and 43 GWh shipped. Competes with Tesla and Fluence on kits, not cells. US investors still file it under solar inverter. Kill if EU or US AD/CVD or FEOC on Chinese PCS takes the export margin, or if ESS gross margin mean-reverts toward Fluence-like tightness as Western content rules bite.</p>
+
+<p><b>LG Energy Solution (373220.KS).</b> The company has said it is the scaled non-China LFP ESS presence in North America, with a 140 GWh ESS backlog and idle EV lines being reallocated (company IR, 2025 results). ESS as a percent of sales is not disclosed. If US storage is a reliability procurement, LGES is the domestic-content cell expression rather than Fluence’s contract-manufacturer risk. Kill if the next business report still refuses an ESS percent and ESS growth is just a press-release adjective, or if IRA/OBBBA domestic-content rules change against the North American plants.</p>
+
+<p>Fluence is not shortlisted as unappreciated. It is the theme. Tesla energy is not shortlisted because the stub cannot be bought. Eos is a zinc option on $114 million of FY2025 sales, not LFP-from-EV. Wärtsilä announced on 15 June 2026 that it will put energy storage into a joint venture and discontinue it as a reporting segment — a European scaler leaving, which is a bear fact for Western integrators, not a long.</p>
+
+<h3>4.3 Adversarial analog</h3>
+
+<p>Fluence’s own FY2022 GAAP gross margin was minus 5.2 percent. Powin filed Chapter 11 on or about 10 June 2025. Wärtsilä is JV-ing out. Tesla’s Q2 2026 energy warranty hit the OEM with the best energy margin. The reference class for storage integrators is working-capital death under ASP deflation, not “the next Fluence.” The grid-asset thesis can be true while every listed integrator is a bad business. Those are different questions.</p>
+
+<h3>4.4 What would change my mind</h3>
+<div class="kill">
+<ol>
+<li>EIA inventory at year-end 2026 shows US utility-scale additions below 18 GW against the February 2026 plan of 24 GW (check about February 2027).</li>
+<li>EIA 2027 additions below 18 GW against the August 2026 planned 26 GW (check about February 2028).</li>
+<li>SEIA 2026 calendar installs below 50 GWh against the 71 GWh forecast.</li>
+<li>Fluence FY2027 revenue below $2.5 billion and GAAP gross margin below 8 percent — the re-Powin path. That kills the integrator, not necessarily the grid asset.</li>
+<li>BNEF’s next cost survey (about December 2026) shows US turnkey up year on year and the China–US gap widening. That kills the learning-curve half of the thesis and leaves a policy wedge.</li>
+</ol>
+</div>
+
+<h2>5. Producing to verifying</h2>
+
+<p>On the training side the scarce input moved from scraped text to reinforcement-learning environments and human evaluation. On the deployment side, drafting is cheap and checking is not. The public market does not list a Scale AI, a Surge, a Mercor, a Mechanize or a Prime Intellect. Meta’s June 2025 purchase of a 49 percent non-voting stake in Scale for $14.3 billion is widely reported; it is not a META 10-K line item in the pages used here. TELUS Digital, the one liquid North American BPO-ish name on the starter list, was taken private on 31 October 2025. That absence is the finding. Environment spend as a single-digit fraction of compute remains a statement about private lab budgets, not about a public multiple.</p>
+
+<h3>5.1 Layer map</h3>
+
+<table>
+<tr><th>Layer</th><th>Public names</th><th>Pure-play?</th></tr>
+<tr><td>RL environments / data vendors</td><td>Innodata INOD; Appen APX.AX. Private: Scale, Surge, Mercor, Mechanize, Prime Intellect</td><td>No public RL-environment pure-play.</td></tr>
+<tr><td>Human evaluation / HITL</td><td>INOD DDS; Appen; TIXT now inside TELUS (TU)</td><td>Thin. Customer concentration is the filing fact.</td></tr>
+<tr><td>TIC incumbents</td><td>SGS; Bureau Veritas BVI.PA; Intertek ITRK.L; UL Solutions ULS ($14.83B)</td><td>AI-safety certification is unlabeled. AI percent of revenue not in the record.</td></tr>
+<tr><td>Verified professional content</td><td>Thomson Reuters TRI ($45.95B); RELX; Wolters Kluwer</td><td>Corpus owners. Verification-as-a-product dollars not broken out.</td></tr>
+<tr><td>Code review / test / observability</td><td>GitLab GTLB; Atlassian TEAM; Datadog DDOG; Dynatrace DT</td><td>Adjacent tools. Not the shift. Do not map 100 percent of DDOG ARR here.</td></tr>
+<tr><td>Clinical documentation / review</td><td>Nuance inside MSFT; Abridge private</td><td>No public clinician-verifier pure-play.</td></tr>
+</table>
+
+<p>Innodata’s FY2025 10-K is the cleanest public window. Revenue $251.7 million, up 48 percent organic. Digital Data Solutions $220.9 million, about 88 percent of the company, up 57 percent. One DDS customer, 58 percent of total revenue, up from 48 percent. Gross margin 40 percent versus 39 percent. Founded 1988 as a content-conversion shop; the core business has not stayed constant. Competitors named include Scale, Appen, Surge, Mercor and TELUS Digital. Nasdaq 2 September: $54.19, $1.86 billion, 52-week $125.14 / $34.23, 184 option records, 4.61 million shares short. Priced-in 4 as an AI-data stock, 2 as an RL-environment stock. The 58 percent customer is not a footnote to skip.</p>
+
+<p>Appen remains listed on the ASX. FY2025 operating revenue $230.8 million: Global $127.9 million, down 21 percent; China $102.9 million, up 75 percent. H1 FY2026 group $119.9 million, up 17.5 percent, almost entirely China ($76.2 million, up 80 percent) while Global fell 27 percent. FY2026 guide $270–300 million, underlying EBITDA margin 5–10 percent. Cash $44.7 million at 30 June 2026. The turnaround is the narrative. The Global franchise is the scar.</p>
+
+<p>UL Solutions printed $3.053 billion in FY2025, first year above $3 billion. Software was $285 million, 9.3 percent. The CEO named “AI-fueled digitalization” as a megatrend. AI as a percent of testing, inspection and certification work is not in the record. That unlabeled residual is the only reason ULS belongs on this map. GitLab, Atlassian, Datadog and Dynatrace sell tools that sit next to verification. Treating them as the shift would be a category error.</p>
+
+<h3>5.2 Shortlist</h3>
+
+<p><b>Innodata (INOD).</b> The listed human-data vendor with a filing-grade concentration risk. Bear: one frontier lab is more than half of sales; Scale and Mercor price the labor; models get better at writing their own graders. Analog: Appen’s 2022–24 collapse when a handful of tech customers paused — same reference class, already realized next door. Kill if DDS revenue is under $150 million in FY2026, or if two 10-Qs go by after the 58 percent customer leaves without a named replacement, or if a frontier lab discloses that human-evaluation spend is falling year on year while training spend rises.</p>
+
+<p><b>UL Solutions (ULS).</b> $73.46, $14.83 billion. A century of product-safety marks, now also the putative home for AI-system certification, with no dollar on the latter. Bear: NIST, ISO and the EU AI Act produce a standards thicket that buyers satisfy with paperwork inside existing ISO 9001 relationships, and ULS’s software line stays a 9 percent sidecar. Analog: Y2K testing boutiques — a real compliance wave that did not become a new industry for the incumbents who already stamped products. Kill if FY2026 10-K still has no AI-certification revenue line and organic growth is mid-single-digit product testing as usual; the opposite kill (the shift becomes appreciated) is if AI-management-system work is disclosed as a growth line and the multiple re-rates.</p>
+
+<p><b>Thomson Reuters (TRI).</b> $106.06, $45.95 billion. Westlaw, Practical Law, Reuters. The deployment-side bottleneck in law and news is checking the draft against a verified corpus. Bear: the corpus gets scraped, licensed once, and commoditized by model vendors; professional-information organic growth rolls over for two years. Analog: print encyclopedias, not GPU. Kill if professional-information organic growth is negative for two consecutive reported years while management’s AI-assistant ARR is the only rising line — tools winning, corpus not scarce.</p>
+
+<h3>5.3 Relative value</h3>
+
+<p>Dollars per verified task and dollars per RL environment are not in any 10-K fetched. Scale, Surge and Mercor pricing is private. Innodata and Appen recognize project and time-and-materials revenue: the defensible public unit is dollars per hour of specialist labor, which is how those filings actually work, not dollars per environment. Epoch AI and The Information figures on Anthropic environment spend in the attached thesis were not re-audited as 2 September 2026 primaries.</p>
+
+<h3>5.4 What would change my mind</h3>
+<div class="kill">
+<ol>
+<li>Self-verification: a frontier lab 10-K-equivalent or responsible-scaling report shows human evaluation spend down year on year. This is the sleeve that can flip from unappreciated to obsolete fastest (original thesis).</li>
+<li>INOD customer concentration: the 58 percent name gone, not replaced, two 10-Qs.</li>
+<li>A public RL-environment vendor lists, and the category gets a multiple. That would close the “no pure-play” gap rather than kill the shift.</li>
+</ol>
+</div>
+
+<h2>6. Coverage map: layers with no public pure-play</h2>
+
+<table>
+<tr><th>Shift</th><th>Layer with no public pure-play</th><th>What that means</th></tr>
+<tr><td>Memory</td><td>HBM-only IDM; HBM base-die foundry; HBF; unified-memory silicon; inference-box OEM; HBM-test-only</td><td>The residual architecture is inside conglomerates and SoC names. You cannot buy “unified memory.”</td></tr>
+<tr><td>Optics</td><td>CPO switch; CPO engine at scale; SiPh foundry; CPO connector; CPO test</td><td>CPO is a SKU and a 2027–28 laser PO, not a ticker. Ayar Labs and Lightmatter remain private.</td></tr>
+<tr><td>EGS</td><td>Second EGS developer; geothermal drilling; ORC turbine; EGS pump</td><td>After FRVO, the public map is oil services priced as oil. Sage, Eavor, Quaise, XGS are the missing developers.</td></tr>
+<tr><td>Storage</td><td>Na-ion cells; BESS fire suppression; BESS insurance; interconnection software; US-domiciled LFP cell (Tesla Nevada is captive)</td><td>The reliability buyer has no listed safety or insurance expression. Integrators are the liquid (and ugly) sleeve.</td></tr>
+<tr><td>Verification</td><td>RL environments; clinician-verifier; AI-safety TIC as a line</td><td>Scale is private with a Meta stub. The listed names are BPOs, content owners, and observability software.</td></tr>
+</table>
+
+<p>Absence is not a gap to paper over. For several of these layers the honest public expression is a minority stub inside a company whose multiple is set by the old business. That is the brief’s candidate definition. It is also why a 5-for-5 hit rate is the wrong prior: Larrabee, Xeon Phi, Optane, fifty years of EGS pilots, Powin, and the 2000 optical bubble are the reference class. The original thesis said size as if four of five are wrong. Nothing in the public-company map argues otherwise.</p>
+
+<h2>7. Asymmetry inventory (shortlisted names, data only)</h2>
+
+<p>Listed options exist on every US shortlisted name checked (FormFactor, Rambus, Fabrinet, Corning, Helmerich, SLB, Ormat, Innodata, UL Solutions, Thomson Reuters). Nasdaq option-chain record counts on 2 September 2026: MU 1,577, LITE 785, INOD 184, FN 63, RMBS 25, FORM not separately pulled beyond a live equity quote, HP 18, FRVO 18, ORA 32, ULS 20, FLNC 22. LEAP expiries through 2028-12-15 exist on Micron (explicitly enumerated on the chain). Implied volatility versus its one-year range is not in the record from the Nasdaq snapshot used here. Convertibles: Fluence $400 million 2.25 percent due 2030; Lumentum several series (2026/2028/2029/2032) plus NVIDIA preferred; Marvell $2.0 billion NVIDIA preferred; Fervo none disclosed as converts in the Q2 release. Average daily dollar volume is ample on MU, LITE, GLW, SLB, TRI; thinner on INOD (~$70 million at 1.27 million shares), FORM, HP, and FRVO (4.0 million shares × ~$19 ≈ $75 million, with a 35 million-share day on 1 September around the Google PPA). International shortlisted names (ASMPT, Sumitomo, EVE, Sungrow, LGES) have local listed options status not in the record of the US Nasdaq chain.</p>
+
+<hr class="rule">
+<div class="notes">
+<b>Notes and sources</b> (accessed 2026-09-02 unless a filing date is given)
+<ol>
+<li>US tape: Nasdaq Data API <span class="small">api.nasdaq.com/api/quote/{ticker}/info?assetclass=stocks</span> and matching summary, short-interest and option-chain endpoints, morning of 2026-09-02. Market-cap field as published. Short interest settlement 2026-08-14.</li>
+<li>SEC companyfacts and submissions index, User-Agent LWBResearch/1.0, 2026-09-02, for US filers’ latest 10-K/10-Q URLs and XBRL revenue/gross-profit/cash.</li>
+<li>SK hynix FY2025: <a href="https://www.prnewswire.com/news-releases/sk-hynix-announces-fy25-financial-results-posts-record-high-results-and-delivers-highest-shareholder-returns-302672384.html">PR Newswire 28 Jan 2026</a>; Q2 2026: company newsroom 29 Jul 2026.</li>
+<li>Micron FY2025 10-K: <a href="https://www.sec.gov/Archives/edgar/data/723125/000072312525000028/mu-20250828.htm">mu-20250828.htm</a> (filed 2025-10-03). CMBU $13.52B of $37.378B.</li>
+<li>Samsung FY2025 newsroom, 29 Jan 2026.</li>
+<li>Lumentum 8-K 2 Mar 2026 NVIDIA preferred: <a href="https://www.sec.gov/Archives/edgar/data/1633978/000119312526085412/d41019d8k.htm">000119312526085412</a>. Coherent 8-K same day: <a href="https://www.sec.gov/Archives/edgar/data/820318/000119312526084366/d42735d8k.htm">000119312526084366</a>.</li>
+<li>Coherent FY2026 10-K: <a href="https://www.sec.gov/Archives/edgar/data/820318/000082031826000020/iivi-20260630.htm">iivi-20260630.htm</a>. Lumentum FY2026 10-K filed 2026-08-17.</li>
+<li>Fabrinet FY2026 10-K: <a href="https://www.sec.gov/Archives/edgar/data/1408710/000140871026000028/fn-20260626.htm">fn-20260626.htm</a>.</li>
+<li>FormFactor FY2025 10-K: <a href="https://www.sec.gov/Archives/edgar/data/1039399/000103939926000009/form-20251227.htm">form-20251227.htm</a>. DRAM $247.4m (31.6%); SK hynix 22.9%.</li>
+<li>Sumitomo Electric FY2025 financial section (year ended 31 Mar 2026): <a href="https://sumitomoelectric.com/sites/default/files/2026-07/download_documents/FS2025.pdf">FS2025.pdf</a>. Infocomm ¥326.6bn of ¥5,110.2bn.</li>
+<li>EVE Energy 2025 annual report (CNINFO, 28 Mar 2026): <a href="https://static.cninfo.com.cn/finalpage/2026-03-28/1225045391.PDF">1225045391.PDF</a>. ESS RMB 24.441bn = 39.76%.</li>
+<li>Sungrow 2025 annual report (CNINFO, 1 Apr 2026): <a href="https://static.cninfo.com.cn/finalpage/2026-04-01/1225066678.PDF">1225066678.PDF</a>. ESS RMB 37.287bn = 41.81%.</li>
+<li>NVIDIA Spectrum-X Photonics production blog, COMPUTEX 2026.</li>
+<li>Marvell Celestial AI close EX-99.1, 2 Feb 2026.</li>
+<li>Fervo S-1: <a href="https://www.sec.gov/Archives/edgar/data/1853868/000162828026025821/fervoenergy-sx1.htm">fervoenergy-sx1.htm</a>. Q2 2026 Ex.99.1: <a href="https://www.sec.gov/Archives/edgar/data/1853868/000162828026055942/exhibit991earningsrelease8.htm">exhibit991earningsrelease8.htm</a>. Google PPA 8-K: <a href="https://www.sec.gov/Archives/edgar/data/1853868/000162828026059707/frvo-20260826.htm">frvo-20260826.htm</a>. IPO PR, GlobeNewswire 12 May 2026.</li>
+<li>Helmerich &amp; Payne FY2025 10-K: <a href="https://www.sec.gov/Archives/edgar/data/46765/000004676525000071/hp-20250930.htm">hp-20250930.htm</a>. Baker Hughes–HP geothermal collaboration, company PR.</li>
+<li>SLB FY2025 10-K filed 23 Jan 2026; SLB–Ormat EGS PR 21 Jan 2026.</li>
+<li>Liberty Energy Fervo investment: company PR 25 Jul 2022, $10 million.</li>
+<li>SEIA, “Largest Quarter on Record for Energy Storage,” 1 Sep 2026: <a href="https://seia.org/news/largest-quarter-on-record-for-energy-storage/">seia.org</a>.</li>
+<li>Fluence FY2025 10-K: <a href="https://www.sec.gov/Archives/edgar/data/1868941/000186894125000081/flnc-20250930.htm">flnc-20250930.htm</a>. Q3 FY2026 Ex.99.1, 5 Aug 2026.</li>
+<li>Tesla FY2025 10-K: <a href="https://www.sec.gov/Archives/edgar/data/1318605/000162828026003952/tsla-20251231.htm">tsla-20251231.htm</a>. Q2 2026 10-Q and Ex.99.1.</li>
+<li>CATL 2025 annual report (EN): company IR PDF dated March 2026.</li>
+<li>Wärtsilä storage JV PR, 15 Jun 2026. Powin Chapter 11 coverage, Energy-Storage.News, June 2025.</li>
+<li>BNEF 2025 BESS cost survey as reported by Energy-Storage.News, Dec 2025. NREL/TP-6A40-93281.</li>
+<li>Innodata FY2025 10-K: <a href="https://www.sec.gov/Archives/edgar/data/903651/000110465926020655/inod-20251231x10k.htm">inod-20251231x10k.htm</a>.</li>
+<li>Appen FY25 ASX release, 25 Feb 2026: <a href="https://announcements.asx.com.au/asxpdf/20260225/pdf/06wq7ntr51bhgl.pdf">ASX PDF</a>. H1 FY26 investor presentation, 27 Aug 2026.</li>
+<li>TELUS completes privatization of TELUS Digital, 31 Oct 2025: <a href="https://www.telus.com/about/news-and-events/media-releases/telus-completes-privatization-of-telus-digital">telus.com</a>.</li>
+<li>UL Solutions FY2025 Ex.99.1, 19 Feb 2026: <a href="https://www.sec.gov/Archives/edgar/data/1901440/000190144026000003/exhibit991q42025ulsolution.htm">exhibit991q42025ulsolution.htm</a>.</li>
+<li>TrendForce CPO/NPO dollar forecast, 15 Jun 2026; CPO shipments note, 27 Jul 2026. Unit-share 0.55%/35.74% chart is secondary (not a fetched TrendForce PDF).</li>
+<li>Working notes with fuller company blocks: <span class="small">raw/memory.md, raw/optics.md, raw/storage.md, raw/egs.md, raw/verification.md</span>.</li>
+</ol>
+<p class="small">Every exposure percentage above is filing-sourced or marked estimate. Every shortlisted name has a bear case, a reference-class analog, and dated kill criteria. International EV/sales, implied-volatility percentile, and four-plus-four earnings-call word counts are not in the record where so labeled. Confabulated tickers were not used; TIXT was checked and dropped.</p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,128 @@
+{
+  "AAOI": {
+    "settlementDate": "08/14/2026",
+    "interest": "10,421,985",
+    "avgDailyShareVolume": "15,117,634",
+    "daysToCover": 1.0
+  },
+  "AAPL": {
+    "settlementDate": "08/14/2026",
+    "interest": "116,327,753",
+    "avgDailyShareVolume": "46,065,396",
+    "daysToCover": 2.525274
+  },
+  "ALAB": {
+    "settlementDate": "08/14/2026",
+    "interest": "8,753,228",
+    "avgDailyShareVolume": "4,734,294",
+    "daysToCover": 1.848898
+  },
+  "AMD": {
+    "settlementDate": "08/14/2026",
+    "interest": "40,065,798",
+    "avgDailyShareVolume": "26,911,002",
+    "daysToCover": 1.488826
+  },
+  "AVGO": {
+    "settlementDate": "08/14/2026",
+    "interest": "56,209,128",
+    "avgDailyShareVolume": "17,502,436",
+    "daysToCover": 3.211503
+  },
+  "BKR": {
+    "settlementDate": "08/14/2026",
+    "interest": "23,810,150",
+    "avgDailyShareVolume": "6,397,989",
+    "daysToCover": 3.721505
+  },
+  "CRDO": {
+    "settlementDate": "08/14/2026",
+    "interest": "6,126,151",
+    "avgDailyShareVolume": "4,274,109",
+    "daysToCover": 1.433317
+  },
+  "DDOG": {
+    "settlementDate": "08/14/2026",
+    "interest": "9,245,979",
+    "avgDailyShareVolume": "6,475,611",
+    "daysToCover": 1.427816
+  },
+  "EOSE": {
+    "settlementDate": "08/14/2026",
+    "interest": "112,753,376",
+    "avgDailyShareVolume": "27,431,722",
+    "daysToCover": 4.110328
+  },
+  "FLNC": {
+    "settlementDate": "08/14/2026",
+    "interest": "25,445,491",
+    "avgDailyShareVolume": "9,393,582",
+    "daysToCover": 2.708817
+  },
+  "FRVO": {
+    "settlementDate": "08/14/2026",
+    "interest": "9,570,437",
+    "avgDailyShareVolume": "2,964,353",
+    "daysToCover": 3.228508
+  },
+  "GTLB": {
+    "settlementDate": "08/14/2026",
+    "interest": "15,433,672",
+    "avgDailyShareVolume": "4,730,603",
+    "daysToCover": 3.262517
+  },
+  "INOD": {
+    "settlementDate": "08/14/2026",
+    "interest": "4,611,951",
+    "avgDailyShareVolume": "2,054,137",
+    "daysToCover": 2.245201
+  },
+  "LITE": {
+    "settlementDate": "08/14/2026",
+    "interest": "7,270,171",
+    "avgDailyShareVolume": "5,595,730",
+    "daysToCover": 1.299235
+  },
+  "MU": {
+    "settlementDate": "08/14/2026",
+    "interest": "30,016,025",
+    "avgDailyShareVolume": "33,755,659",
+    "daysToCover": 1.0
+  },
+  "NVDA": {
+    "settlementDate": "08/14/2026",
+    "interest": "285,956,804",
+    "avgDailyShareVolume": "113,580,992",
+    "daysToCover": 2.517647
+  },
+  "PTEN": {
+    "settlementDate": "08/14/2026",
+    "interest": "29,162,834",
+    "avgDailyShareVolume": "7,415,907",
+    "daysToCover": 3.93247
+  },
+  "RMBS": {
+    "settlementDate": "08/14/2026",
+    "interest": "5,432,091",
+    "avgDailyShareVolume": "1,917,835",
+    "daysToCover": 2.832408
+  },
+  "SNDK": {
+    "settlementDate": "08/14/2026",
+    "interest": "7,676,558",
+    "avgDailyShareVolume": "15,207,988",
+    "daysToCover": 1.0
+  },
+  "TEAM": {
+    "settlementDate": "08/14/2026",
+    "interest": "11,745,304",
+    "avgDailyShareVolume": "6,570,831",
+    "daysToCover": 1.787491
+  },
+  "TSLA": {
+    "settlementDate": "08/14/2026",
+    "interest": "69,196,896",
+    "avgDailyShareVolume": "32,128,184",
+    "daysToCover": 2.153776
+  }
+}

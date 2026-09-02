@@ -1,0 +1,452 @@
+{
+  "AAOI": {
+    "totalRecord": 380,
+    "filter_keys": [
+      "excode",
+      "callput",
+      "money",
+      "type",
+      "fromdate"
+    ],
+    "table_keys": [
+      "asOf",
+      "headers",
+      "rows"
+    ]
+  },
+  "AAPL": {
+    "totalRecord": 497,
+    "filter_keys": [
+      "excode",
+      "callput",
+      "money",
+      "type",
+      "fromdate"
+    ],
+    "table_keys": [
+      "asOf",
+      "headers",
+      "rows"
+    ]
+  },
+  "ALAB": {
+    "totalRecord": 403,
+    "filter_keys": [
+      "excode",
+      "callput",
+      "money",
+      "type",
+      "fromdate"
+    ],
+    "table_keys": [
+      "asOf",
+      "headers",
+      "rows"
+    ]
+  },
+  "AMD": {
+    "totalRecord": 1087,
+    "filter_keys": [
+      "excode",
+      "callput",
+      "money",
+      "type",
+      "fromdate"
+    ],
+    "table_keys": [
+      "asOf",
+      "headers",
+      "rows"
+    ]
+  },
+  "AVGO": {
+    "totalRecord": 566,
+    "filter_keys": [
+      "excode",
+      "callput",
+      "money",
+      "type",
+      "fromdate"
+    ],
+    "table_keys": [
+      "asOf",
+      "headers",
+      "rows"
+    ]
+  },
+  "BKR": {
+    "totalRecord": 24,
+    "filter_keys": [
+      "excode",
+      "callput",
+      "money",
+      "type",
+      "fromdate"
+    ],
+    "table_keys": [
+      "asOf",
+      "headers",
+      "rows"
+    ]
+  },
+  "COHR": {
+    "totalRecord": 393,
+    "filter_keys": [
+      "excode",
+      "callput",
+      "money",
+      "type",
+      "fromdate"
+    ],
+    "table_keys": [
+      "asOf",
+      "headers",
+      "rows"
+    ]
+  },
+  "CRDO": {
+    "totalRecord": 299,
+    "filter_keys": [
+      "excode",
+      "callput",
+      "money",
+      "type",
+      "fromdate"
+    ],
+    "table_keys": [
+      "asOf",
+      "headers",
+      "rows"
+    ]
+  },
+  "DDOG": {
+    "totalRecord": 268,
+    "filter_keys": [
+      "excode",
+      "callput",
+      "money",
+      "type",
+      "fromdate"
+    ],
+    "table_keys": [
+      "asOf",
+      "headers",
+      "rows"
+    ]
+  },
+  "DT": {
+    "totalRecord": 21,
+    "filter_keys": [
+      "excode",
+      "callput",
+      "money",
+      "type",
+      "fromdate"
+    ],
+    "table_keys": [
+      "asOf",
+      "headers",
+      "rows"
+    ]
+  },
+  "EOSE": {
+    "totalRecord": 66,
+    "filter_keys": [
+      "excode",
+      "callput",
+      "money",
+      "type",
+      "fromdate"
+    ],
+    "table_keys": [
+      "asOf",
+      "headers",
+      "rows"
+    ]
+  },
+  "FLNC": {
+    "totalRecord": 22,
+    "filter_keys": [
+      "excode",
+      "callput",
+      "money",
+      "type",
+      "fromdate"
+    ],
+    "table_keys": [
+      "asOf",
+      "headers",
+      "rows"
+    ]
+  },
+  "FN": {
+    "totalRecord": 63,
+    "filter_keys": [
+      "excode",
+      "callput",
+      "money",
+      "type",
+      "fromdate"
+    ],
+    "table_keys": [
+      "asOf",
+      "headers",
+      "rows"
+    ]
+  },
+  "FRVO": {
+    "totalRecord": 18,
+    "filter_keys": [
+      "excode",
+      "callput",
+      "money",
+      "type",
+      "fromdate"
+    ],
+    "table_keys": [
+      "asOf",
+      "headers",
+      "rows"
+    ]
+  },
+  "GLW": {
+    "totalRecord": 269,
+    "filter_keys": [
+      "excode",
+      "callput",
+      "money",
+      "type",
+      "fromdate"
+    ],
+    "table_keys": [
+      "asOf",
+      "headers",
+      "rows"
+    ]
+  },
+  "GTLB": {
+    "totalRecord": 207,
+    "filter_keys": [
+      "excode",
+      "callput",
+      "money",
+      "type",
+      "fromdate"
+    ],
+    "table_keys": [
+      "asOf",
+      "headers",
+      "rows"
+    ]
+  },
+  "HP": {
+    "totalRecord": 18,
+    "filter_keys": [
+      "excode",
+      "callput",
+      "money",
+      "type",
+      "fromdate"
+    ],
+    "table_keys": [
+      "asOf",
+      "headers",
+      "rows"
+    ]
+  },
+  "INOD": {
+    "totalRecord": 184,
+    "filter_keys": [
+      "excode",
+      "callput",
+      "money",
+      "type",
+      "fromdate"
+    ],
+    "table_keys": [
+      "asOf",
+      "headers",
+      "rows"
+    ]
+  },
+  "LBRT": {
+    "totalRecord": 41,
+    "filter_keys": [
+      "excode",
+      "callput",
+      "money",
+      "type",
+      "fromdate"
+    ],
+    "table_keys": [
+      "asOf",
+      "headers",
+      "rows"
+    ]
+  },
+  "LITE": {
+    "totalRecord": 785,
+    "filter_keys": [
+      "excode",
+      "callput",
+      "money",
+      "type",
+      "fromdate"
+    ],
+    "table_keys": [
+      "asOf",
+      "headers",
+      "rows"
+    ]
+  },
+  "MU": {
+    "totalRecord": 1577,
+    "filter_keys": [
+      "excode",
+      "callput",
+      "money",
+      "type",
+      "fromdate"
+    ],
+    "table_keys": [
+      "asOf",
+      "headers",
+      "rows"
+    ]
+  },
+  "NVDA": {
+    "totalRecord": 512,
+    "filter_keys": [
+      "excode",
+      "callput",
+      "money",
+      "type",
+      "fromdate"
+    ],
+    "table_keys": [
+      "asOf",
+      "headers",
+      "rows"
+    ]
+  },
+  "ORA": {
+    "totalRecord": 32,
+    "filter_keys": [
+      "excode",
+      "callput",
+      "money",
+      "type",
+      "fromdate"
+    ],
+    "table_keys": [
+      "asOf",
+      "headers",
+      "rows"
+    ]
+  },
+  "PTEN": {
+    "totalRecord": 21,
+    "filter_keys": [
+      "excode",
+      "callput",
+      "money",
+      "type",
+      "fromdate"
+    ],
+    "table_keys": [
+      "asOf",
+      "headers",
+      "rows"
+    ]
+  },
+  "RMBS": {
+    "totalRecord": 25,
+    "filter_keys": [
+      "excode",
+      "callput",
+      "money",
+      "type",
+      "fromdate"
+    ],
+    "table_keys": [
+      "asOf",
+      "headers",
+      "rows"
+    ]
+  },
+  "SLB": {
+    "totalRecord": 149,
+    "filter_keys": [
+      "excode",
+      "callput",
+      "money",
+      "type",
+      "fromdate"
+    ],
+    "table_keys": [
+      "asOf",
+      "headers",
+      "rows"
+    ]
+  },
+  "SNDK": {
+    "totalRecord": 1251,
+    "filter_keys": [
+      "excode",
+      "callput",
+      "money",
+      "type",
+      "fromdate"
+    ],
+    "table_keys": [
+      "asOf",
+      "headers",
+      "rows"
+    ]
+  },
+  "TEAM": {
+    "totalRecord": 363,
+    "filter_keys": [
+      "excode",
+      "callput",
+      "money",
+      "type",
+      "fromdate"
+    ],
+    "table_keys": [
+      "asOf",
+      "headers",
+      "rows"
+    ]
+  },
+  "TSLA": {
+    "totalRecord": 825,
+    "filter_keys": [
+      "excode",
+      "callput",
+      "money",
+      "type",
+      "fromdate"
+    ],
+    "table_keys": [
+      "asOf",
+      "headers",
+      "rows"
+    ]
+  },
+  "ULS": {
+    "totalRecord": 20,
+    "filter_keys": [
+      "excode",
+      "callput",
+      "money",
+      "type",
+      "fromdate"
+    ],
+    "table_keys": [
+      "asOf",
+      "headers",
+      "rows"
+    ]
+  }
+}

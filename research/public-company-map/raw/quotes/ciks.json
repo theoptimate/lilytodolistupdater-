@@ -1,0 +1,190 @@
+{
+  "NVDA": {
+    "cik": "0001045810",
+    "title": "NVIDIA CORP"
+  },
+  "AAPL": {
+    "cik": "0000320193",
+    "title": "Apple Inc."
+  },
+  "GOOGL": {
+    "cik": "0001652044",
+    "title": "Alphabet Inc."
+  },
+  "MSFT": {
+    "cik": "0000789019",
+    "title": "MICROSOFT CORP"
+  },
+  "AVGO": {
+    "cik": "0001730168",
+    "title": "Broadcom Inc."
+  },
+  "META": {
+    "cik": "0001326801",
+    "title": "Meta Platforms, Inc."
+  },
+  "TSLA": {
+    "cik": "0001318605",
+    "title": "Tesla, Inc."
+  },
+  "MU": {
+    "cik": "0000723125",
+    "title": "MICRON TECHNOLOGY INC"
+  },
+  "AMD": {
+    "cik": "0000002488",
+    "title": "ADVANCED MICRO DEVICES INC"
+  },
+  "SNDK": {
+    "cik": "0002023554",
+    "title": "Sandisk Corp"
+  },
+  "MRVL": {
+    "cik": "0001835632",
+    "title": "Marvell Technology, Inc."
+  },
+  "QCOM": {
+    "cik": "0000804328",
+    "title": "QUALCOMM INC/DE"
+  },
+  "NEE": {
+    "cik": "0000753308",
+    "title": "NEXTERA ENERGY INC"
+  },
+  "GLW": {
+    "cik": "0000024741",
+    "title": "CORNING INC /NY"
+  },
+  "DDOG": {
+    "cik": "0001561550",
+    "title": "Datadog, Inc."
+  },
+  "SLB": {
+    "cik": "0000087347",
+    "title": "SLB LIMITED/NV"
+  },
+  "LITE": {
+    "cik": "0001633978",
+    "title": "Lumentum Holdings Inc."
+  },
+  "BKR": {
+    "cik": "0001701605",
+    "title": "Baker Hughes Co"
+  },
+  "COHR": {
+    "cik": "0000820318",
+    "title": "COHERENT CORP."
+  },
+  "CIEN": {
+    "cik": "0000936395",
+    "title": "CIENA CORP"
+  },
+  "ALAB": {
+    "cik": "0001736297",
+    "title": "Astera Labs, Inc."
+  },
+  "TEAM": {
+    "cik": "0001650372",
+    "title": "Atlassian Corp"
+  },
+  "TRI": {
+    "cik": "0001075124",
+    "title": "THOMSON REUTERS CORP /CAN/"
+  },
+  "CRDO": {
+    "cik": "0001807794",
+    "title": "Credo Technology Group Holding Ltd"
+  },
+  "HAL": {
+    "cik": "0000045012",
+    "title": "HALLIBURTON CO"
+  },
+  "DT": {
+    "cik": "0001773383",
+    "title": "Dynatrace, Inc."
+  },
+  "ULS": {
+    "cik": "0001901440",
+    "title": "UL Solutions Inc."
+  },
+  "FN": {
+    "cik": "0001408710",
+    "title": "Fabrinet"
+  },
+  "AES": {
+    "cik": "0000874761",
+    "title": "AES CORP"
+  },
+  "RMBS": {
+    "cik": "0000917273",
+    "title": "RAMBUS INC"
+  },
+  "AAOI": {
+    "cik": "0001158114",
+    "title": "APPLIED OPTOELECTRONICS, INC."
+  },
+  "GTLB": {
+    "cik": "0001653482",
+    "title": "Gitlab Inc."
+  },
+  "ORA": {
+    "cik": "0001296445",
+    "title": "ORMAT TECHNOLOGIES, INC."
+  },
+  "ENPH": {
+    "cik": "0001463101",
+    "title": "Enphase Energy, Inc."
+  },
+  "PTEN": {
+    "cik": "0000889900",
+    "title": "PATTERSON UTI ENERGY INC"
+  },
+  "FRVO": {
+    "cik": "0001853868",
+    "title": "Fervo Energy Co"
+  },
+  "HP": {
+    "cik": "0000046765",
+    "title": "Helmerich & Payne, Inc."
+  },
+  "LBRT": {
+    "cik": "0001694028",
+    "title": "Liberty Energy Inc."
+  },
+  "FLNC": {
+    "cik": "0001868941",
+    "title": "Fluence Energy, Inc."
+  },
+  "INOD": {
+    "cik": "0000903651",
+    "title": "INNODATA INC"
+  },
+  "NBR": {
+    "cik": "0001163739",
+    "title": "NABORS INDUSTRIES LTD"
+  },
+  "POET": {
+    "cik": "0001437424",
+    "title": "POET TECHNOLOGIES INC."
+  },
+  "EOSE": {
+    "cik": "0001805077",
+    "title": "Eos Energy Enterprises, Inc."
+  },
+  "PDS": {
+    "cik": "0001013605",
+    "title": "PRECISION DRILLING Corp"
+  },
+  "LWLG": {
+    "cik": "0001325964",
+    "title": "Lightwave Logic, Inc."
+  },
+  "TSM": {
+    "cik": "0001046179",
+    "title": "TAIWAN SEMICONDUCTOR MANUFACTURING CO LTD"
+  },
+  "GOOG": {
+    "cik": "0001652044",
+    "title": "Alphabet Inc."
+  }
+}
