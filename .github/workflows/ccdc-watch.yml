@@ -2,6 +2,11 @@
 # Schedule: minute 30 past every 5th hour, UTC (about every five hours).
 # GitHub runs this only on the default branch, and may start it late.
 #
+# The schedule has no end date of its own. Scheduled runs stop at the next
+# slot after 9:30 p.m. Pacific on November 16, 2026 (two weeks after
+# November 2). A run that starts at or after 2:30 a.m. Pacific on
+# November 17 exits without a lookup. Manual runs still work.
+#
 # Add repository secrets CCDC_LAST_NAME and CCDC_FIRST_NAME before relying on it.
 # The job prints a name-free result. It fails when that result changes.
 
@@ -19,13 +24,32 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
+      - name: Stop scheduled runs after November 16, 2026
+        id: gate
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          # 10:30 UTC Nov 17 is 2:30 a.m. Pacific on November 17, the first
+          # slot after 9:30 p.m. Pacific on November 16.
+          cutoff=$(date -u -d '2026-11-17 10:30:00' +%s)
+          now=$(date -u +%s)
+          if [ "$EVENT_NAME" = "schedule" ] && [ "$now" -ge "$cutoff" ]; then
+            echo "active=false" >> "$GITHUB_OUTPUT"
+            echo "Schedule ended. No roster check."
+          else
+            echo "active=true" >> "$GITHUB_OUTPUT"
+          fi
+
       - uses: actions/checkout@v4
+        if: steps.gate.outputs.active == 'true'
 
       - uses: actions/setup-node@v4
+        if: steps.gate.outputs.active == 'true'
         with:
           node-version: "22"
 
       - name: Restore last result
+        if: steps.gate.outputs.active == 'true'
         uses: actions/cache/restore@v4
         with:
           path: .ccdc-watch-state.json
@@ -34,13 +58,14 @@ jobs:
             ccdc-watch-
 
       - name: Check the public roster
+        if: steps.gate.outputs.active == 'true'
         env:
           CCDC_LAST_NAME: ${{ secrets.CCDC_LAST_NAME }}
           CCDC_FIRST_NAME: ${{ secrets.CCDC_FIRST_NAME }}
         run: node tools/ccdc-watch.mjs
 
       - name: Save last result
-        if: always() && hashFiles('.ccdc-watch-state.json') != ''
+        if: always() && steps.gate.outputs.active == 'true' && hashFiles('.ccdc-watch-state.json') != ''
         uses: actions/cache/save@v4
         with:
           path: .ccdc-watch-state.json
