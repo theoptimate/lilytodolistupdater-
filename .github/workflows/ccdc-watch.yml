@@ -1,0 +1,47 @@
+# Checks the Clark County Detention Center public in-custody roster.
+# Schedule: minute 30 past every 5th hour, UTC (about every five hours).
+# GitHub runs this only on the default branch, and may start it late.
+#
+# Add repository secrets CCDC_LAST_NAME and CCDC_FIRST_NAME before relying on it.
+# The job prints a name-free result. It fails when that result changes.
+
+name: Roster check
+
+on:
+  schedule:
+    - cron: "30 */5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Restore last result
+        uses: actions/cache/restore@v4
+        with:
+          path: .ccdc-watch-state.json
+          key: ccdc-watch-${{ github.run_id }}
+          restore-keys: |
+            ccdc-watch-
+
+      - name: Check the public roster
+        env:
+          CCDC_LAST_NAME: ${{ secrets.CCDC_LAST_NAME }}
+          CCDC_FIRST_NAME: ${{ secrets.CCDC_FIRST_NAME }}
+        run: node tools/ccdc-watch.mjs
+
+      - name: Save last result
+        if: always() && hashFiles('.ccdc-watch-state.json') != ''
+        uses: actions/cache/save@v4
+        with:
+          path: .ccdc-watch-state.json
+          key: ccdc-watch-${{ github.run_id }}

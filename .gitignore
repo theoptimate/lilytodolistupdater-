@@ -2,3 +2,5 @@ dist/
 node_modules/
 preview.html
 .DS_Store
+.ccdc-watch-state.json
+tools/.ccdc-watch.env
